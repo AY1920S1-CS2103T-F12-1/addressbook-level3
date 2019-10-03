@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 3 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Horo - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>AddressBook Level 3 - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Horo - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team AY1920S1-CS2103T-F12-1</code>      Since: <code>Sept 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -13,16 +13,12 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.7. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.9. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.10. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong">3.1. Asking for help : <code>help</code> <strong><code>[coming in v2.0]</code></strong></a></li>
+<li><a href="#calendar-events-and-task">3.2. Calendar, Events and Task</a></li>
+<li><a href="#tagging-system-strong-code-coming-in-v2-0-code-strong">3.3. Tagging System <strong><code>[coming in v2.0]</code></strong></a></li>
+<li><a href="#ui">3.4. UI</a></li>
+<li><a href="#undo-redo">3.5. Undo Redo</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.6. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -34,7 +30,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 3 (AB3) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB3 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p><strong>Horo</strong> is for those who want to use a Command-Line-Interface (CLI) desktop application to manage one’s schedule and reminders. However, it is not just a fully implemented CLI program, but it also includes a Graphical User Interface (GUI) to make it visually appealing. If you are able to remember the commands, <strong>Horo</strong> is definitely an efficient solution to help you store your Events and Reminders. Forgetful person or not, <strong>Horo</strong> will help you remember and remind you, as well as provide a visual aid for what the next most important task coming up is and when it occurs. Continue reading to find out what <strong>Horo</strong> has to offer!</p>
 </div>
 </div>
 </div>
@@ -47,7 +43,7 @@
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level3/releases">here</a>.</p>
+<p>Download the latest <code>horo.jar</code> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
@@ -69,16 +65,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
+<p><code><strong>add_event</strong> Celebrate Rori’s Birthday</code>: adds an event to the event book.</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><code><strong>delete</strong> -task 3</code> : deletes the 3rd event shown in the event book.</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
-</li>
-<li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>exit</code></strong> : exits the application.</p>
 </li>
 </ul>
 </div>
@@ -96,227 +89,431 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Command Format</strong></p>
+<p><strong>Command Format for Horo</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>The first word of any command should be a non-capitalized command, followed by the necessary arguments of the command itself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code>help</code></p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>E.g. <code>done 1</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>If the argument contains more than 1 blank space, it should be contained in a double apostrophe.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code>delete 1</code></p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>E.g. <code>add_event "Celebrate Rori&#8217;s Birthday"</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Any sub-commands should be after the main command, and require a <code>--</code> before the sub-command itself. Sub commands should</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code>add_event "Celebrate Horo&#8217;s Birthday" --at 17/09/2019 23:59</code></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>help</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
-<div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
+<p><strong>Command Format specifically for this User Guide</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
-</li>
+<p>Words that are fully capitalized are the terms supplied by you.</p>
+<div class="ulist">
+<ul>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p>E.g. <code>event EVENT</code></p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Words in square brackets, <code>[]</code>, are optional terms.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. `event EVENT [--at DATE_TIME]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Words with ellipsis, <code>&#8230;&#8203;</code>, can be used multiple times including zero times.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code>event EVENT [--at DATE_TIME] [--tag TAG_1] [--tag TAG_2]&#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
+<h3 id="asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong">3.1. Asking for help : <code>help</code> <strong><code>[coming in v2.0]</code></strong></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>Provides a guide for you if you have problems with commands and it’s format.
+<br>
+Format and Example:<br>
+<code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="calendar-events-and-task"><a class="link" href="#calendar-events-and-task">3.2. Calendar, Events and Task</a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>The  following commands are related to Events and Tasks which revolves around a calendar. Here are the clarification for Events and Tasks:
+<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Event:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Will show up on the Calendar.</p>
+</li>
+<li>
+<p>Unable to be marked as done.</p>
+</li>
+<li>
+<p>If past the specified date, it is removed from the Calendar, unless it is recurring.
+<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Task <strong><code>[coming in v2.0]</code></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>May show up on the Calendar if time is specified.</p>
+</li>
+<li>
+<p>Able to be marked as done.</p>
+</li>
+<li>
+<p>If past the specified date, it is archived into an undone list, which subsequently able to be unarchived.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="adding-events"><a class="link" href="#adding-events">3.2.1. Adding Events</a></h4>
+<div class="paragraph">
+<p>Adds an event to the event list.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>add_event DESCRIPTION DATE_TIME [--end DATE_TIME] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00”</code><br>
+<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --end “18/08/2019 20:00”</code><br>
+<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --remind “18/08/2019 12:00”</code><br>
+<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --tag Birthday Rori</code><br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-events"><a class="link" href="#deleting-events">3.2.2. Deleting Events</a></h4>
+<div class="paragraph">
+<p>Deletes event(s) from the event list.
+1. Delete by event indexes
+2. Delete by tags
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>delete_event [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>delete_event 1</code><br>
+<code>delete_event 1 2 3</code><br>
+<code>delete_event --tag Birthday</code><br>
+<code>delete_event 1 2 3 --tag Birthday</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-events"><a class="link" href="#editing-events">3.2.3. Editing Events</a></h4>
+<div class="paragraph">
+<p>Edits existing event(s) from the event list.<br>
+Edit by event indexes.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>edit_event INDEX&#8230;&#8203; [--description DESCRIPTION] [--at DATE_TIME]  [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>edit_event 1 2 3 --tag Rori</code><br>
+<code>edit_event 1 --description “Play Monster Hunter” --at “17/08/2019 19:00” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tasks-strong-code-coming-in-v2-0-code-strong">3.2.4. Adding Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Adds a task to the task list.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>add_task DESCRIPTION [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>add_task “Buy Rori a birthday cake”</code><br>
+<code>add_task “Buy Rori a birthday cake” --end “18/08/2019 20:00”</code><br>
+<code>add_task “Buy Rori a birthday cake” --remind “18/08/2019 12:00”</code><br>
+<code>add_task “Buy Rori a birthday cake” --tag Birthday Rori</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#deleting-tasks-strong-code-coming-in-v2-0-code-strong">3.2.5. Deleting Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Deletes Task(s) from the task list.
+1. Delete by task indexes
+2. Delete by tags
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>delete_task [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>delete_task 1</code><br>
+<code>delete_task 1 2 3</code><br>
+<code>delete_task --tag Birthday</code><br>
+<code>delete_task 1 2 3 --tag Birthday</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#editing-tasks-strong-code-coming-in-v2-0-code-strong">3.2.6. Editing Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Edits existing task(s) from the task list.<br>
+Edit by task indexes.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>edit_task INDEX&#8230;&#8203; [--description DESCRIPTION] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>edit_task 1 2 3 --tag Present</code><br>
+<code>edit_task 1 --description “Buy Rori a present” --remind “17/08/2019 12:00” --tag Present</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="making-recurring-events-code-recur-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#making-recurring-events-code-recur-code-strong-code-coming-in-v2-0-code-strong">3.2.7. Making recurring Events: <code>recur</code> <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Makes an Event show up repeatedly in the Calendar
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>recur INDEX&#8230;&#8203; [-f|--frequency FREQUENCY]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code>recur 1 2 3 -f daily</code><br>
+<code>recur 1 2 3 --frequency daily</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>This will make Events 1, 2 and 3 recur daily on the Calendar.</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong">3.2.8. Finding Events and Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Finds Events and Tasks whose name or tag contains the specified keyword. If unspecified, Rori will search for all events, tasks and tags containing the keyword.
+<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format:<br>
+<code>find [KEYWORD] [--event KEYWORD] [--task KEYWORD] [--tag KEYWORD&#8230;&#8203;]</code>
+<br></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Example:<br>
+<code>find Birthday</code><br>
+<code>find --event Rori</code><br>
+<code>find --task Rori</code><br>
+<code>find --tag Birthday</code><br>
+<code>find --tag Birthday Pet</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="completing-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#completing-tasks-strong-code-coming-in-v2-0-code-strong">3.2.9. Completing Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Sets task(s) as done using it&#8217;s task index as a parameter, so that you can keep track of your progress.</p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>done INDEX&#8230;&#8203;</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>done 1</code><br>
+<code>done 1 2 3</code></p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="tagging-system-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#tagging-system-strong-code-coming-in-v2-0-code-strong">3.3. Tagging System <strong><code>[coming in v2.0]</code></strong></a></h3>
+<div class="sect3">
+<h4 id="adding-tags-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tags-strong-code-coming-in-v2-0-code-strong">3.3.1. Adding Tags <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
-</li>
-</ul>
-</div>
-</div>
+<p>Adds Tags to particular Events or Tasks
+<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format:<br>
+<code>tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code>
+<br></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Example:<br>
+<code>tag 1 2 3 --tag Birthday</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-tags-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#removing-tags-strong-code-coming-in-v2-0-code-strong">3.3.2. Removing Tags <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Removes Tags from particular Events or Tasks
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>remove_tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>remove_tag 1 2 3 --tag Birthdays</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-events-and-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#deleting-events-and-tasks-strong-code-coming-in-v2-0-code-strong">3.3.3. Deleting Events and Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Deletes all events and tasks.
+1. Delete by indexes
+2. Delete by tags
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>delete [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>delete 1 2 3</code>
+<code>delete --tag Work</code><br>
+* This will delete all events and tasks that have been tagged as Work.
+<br></p>
+</div>
+<div class="paragraph">
+<p><code>delete --tag Work "Project Animation"</code><br>
+* This will delete all events and tasks that have been tagged as both Work AND Project Animation.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
+<h3 id="ui"><a class="link" href="#ui">3.4. UI</a></h3>
+<div class="sect3">
+<h4 id="switching-between-list-and-calendar-view-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#switching-between-list-and-calendar-view-strong-code-coming-in-v2-0-code-strong">3.4.1. Switching between List and Calendar view <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
+<p>This will toggle the UI on the right between the List and Calendar view.<br>
+Switching between List and Calendar view
+<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format:<br>
+<code>view</code></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.7. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="undo-redo"><a class="link" href="#undo-redo">3.5. Undo Redo</a></h3>
+<div class="sect3">
+<h4 id="undo-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#undo-strong-code-coming-in-v2-0-code-strong">3.5.1. Undo <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p>Undoes the previous command.<br>
+Commands can be undone up to the starting up of the program
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>undo</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#redo-strong-code-coming-in-v2-0-code-strong">3.5.2. Redo <strong><code>[coming in v2.0]</code></strong></a></h4>
+<div class="paragraph">
+<p>Redoes the previously undone command
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>redo</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Able to redo commands that have been undone and
+are not succeeded by any other state-changing commands (e.g. add_event, delete_event, edit)</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.6. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
-<p>Exits the program.<br>
+<p>Exits the program.
+<br>
 Format: <code>exit</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.9. Saving the data</a></h3>
-<div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.10. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 </div>
@@ -336,31 +533,54 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+<p><strong>Help</strong> : <code>help</code><br></p>
 </li>
 <li>
-<p><strong>Clear</strong> : <code>clear</code></p>
+<p><strong>Adding an Event</strong> : <code>add_event DESCRIPTION DATE_TIME [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>add_event "Celebrate Horo&#8217;s Birthday" --at 17/09/2019 23:59</code></p>
 </li>
 <li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
+<p><strong>Deleting Events</strong> : <code>delete_event [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>delete_event 1 2 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
+<p><strong>Editing Events</strong> : <code>edit_event INDEX&#8230;&#8203; [--description DESCRIPTION] [--at DATE_TIME] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>edit_event 1 --description “Play Monster Hunter” --at “17/08/2019 19:00” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find James Jake</code></p>
+<p><strong>Adding a Task</strong> : <code>add_task DESCRIPTION [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>add_task “Celebrate Horo’s Birthday” --tag Birthday</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list</code></p>
+<p><strong>Deleting Tasks</strong> : <code>delete_task [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>delete_task 1 2 3</code></p>
 </li>
 <li>
-<p><strong>Help</strong> : <code>help</code></p>
+<p><strong>Editing Tasks</strong> : <code>edit_task INDEX&#8230;&#8203; [--description DESCRIPTION] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
+E.g. <code>edit_task 1 --description “Play Monster Hunter” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
+</li>
+<li>
+<p><strong>Adding a Tag</strong> : <code>tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code><br>
+E.g. <code>tag 1 2 3 --tag Birthday</code></p>
+</li>
+<li>
+<p><strong>Removing a Tag</strong> : <code>remove_tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code><br>
+E.g. <code>remove_tag 1 2 3 --tag Birthday</code></p>
+</li>
+<li>
+<p><strong>Find</strong> : <code>find [--tag TAG] KEYWORD&#8230;&#8203;</code><br>
+E.g. <code>find --tag homework cs2100</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code></p>
+</li>
+<li>
+<p><strong>Exiting the Program</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-18 13:28:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 12:37:22 UTC</div></div></div></body></html>
