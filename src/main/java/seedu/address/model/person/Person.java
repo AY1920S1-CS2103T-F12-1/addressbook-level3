@@ -36,6 +36,19 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Returns a deep-copy of a Person.
+     *
+     * @param oldPerson the Person to deep-copy.
+     */
+    public Person(Person oldPerson) {
+        this.name = new Name(oldPerson.name);
+        this.phone = new Phone(oldPerson.phone);
+        this.email = new Email(oldPerson.email);
+        this.address = new Address(oldPerson.address);
+        oldPerson.tags.forEach(tag -> tags.add(new Tag(tag)));
+    }
+
     public Name getName() {
         return name;
     }

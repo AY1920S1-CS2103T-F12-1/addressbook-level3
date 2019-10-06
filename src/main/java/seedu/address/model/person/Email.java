@@ -41,6 +41,15 @@ public class Email {
     }
 
     /**
+     * Returns a deep-copy of an Email.
+     *
+     * @param oldEmail the Email to deep-copy.
+     */
+    public Email(Email oldEmail) {
+        value = oldEmail.value;
+    }
+
+    /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {

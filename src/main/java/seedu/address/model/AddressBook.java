@@ -37,6 +37,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
+    /**
+     * Returns a deep-copy of an AddressBook.
+     *
+     * @param oldAddressBook the AddressBook to deep-copy.
+     */
+    public AddressBook(AddressBook oldAddressBook) {
+        this.persons.setPersons(new UniquePersonList(oldAddressBook.persons));
+    }
+
     //// list overwrite operations
 
     /**

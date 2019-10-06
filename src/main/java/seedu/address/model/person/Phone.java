@@ -27,6 +27,15 @@ public class Phone {
     }
 
     /**
+     * Returns a deep-copy of a Phone.
+     *
+     * @param oldPhone the Phone to deep-copy.
+     */
+    public Phone(Phone oldPhone) {
+        value = oldPhone.value;
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {

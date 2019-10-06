@@ -26,6 +26,15 @@ public class Tag {
     }
 
     /**
+     * Returns a deep-copy of a Tag.
+     *
+     * @param oldTag the Tag to deep-copy.
+     */
+    public Tag(Tag oldTag) {
+        tagName = oldTag.tagName;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {

@@ -81,8 +81,15 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.undoableHistory.getCurrentState().resetData(addressBook);
+    public void setAddressBook(ReadOnlyAddressBook readOnlyAddressBook) {
+        // Make a deep-copy of the current state of AddressBook
+        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+
+        // Clear the AddressBook
+        addressBook.resetData(readOnlyAddressBook);
+
+        // Save the modified AddressBook state to the UndoableHistory
+        commitToHistory(addressBook);
     }
 
     @Override
@@ -98,20 +105,41 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-        undoableHistory.getCurrentState().removePerson(target);
+        // Make a deep-copy of the current state of AddressBook
+        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+
+        // Delete the person
+        addressBook.removePerson(target);
+
+        // Save the modified AddressBook state to the UndoableHistory
+        commitToHistory(addressBook);
     }
 
     @Override
     public void addPerson(Person person) {
-        undoableHistory.getCurrentState().addPerson(person);
+        // Make a deep-copy of the current state of AddressBook
+        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+
+        // Add the person
+        addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // Save the modified AddressBook state to the UndoableHistory
+        commitToHistory(addressBook);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        undoableHistory.getCurrentState().setPerson(target, editedPerson);
+        // Make a deep-copy of the current state of AddressBook
+        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+
+        // Override the target person with the edited Person
+        addressBook.setPerson(target, editedPerson);
+
+        // Save the modified AddressBook state to the UndoableHistory
+        commitToHistory(addressBook);
     }
 
     //=========== Filtered Person List Accessors =============================================================

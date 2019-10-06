@@ -29,6 +29,22 @@ public class UniquePersonList implements Iterable<Person> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns a deep-copy of a UniquePersonList.
+     *
+     * @param oldUniquePersonList the UniquePersonList to deep-copy.
+     */
+    public UniquePersonList(UniquePersonList oldUniquePersonList) {
+        for (Person person : oldUniquePersonList.internalList) {
+            // Deep-copy a Person by calling its copy constructor
+            this.internalList.add(new Person(person));
+        }
+    }
+
+    public UniquePersonList() {
+
+    }
+
+    /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(Person toCheck) {

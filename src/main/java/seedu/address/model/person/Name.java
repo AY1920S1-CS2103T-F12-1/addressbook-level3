@@ -32,6 +32,15 @@ public class Name {
     }
 
     /**
+     * Returns a deep-copy of a Name.
+     *
+     * @param oldName the Name to deep-copy.
+     */
+    public Name(Name oldName) {
+        fullName = oldName.fullName;
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
