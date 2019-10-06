@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 
 import seedu.address.model.Model;
@@ -20,11 +22,11 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!undoableHistory.isUndoable()) {
-            throw new CommandException(MESSAGE_NOTHING_TO_UNDO);
+        if (!model.canUndoHistory()) {
+            throw new CommandException(Messages.MESSAGE_NOTHING_TO_UNDO);
         }
 
-        undoableHistory.undo();
+        model.undoFromHistory();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

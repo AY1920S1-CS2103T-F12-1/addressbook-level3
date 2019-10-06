@@ -21,12 +21,27 @@ public class UndoableHistory {
 
     }
 
-    void redo() {
-
+    /**
+     * Restores the previous address book state from UndoableHistory.
+     */
+    void undo() {
+        currentStateIndexPointer--;
     }
 
-    void undo() {
+    /**
+     * Restores the previously undone address book state from UndoableHistory.
+     */
+    void redo() {
+        currentStateIndexPointer++;
+    }
 
+    /**
+     * Returns true if there are previous address book states to restore, and false otherwise.
+     *
+     * @return boolean
+     */
+    boolean canUndo() {
+        return currentStateIndexPointer <= 0;
     }
 
     @Override

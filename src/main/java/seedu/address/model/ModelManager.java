@@ -156,24 +156,34 @@ public class ModelManager implements Model {
      * Saves the current AddressBook state to the UndoableHistory.
      */
     @Override
-    public void commitAddressBook() {
+    public void commitToHistory() {
         undoableHistory.commit();
-    };
+    }
 
     /**
      * Restores the previous address book state from UndoableHistory.
      */
     @Override
-    public void undoAddressBook() {
+    public void undoFromHistory() {
         undoableHistory.undo();
-    };
+    }
 
     /**
      * Restores the previously undone address book state from UndoableHistory.
      */
     @Override
-    public void redoAddressBook() {
+    public void redoFromHistory() {
         undoableHistory.redo();
-    };
+    }
+
+    /**
+     * Returns true if there are previous address book states to restore, and false otherwise.
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean canUndoHistory() {
+        return undoableHistory.canUndo();
+    }
 
 }

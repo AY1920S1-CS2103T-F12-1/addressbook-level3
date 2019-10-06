@@ -88,15 +88,22 @@ public interface Model {
     /**
      * Saves the current AddressBook state to the UndoableHistory.
      */
-    void commitAddressBook();
+    void commitToHistory();
 
     /**
      * Restores the previous address book state from UndoableHistory.
      */
-    void undoAddressBook();
+    void undoFromHistory();
 
     /**
      * Restores the previously undone address book state from UndoableHistory.
      */
-    void redoAddressBook();
+    void redoFromHistory();
+
+    /**
+     * Returns true if there are previous address book states to restore, and false otherwise.
+     *
+     * @return boolean
+     */
+    boolean canUndoHistory();
 }
