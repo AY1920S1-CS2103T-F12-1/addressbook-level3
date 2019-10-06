@@ -45,7 +45,7 @@ public class UndoableHistory {
      * @return boolean
      */
     boolean canUndo() {
-        return currentStateIndexPointer <= 0;
+        return currentStateIndexPointer > 0;
     }
 
     @Override
