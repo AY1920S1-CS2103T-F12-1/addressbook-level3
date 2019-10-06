@@ -19,22 +19,24 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final UndoableHistory undoableHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook readOnlyAddressBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(readOnlyAddressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + readOnlyAddressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        AddressBook addressBook = new AddressBook(readOnlyAddressBook);
+
+        undoableHistory = new UndoableHistory(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -80,28 +82,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.undoableHistory.getCurrentState().resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return undoableHistory.getCurrentState();
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return undoableHistory.getCurrentState().hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        undoableHistory.getCurrentState().removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        undoableHistory.getCurrentState().addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +111,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        undoableHistory.getCurrentState().setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -125,8 +127,8 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+            requireNonNull(predicate);
+            filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +145,35 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return undoableHistory.equals(other.undoableHistory)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
+    //=========== Undoable History ==========================================================================
+
+    /**
+     * Saves the current AddressBook state to the UndoableHistory.
+     */
+    @Override
+    public void commitAddressBook() {
+        undoableHistory.commit();
+    };
+
+    /**
+     * Restores the previous address book state from UndoableHistory.
+     */
+    @Override
+    public void undoAddressBook() {
+        undoableHistory.undo();
+    };
+
+    /**
+     * Restores the previously undone address book state from UndoableHistory.
+     */
+    @Override
+    public void redoAddressBook() {
+        undoableHistory.redo();
+    };
 
 }
