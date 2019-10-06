@@ -88,7 +88,7 @@ public interface Model {
     /**
      * Saves the current AddressBook state to the UndoableHistory.
      */
-    void commitToHistory();
+    void commitToHistory(AddressBook addressBook);
 
     /**
      * Restores the previous address book state from UndoableHistory.

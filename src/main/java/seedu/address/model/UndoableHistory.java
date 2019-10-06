@@ -17,8 +17,12 @@ public class UndoableHistory {
         return addressBookStateList.get(currentStateIndexPointer);
     }
 
-    void commit() {
-
+    /**
+     * Saves the current AddressBook state to the UndoableHistory.
+     */
+    void commit(AddressBook addressBook) {
+        addressBookStateList.add(addressBook);
+        currentStateIndexPointer++;
     }
 
     /**

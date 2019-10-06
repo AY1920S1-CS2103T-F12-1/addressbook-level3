@@ -156,8 +156,8 @@ public class ModelManager implements Model {
      * Saves the current AddressBook state to the UndoableHistory.
      */
     @Override
-    public void commitToHistory() {
-        undoableHistory.commit();
+    public void commitToHistory(AddressBook addressBook) {
+        undoableHistory.commit(addressBook);
     }
 
     /**
