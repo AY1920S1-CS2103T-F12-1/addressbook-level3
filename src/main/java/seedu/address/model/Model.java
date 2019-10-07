@@ -106,4 +106,10 @@ public interface Model {
      * @return boolean
      */
     boolean canUndoHistory();
+
+    /**
+     * Clears all future address book states in UndoableHistory beyond the current state.
+     */
+    void clearFutureHistory();
+
 }

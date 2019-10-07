@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -82,8 +83,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook readOnlyAddressBook) {
-        // Make a deep-copy of the current state of AddressBook
-        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+        AddressBook addressBook = undoableHistory.getCurrentState();
 
         // Clear the AddressBook
         addressBook.resetData(readOnlyAddressBook);
@@ -94,6 +94,7 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
+
         return undoableHistory.getCurrentState();
     }
 
@@ -105,8 +106,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-        // Make a deep-copy of the current state of AddressBook
-        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+        AddressBook addressBook = undoableHistory.getCurrentState();
 
         // Delete the person
         addressBook.removePerson(target);
@@ -117,8 +117,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
-        // Make a deep-copy of the current state of AddressBook
-        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+
+        AddressBook addressBook = undoableHistory.getCurrentState();
 
         // Add the person
         addressBook.addPerson(person);
@@ -132,8 +132,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        // Make a deep-copy of the current state of AddressBook
-        AddressBook addressBook = new AddressBook(undoableHistory.getCurrentState());
+        AddressBook addressBook = undoableHistory.getCurrentState();
 
         // Override the target person with the edited Person
         addressBook.setPerson(target, editedPerson);
@@ -212,6 +211,14 @@ public class ModelManager implements Model {
     @Override
     public boolean canUndoHistory() {
         return undoableHistory.canUndo();
+    }
+
+    /**
+     * Clears all future address book states in UndoableHistory beyond the current state.
+     */
+    @Override
+    public void clearFutureHistory() {
+        undoableHistory.clearFutureHistory();
     }
 
 }
