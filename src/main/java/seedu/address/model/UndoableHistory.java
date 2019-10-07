@@ -1,9 +1,9 @@
 package seedu.address.model;
 
-import seedu.address.commons.core.LogsCenter;
-
 import java.util.ArrayList;
 import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * UndoableHistory contains all AddressBook states
