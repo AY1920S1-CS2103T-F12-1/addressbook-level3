@@ -147,6 +147,31 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearFutureHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoFromHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoFromHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitToHistory(AddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
