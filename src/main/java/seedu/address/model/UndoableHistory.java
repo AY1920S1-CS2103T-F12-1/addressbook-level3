@@ -3,8 +3,19 @@ package seedu.address.model;
 import seedu.address.commons.core.LogsCenter;
 
 import java.util.ArrayList;
+
 import java.util.logging.Logger;
 
+/**
+ * UndoableHistory contains all AddressBook states
+ * at different points of time in its addressBookStateList
+ * as well as a currentStateIndex that stores the index of the
+ * current AddressBook state in the list.
+ * It also contains a mainAddressBook that represents the current AddressBook
+ * state. Duplicates of this mainAddressBook are stored in the addressBookStateList.
+ * Whenever an undo or redo command is executed, mainAddressBook restores itself to a
+ * past/future state by copying the data in its duplicate over to itself.
+ */
 public class UndoableHistory {
 
     /** The addressBook that the GUI is in sync with.
@@ -50,8 +61,8 @@ public class UndoableHistory {
     void commit(AddressBook addressBook) {
         // Store a deep-copy of the mainAddressBook to the list
         AddressBook deepCopy = new AddressBook(addressBook);
-        assert currentStateIndex >= addressBookStateList.size() - 1 :
-                "Pointer always points to end of list during commit; All future states must have been discarded.";
+        assert currentStateIndex >= addressBookStateList.size() - 1
+                : "Pointer always points to end of list during commit; All future states must have been discarded.";
         addressBookStateList.add(deepCopy);
         currentStateIndex++;
 
