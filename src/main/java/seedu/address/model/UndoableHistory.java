@@ -25,14 +25,14 @@ public class UndoableHistory {
      * undo or redo command is called.
      */
     private ArrayList<AddressBook> addressBookStateList;
-    private int currentStateIndexPointer;
+    private int currentStateIndex;
 
     UndoableHistory(AddressBook addressBook) {
         mainAddressBook = addressBook;
         addressBookStateList = new ArrayList<>();
         // Store a deep-copy of the mainAddressBook to the list
         addressBookStateList.add(new AddressBook(mainAddressBook));
-        currentStateIndexPointer = 0;
+        currentStateIndex = 0;
     }
 
     /**
@@ -50,14 +50,14 @@ public class UndoableHistory {
     void commit(AddressBook addressBook) {
         // Store a deep-copy of the mainAddressBook to the list
         AddressBook deepCopy = new AddressBook(addressBook);
-        assert currentStateIndexPointer >= addressBookStateList.size() - 1 :
+        assert currentStateIndex >= addressBookStateList.size() - 1 :
                 "Pointer always points to end of list during commit; All future states must have been discarded.";
         addressBookStateList.add(deepCopy);
-        currentStateIndexPointer++;
+        currentStateIndex++;
 
         // -------Logging---------------------------------------------------------------
         logger.info("State List: ");
-        addressBookStateList.get(currentStateIndexPointer).getPersonList()
+        addressBookStateList.get(currentStateIndex).getPersonList()
                 .forEach(p -> logger.info(p.name.fullName));
     }
 
@@ -65,13 +65,13 @@ public class UndoableHistory {
      * Restores the previous address book state from UndoableHistory.
      */
     void undo() {
-        currentStateIndexPointer--;
+        currentStateIndex--;
         // Retrieve data from duplicate of its past state
-        mainAddressBook.resetData(addressBookStateList.get(currentStateIndexPointer));
+        mainAddressBook.resetData(addressBookStateList.get(currentStateIndex));
 
         // -------Logging---------------------------------------------------------------
         logger.info("State List: ");
-        addressBookStateList.get(currentStateIndexPointer).getPersonList()
+        addressBookStateList.get(currentStateIndex).getPersonList()
                 .forEach(p -> logger.info(p.name.fullName));
     }
 
@@ -79,7 +79,7 @@ public class UndoableHistory {
      * Restores the previously undone address book state from UndoableHistory.
      */
     void redo() {
-        currentStateIndexPointer++;
+        currentStateIndex++;
     }
 
     /**
@@ -88,7 +88,7 @@ public class UndoableHistory {
      * @return boolean
      */
     boolean canUndo() {
-        return currentStateIndexPointer > 0;
+        return currentStateIndex > 0;
     }
 
     /**
@@ -96,7 +96,7 @@ public class UndoableHistory {
      */
     void clearFutureHistory() {
         addressBookStateList =
-                new ArrayList<>(addressBookStateList.subList(0, currentStateIndexPointer + 1));
+                new ArrayList<>(addressBookStateList.subList(0, currentStateIndex + 1));
     }
 
     @Override
@@ -113,7 +113,7 @@ public class UndoableHistory {
                 return false;
             }
             UndoableHistory otherHistory = ((UndoableHistory) other);
-            if (currentStateIndexPointer != otherHistory.currentStateIndexPointer
+            if (currentStateIndex != otherHistory.currentStateIndex
                     || addressBookStateList.size() != otherHistory.addressBookStateList.size()) {
                 return false;
             }

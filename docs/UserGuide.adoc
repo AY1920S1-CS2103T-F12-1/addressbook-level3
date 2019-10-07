@@ -292,7 +292,7 @@ Format: +
 
 === Undo Redo
 
-==== Undo **`[coming in v2.0]`**
+==== Undo
 
 Undoes the previous command. +
 Commands can be undone up to the starting up of the program
