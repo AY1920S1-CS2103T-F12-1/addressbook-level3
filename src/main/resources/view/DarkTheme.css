@@ -1,5 +1,10 @@
 @font-face {
+    font-family: Roboto;
     src: url("Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: Roboto Thin;
     src: url("Roboto-Thin.ttf");
 }
 
@@ -9,7 +14,7 @@
 
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #2E2E2E; /* Used in the default.html file */
 }
 
 .label {
@@ -97,7 +102,7 @@
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-background-color: transparent;
+    -fx-background-color:  transparent;
 }
 
 .list-cell {
@@ -147,18 +152,6 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-/*
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Roboto";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-*/
 .status-bar .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Roboto Thin";
@@ -341,7 +334,7 @@
     -fx-font-size: 11pt;
 }
 
-#filterField, #eventListPanel, #personWebpage {
+#filterField, #listPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -358,14 +351,3 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
-
-/*
-Others
-
-// For square box when selecting a cardPane
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-    -fx-background-radius: 15px;
-}
-*/

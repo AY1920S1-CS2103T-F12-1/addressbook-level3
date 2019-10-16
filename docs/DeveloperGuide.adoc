@@ -153,39 +153,47 @@ This section describes some noteworthy details on how certain features are imple
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
+The undo/redo mechanism is facilitated by `UndoableHistory`.
+It contains an undo/redo history, stored internally as an `eventListStateList` and a `currentStateIndex`.
+`UndoableHistory` also contains a `mainEventList`, which is the `EventList` that the GUI is in sync with.
+
+It is important that the `Model` works only with the `mainEventList` (and not duplicates) for this reason.
+This `mainEventList` is updated every time an undo or redo occurs.
+
 Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `UndoableHistory#commit()` -- Creates a deep-copy of the `mainEventList` state and saves that copy to its history.
+* `UndoableHistory#undo()` -- Retrieve `mainEventList` 's previous state data from its duplicate and restore `mainEventList`
+* `UndoableHistory#redo()` -- Retrieve `mainEventList` 's future state data from its duplicate and restore `mainEventList`
+* `UndoableHistory#clearFutureHistory()` -- Delete all duplicates of `mainEventList` that occur after the index given by the `currentStateIndex`
+in `eventListStateList`
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitToHistory()`, `Model#undoFromHistory()` and `Model#redoFromHistory()`, and `Model#clearFutureHistory()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `UndoableHistory` will be initialized with the initial `mainEventList`. A duplicate of `mainEventList` will be added to `eventListStateList`
+and the `currentStateIndex` will point to that single `EventList` state in the list.
 
 image::UndoRedoState0.png[]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete_event 5` command to delete the 5th event in the event list. The `delete` command calls `Model#commitToHistory()`, causing the modified state of the event list after the `delete 5` command executes to be saved in the `eventListStateList`, and the `currentStatePointer` is shifted to the newly inserted event list state.
 
 image::UndoRedoState1.png[]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add_task “Celebrate Horo’s Birthday”` to add a new task. The `add` command also calls `Model#commitToHistory()`, causing another modified event list state to be saved into the `eventListStateList`.
 
 image::UndoRedoState2.png[]
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+If a command fails its execution, it will not call `Model#commitToHistory()`, so the event list state will not be saved into the `eventListStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFromHistory()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous event list state, and restores the event list to that state.
 
 image::UndoRedoState3.png[]
 
 [NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the `currentStateIndex` is 0, pointing to the initial event list state, then there are no previous event list states to restore. The `undo` command uses `Model#canUndoHistory()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
@@ -193,16 +201,17 @@ image::UndoSequenceDiagram.png[]
 
 NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite -- it calls `Model#redoFromHistory()`, which shifts the `currentStateIndex` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 [NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the `currentStateIndex` is `eventListStateList.size() - 1`, pointing to the latest event list state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoHistory()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the event list, such as `list`, will usually not call `Model#commitToHistory()`, `Model#undoFromHistory()` or `Model#redoFromHistory()`. Thus, the `eventListStateList` remains unchanged.
 
 image::UndoRedoState4.png[]
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#clearFutureHistory` and then Model#commitToHistory()`.
+Since the `currentStateIndex` is not pointing at the end of the `eventListStateList`, all event list states after the `currentStateIndex` will be purged. We designed it this way because it no longer makes sense to redo the `add_task “Celebrate Horo’s Birthday”` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoState5.png[]
 

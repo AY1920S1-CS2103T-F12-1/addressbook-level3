@@ -15,7 +15,7 @@ image::marcusteh1238.png[width="150", align="left"]
 {empty}[https://github.com/marcusteh1238[github]] [<<marcusteh1238#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Testing and Integration
+Responsibilities: Testing, Integration and Git Expert
 
 '''
 
@@ -33,7 +33,7 @@ image::weomucat.png[width="150", align="left"]
 {empty}[http://github.com/WeomuCat[github]] [<<weomucat#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Main and Model
+Responsibilities: Logic, Model and Intellij Expert
 
 '''
 
@@ -42,7 +42,7 @@ image::bruceskellator.png[width="150", align="left"]
 {empty}[http://github.com/bruceskellator[github]] [<<bruceskellator#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Undo and Redo
+Responsibilities: Code quality, Undo and Redo
 
 '''
 
@@ -51,6 +51,6 @@ image::chenggeng97.png[width="150", align="left"]
 {empty}[http://github.com/ChengGeng97[github]] [<<chenggeng97#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Reminder and Notification
+Responsibilities: Scheduling and tracking, Reminder and Notification
 
 '''

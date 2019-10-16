@@ -32,8 +32,7 @@ public class LogPanel extends UiPart<Region> {
         double screenWidth = primaryScreenBounds.getWidth();
 
         boxLog.setPrefHeight(screenHeight - screenHeight / 5);
-        boxLog.setPrefWidth(screenWidth / 2 - MainWindow.WIDTH_PADDING);
-
+        boxLog.setPrefWidth(screenWidth / 2);
     }
 
     /**

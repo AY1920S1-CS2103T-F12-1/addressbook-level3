@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+
+
+<Label fx:id="eventDescription" style="-fx-background-color: #202020; -fx-background-radius: 8;" text="Label" textFill="WHITE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <font>
+      <Font size="10.0" />
+   </font>
+</Label>

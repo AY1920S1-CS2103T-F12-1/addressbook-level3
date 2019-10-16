@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.events.EventList;
 import seedu.address.model.events.EventSource;
 import seedu.address.model.events.ReadOnlyEventList;
 import seedu.address.model.person.Person;
@@ -112,4 +113,32 @@ public interface Model {
      * Returns an unmodifiable view of the filtered Event Source List
      */
     ObservableList<EventSource> getFilteredEventList();
+
+    /**
+     * Creates a deep-copy of the current event list state and saves that copy to the UndoableHistory.
+     */
+    void commitToHistory(EventList eventList);
+
+    /**
+     * Restores the previous event list state from UndoableHistory.
+     */
+    void undoFromHistory();
+
+    /**
+     * Restores the previously undone event list state from UndoableHistory.
+     */
+    void redoFromHistory();
+
+    /**
+     * Returns true if there are previous event list states to restore, and false otherwise.
+     *
+     * @return boolean
+     */
+    boolean canUndoHistory();
+
+    /**
+     * Clears all future event list states in UndoableHistory beyond the current state.
+     */
+    void clearFutureHistory();
+
 }

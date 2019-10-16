@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.events.exceptions.EventNotFoundException;
 
 /**
@@ -21,7 +22,20 @@ public class EventList implements ReadOnlyEventList {
 
     public EventList(ReadOnlyEventList eventList) {
         this();
-        this.reset(eventList);
+        this.resetData(eventList);
+    }
+
+    /**
+     * Returns a deep-copy of an EventList.
+     *
+     * @param oldEventList the EventList to deep-copy.
+     */
+    public EventList(EventList oldEventList) {
+        this();
+        for (EventSource eventSource : oldEventList.list) {
+            // Deep-copy an EventSource by calling its copy constructor
+            this.list.add(new EventSource(eventSource));
+        }
     }
 
     /**
@@ -63,7 +77,7 @@ public class EventList implements ReadOnlyEventList {
      * Clears this event list and re-adds events from a given {@link ReadOnlyEventList}.
      * @param eventList the list of events to re-add
      */
-    public void reset(ReadOnlyEventList eventList) {
+    public void resetData(ReadOnlyEventList eventList) {
         requireNonNull(eventList);
         this.list.clear();
         this.list.addAll(eventList.getReadOnlyList());
@@ -82,6 +96,13 @@ public class EventList implements ReadOnlyEventList {
 
     @Override
     public ObservableList<EventSource> getReadOnlyList() {
-        return FXCollections.unmodifiableObservableList(this.list);
+        return this.list;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventList // instanceof handles nulls
+                && list.equals(((EventList) other).list));
     }
 }
