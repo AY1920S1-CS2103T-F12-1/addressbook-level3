@@ -19,7 +19,8 @@
 <li><a href="#ui">3.4. UI</a></li>
 <li><a href="#undo-redo">3.5. Undo Redo</a></li>
 <li><a href="#notification-system">3.6. Notification System</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></li>
+<li><a href="#ics-integration-system">3.7. .ics Integration System</a></li>
+<li><a href="#exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong">3.8. Exiting the program : <code>exit</code> <strong><code>[coming in v2.0]</code></strong></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -55,6 +56,7 @@
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 1. Startup Screen Shot of Horo</div>
 </div>
 </li>
 <li>
@@ -225,6 +227,12 @@ Format and Example:<br>
 </div>
 <div class="sect3">
 <h4 id="adding-events"><a class="link" href="#adding-events">3.2.1. Adding Events</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddEventCommandScreenShot.png" alt="AddEventCommandScreenShot">
+</div>
+<div class="title">Figure 2. Add Event Command</div>
+</div>
 <div class="paragraph">
 <p>Adds an event to the event list.
 <br></p>
@@ -244,6 +252,12 @@ Format and Example:<br>
 </div>
 <div class="sect3">
 <h4 id="deleting-events"><a class="link" href="#deleting-events">3.2.2. Deleting Events</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteEventCommandScreenShot.png" alt="DeleteEventCommandScreenShot">
+</div>
+<div class="title">Figure 3. Delete Event Command</div>
+</div>
 <div class="paragraph">
 <p>Deletes event(s) from the event list.
 1. Delete by event indexes
@@ -265,6 +279,12 @@ Format and Example:<br>
 </div>
 <div class="sect3">
 <h4 id="editing-events"><a class="link" href="#editing-events">3.2.3. Editing Events</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditEventCommandScreenShot.png" alt="EditEventCommandScreenShot">
+</div>
+<div class="title">Figure 4. Edit Event Command</div>
+</div>
 <div class="paragraph">
 <p>Edits existing event(s) from the event list.<br>
 Edit by event indexes.
@@ -466,7 +486,13 @@ Edit by task indexes.
 <div class="sect2">
 <h3 id="ui"><a class="link" href="#ui">3.4. UI</a></h3>
 <div class="sect3">
-<h4 id="changing-screen-view-to-calendar-view-code-calendar-code"><a class="link" href="#changing-screen-view-to-calendar-view-code-calendar-code">3.4.1. Changing Screen View to Calendar View: <code>calendar</code></a></h4>
+<h4 id="changing-screen-view-to-calendar-view-code-calendar-date-code"><a class="link" href="#changing-screen-view-to-calendar-view-code-calendar-date-code">3.4.1. Changing Screen View to Calendar View: <code>calendar [DATE]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui">
+</div>
+<div class="title">Figure 5. Calendar View Command for Calendar</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the Calendar View, which displays a calendar of a particular month and year, as well as a timeline of a particular day, week or month.
 <br></p>
@@ -491,6 +517,12 @@ Edit by task indexes.
 </div>
 <div class="sect3">
 <h4 id="changing-timeline-to-a-given-day-code-day-date-code"><a class="link" href="#changing-timeline-to-a-given-day-code-day-date-code">3.4.2. Changing Timeline to a given day: <code>day [DATE]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/DayViewCommandScreenShot.png" alt="DayViewCommandScreenShot">
+</div>
+<div class="title">Figure 6. Day View Command for the Timeline</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given day.
 <br></p>
@@ -508,6 +540,12 @@ Edit by task indexes.
 </div>
 <div class="sect3">
 <h4 id="changing-timeline-to-a-given-week-code-week-week_number-month_year-code"><a class="link" href="#changing-timeline-to-a-given-week-code-week-week_number-month_year-code">3.4.3. Changing Timeline to a given week: <code>week [WEEK_NUMBER] [MONTH_YEAR]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/WeekViewCommandScreenShot.png" alt="WeekViewCommandScreenShot">
+</div>
+<div class="title">Figure 7. Week View Command for the Timeline</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given week of a month.
 <br></p>
@@ -525,6 +563,12 @@ Edit by task indexes.
 </div>
 <div class="sect3">
 <h4 id="changing-timeline-to-a-given-month-code-month-month_year-code"><a class="link" href="#changing-timeline-to-a-given-month-code-month-month_year-code">3.4.4. Changing Timeline to a given month: <code>month [MONTH_YEAR]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/MonthViewCommandScreenShot.png" alt="MonthViewCommandScreenShot">
+</div>
+<div class="title">Figure 8. Month View Command for the Timeline</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given month.
 <br></p>
@@ -541,7 +585,13 @@ Edit by task indexes.
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-screen-view-to-list-view-code-list-code"><a class="link" href="#changing-screen-view-to-list-view-code-list-code">3.4.5. Changing Screen View to List View: <code>list</code></a></h4>
+<h4 id="changing-screen-view-to-list-view-code-list-code-strong-code-coming-in-v1-3-code-strong"><a class="link" href="#changing-screen-view-to-list-view-code-list-code-strong-code-coming-in-v1-3-code-strong">3.4.5. Changing Screen View to List View: <code>list</code> <strong><code>[coming in v1.3]</code></strong></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListCommandScreenShot.png" alt="ListCommandScreenShot">
+</div>
+<div class="title">Figure 9. List View Command</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the List View, which displays a list of events on the left side and a list on the right side.
 <br></p>
@@ -553,6 +603,12 @@ Edit by task indexes.
 </div>
 <div class="sect3">
 <h4 id="changing-screen-view-to-log-view-code-log-code"><a class="link" href="#changing-screen-view-to-log-view-code-log-code">3.4.6. Changing Screen View to Log View: <code>log</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogCommandScreenShot.png" alt="LogCommandScreenShot">
+</div>
+<div class="title">Figure 10. Log View Command</div>
+</div>
 <div class="paragraph">
 <p>This will switch the UI screen view to the Log View, which displays all of the pop up box like a chat box.
 <br></p>
@@ -566,7 +622,13 @@ Edit by task indexes.
 <div class="sect2">
 <h3 id="undo-redo"><a class="link" href="#undo-redo">3.5. Undo Redo</a></h3>
 <div class="sect3">
-<h4 id="undo-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#undo-strong-code-coming-in-v2-0-code-strong">3.5.1. Undo <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="undo"><a class="link" href="#undo">3.5.1. Undo</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoCommandScreenShot.png" alt="UndoCommandScreenShot">
+</div>
+<div class="title">Figure 11. Undo Command</div>
+</div>
 <div class="paragraph">
 <p>Undoes the previous command.<br>
 Commands can be undone up to the starting up of the program
@@ -578,7 +640,13 @@ Commands can be undone up to the starting up of the program
 </div>
 </div>
 <div class="sect3">
-<h4 id="redo-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#redo-strong-code-coming-in-v2-0-code-strong">3.5.2. Redo <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="redo"><a class="link" href="#redo">3.5.2. Redo</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/RedoCommandScreenShot.png" alt="RedoCommandScreenShot">
+</div>
+<div class="title">Figure 12. Redo Command</div>
+</div>
 <div class="paragraph">
 <p>Redoes the previously undone command
 <br></p>
@@ -602,8 +670,11 @@ are not succeeded by any other state-changing commands (e.g. add_event, delete_e
 <div class="paragraph">
 <p>Take note that Horo can only post reminders as long as the app is open. To tell if Horo is running, check that the appropriate icon appears in the system tray</p>
 </div>
-<div class="paragraph">
-<p>(picture: H icon)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/HoroIconScreenShot.png" alt="HoroIconScreenShot">
+</div>
+<div class="title">Figure 13. Horo Tray Icon</div>
 </div>
 <div class="paragraph">
 <p>Also take note that notifications are switched on by default. There is no need to switch notifications on if you&#8217;re launching the app for the first time. However, because Horo remembers your preferences, you may have to switch them on again if they were previously switched off.</p>
@@ -611,16 +682,22 @@ are not succeeded by any other state-changing commands (e.g. add_event, delete_e
 <div class="paragraph">
 <p>You can tell if notifications are switched on by mousing over the icon in the system tray.</p>
 </div>
-<div class="paragraph">
-<p>(picture: H icon mouseover)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/IconMouseOverScreenShot.png" alt="IconMouseOverScreenShot">
+</div>
+<div class="title">Figure 14. Horo Tray Icon Mouse Over</div>
 </div>
 <div class="sect3">
 <h4 id="notification-popups"><a class="link" href="#notification-popups">3.6.1. Notification Popups</a></h4>
 <div class="paragraph">
 <p>When Horo posts a notification, it should appear at the bottom-right side of the screen, where the system tray should be.</p>
 </div>
-<div class="paragraph">
-<p>(picture: popup)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/PopUpScreenShot.png" alt="PopUpScreenShot">
+</div>
+<div class="title">Figure 15. Notification Pop Up</div>
 </div>
 </div>
 <div class="sect3">
@@ -633,12 +710,22 @@ are not succeeded by any other state-changing commands (e.g. add_event, delete_e
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br>
-(picture: notif_on in command box)</p>
+<p>If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
 </li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NotificationOnCommandBoxScreenShot.png" alt="NotificationOnCommandBoxScreenShot">
+</div>
+<div class="title">Figure 16. Notification On in Command Box</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>An in-app popup should appear, displaying “Notifications switched on”. The log view should also record this action.<br>
-(picture: notif on feedback)</p>
+.Notification On FeedBack
+image::NotificationOnFeedbackScreenShot.png[]</p>
 </li>
 </ol>
 </div>
@@ -653,19 +740,98 @@ are not succeeded by any other state-changing commands (e.g. add_event, delete_e
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you would like to switch notifications off, type the command <strong><code>notif_off</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br>
-(picture: notif_off in command box)</p>
-</li>
-<li>
-<p>An in-app popup should appear, displaying “Notifications switched off”. The log view should also record this action.<br>
-(picture: notif off feedback)</p>
+<p>If you would like to switch notifications off, type the command <strong><code>notif_off</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
 </li>
 </ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NotificationOffCommandBoxScreenShot.png" alt="NotificationOffCommandBoxScreenShot">
+</div>
+<div class="title">Figure 17. Notification Off in Command Box</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An in-app popup should appear, displaying “Notifications switched off”. The log view should also record this action.<br></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NotificationOffFeedbackScreenShot.png" alt="NotificationOffFeedbackScreenShot">
+</div>
+<div class="title">Figure 18. Notification Off FeedBack</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></h3>
+<h3 id="ics-integration-system"><a class="link" href="#ics-integration-system">3.7. .ics Integration System</a></h3>
+<div class="paragraph">
+<p>Allows you to export and import from other calendar application that uses .ics format as well.
+<br></p>
+</div>
+<div class="sect3">
+<h4 id="export-current-calendar-code-export-directory-directory-code"><a class="link" href="#export-current-calendar-code-export-directory-directory-code">3.7.1. Export current calendar : <code>export --directory ["DIRECTORY"]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
+</div>
+<div class="title">Figure 19. Export Command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportFileScreenShot.png" alt="ExportFileScreenShot">
+</div>
+<div class="title">Figure 20. Exported File</div>
+</div>
+<div class="paragraph">
+<p>Exports your current calendar into .ics format to the given directory, or to the root folder of the application itself.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>export</code><br>
+<code>export --directory ["DIRECTORY"]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>export --directory "C:\Users\USER_NAME\Desktop\Horo"</code>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-other-calendar-code-import-file_path-code"><a class="link" href="#import-other-calendar-code-import-file_path-code">3.7.2. Import other calendar : <code>import ["FILE_PATH"]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
+</div>
+<div class="title">Figure 21. Import Command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportFileScreenShot.png" alt="ImportFileScreenShot">
+</div>
+<div class="title">Figure 22. Imported File</div>
+</div>
+<div class="paragraph">
+<p>Imports an .ics format file from the indicated file path.</p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>import ["DIRECTORY"]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>import "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code>
+<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong">3.8. Exiting the program : <code>exit</code> <strong><code>[coming in v2.0]</code></strong></a></h3>
 <div class="paragraph">
 <p>Exits the program.
 <br>
@@ -728,6 +894,24 @@ E.g. <code>remove_tag 1 2 3 --tag Birthday</code></p>
 E.g. <code>find --tag homework cs2100</code></p>
 </li>
 <li>
+<p><strong>Calendar View</strong> : <code>calendar [MONTH_YEAR]</code></p>
+</li>
+<li>
+<p><strong>Day View for Timeline</strong> : <code>day [DATE]</code></p>
+</li>
+<li>
+<p><strong>Week View for Timeline</strong> : <code>week [WEEK_NUMBER] [MONTH_YEAR]</code></p>
+</li>
+<li>
+<p><strong>Month View for Timeline</strong> : <code>month [MONTH_YEAR]</code></p>
+</li>
+<li>
+<p><strong>List View</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Log View</strong> : <code>log</code></p>
+</li>
+<li>
 <p><strong>Undo</strong> : <code>undo</code></p>
 </li>
 <li>
@@ -740,9 +924,15 @@ E.g. <code>find --tag homework cs2100</code></p>
 <p><strong>Switch notifications off</strong> : <code>notif_off</code></p>
 </li>
 <li>
+<p><strong>Export .ics File</strong> : <code>export --directory ["DIRECTORY"]</code></p>
+</li>
+<li>
+<p><strong>Import .ics File</strong> : <code>import ["FILE_PATH"]</code></p>
+</li>
+<li>
 <p><strong>Exiting the Program</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 07:36:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 12:40:02 UTC</div></div></div></body></html>
