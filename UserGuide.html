@@ -18,7 +18,8 @@
 <li><a href="#tagging-system-strong-code-coming-in-v2-0-code-strong">3.3. Tagging System <strong><code>[coming in v2.0]</code></strong></a></li>
 <li><a href="#ui">3.4. UI</a></li>
 <li><a href="#undo-redo">3.5. Undo Redo</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.6. Exiting the program : <code>exit</code></a></li>
+<li><a href="#notification-system">3.6. Notification System</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -465,22 +466,107 @@ Edit by task indexes.
 <div class="sect2">
 <h3 id="ui"><a class="link" href="#ui">3.4. UI</a></h3>
 <div class="sect3">
-<h4 id="switching-between-list-and-calendar-view-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#switching-between-list-and-calendar-view-strong-code-coming-in-v2-0-code-strong">3.4.1. Switching between List and Calendar view <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="changing-screen-view-to-calendar-view-code-calendar-code"><a class="link" href="#changing-screen-view-to-calendar-view-code-calendar-code">3.4.1. Changing Screen View to Calendar View: <code>calendar</code></a></h4>
 <div class="paragraph">
-<p>This will toggle the UI on the right between the List and Calendar view.<br>
-Switching between List and Calendar view
+<p>This will switch the UI screen view to the Calendar View, which displays a calendar of a particular month and year, as well as a timeline of a particular day, week or month.
+<br></p>
+</div>
+<div class="paragraph">
+<p>The calendar itself will switch to a given date if specified, even if you are already in the Calendar View, otherwise it will only switch to the Calendar View where you last left off.
+<br></p>
+</div>
+<div class="paragraph">
+<p>This is the default screen view that comes up when you first open the application, and the timeline date as well as calendar date is set to your systems' current date.
 <br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>view</code></p>
+<code>calendar</code>
+<code>calendar [DATE]</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>calendar 11/10/2019</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-timeline-to-a-given-day-code-day-date-code"><a class="link" href="#changing-timeline-to-a-given-day-code-day-date-code">3.4.2. Changing Timeline to a given day: <code>day [DATE]</code></a></h4>
+<div class="paragraph">
+<p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given day.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>day [DATE]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>day 11/10/2019</code>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-timeline-to-a-given-week-code-week-week_number-month_year-code"><a class="link" href="#changing-timeline-to-a-given-week-code-week-week_number-month_year-code">3.4.3. Changing Timeline to a given week: <code>week [WEEK_NUMBER] [MONTH_YEAR]</code></a></h4>
+<div class="paragraph">
+<p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given week of a month.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>week [WEEK_NUMBER] [MONTH_YEAR]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>week 2 11/2019</code>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-timeline-to-a-given-month-code-month-month_year-code"><a class="link" href="#changing-timeline-to-a-given-month-code-month-month_year-code">3.4.4. Changing Timeline to a given month: <code>month [MONTH_YEAR]</code></a></h4>
+<div class="paragraph">
+<p>This will switch the UI screen view to the Calendar View, and sets the Timeline to be of the given month.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>month [MONTH_YEAR]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>month 11/2019</code>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-screen-view-to-list-view-code-list-code"><a class="link" href="#changing-screen-view-to-list-view-code-list-code">3.4.5. Changing Screen View to List View: <code>list</code></a></h4>
+<div class="paragraph">
+<p>This will switch the UI screen view to the List View, which displays a list of events on the left side and a list on the right side.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format and Example:<br>
+<code>list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-screen-view-to-log-view-code-log-code"><a class="link" href="#changing-screen-view-to-log-view-code-log-code">3.4.6. Changing Screen View to Log View: <code>log</code></a></h4>
+<div class="paragraph">
+<p>This will switch the UI screen view to the Log View, which displays all of the pop up box like a chat box.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format and Example:<br>
+<code>log</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="undo-redo"><a class="link" href="#undo-redo">3.5. Undo Redo</a></h3>
 <div class="sect3">
-<h4 id="undo"><a class="link" href="#undo">3.5.1. Undo</a></h4>
+<h4 id="undo-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#undo-strong-code-coming-in-v2-0-code-strong">3.5.1. Undo <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
 <p>Undoes the previous command.<br>
 Commands can be undone up to the starting up of the program
@@ -509,7 +595,77 @@ are not succeeded by any other state-changing commands (e.g. add_event, delete_e
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.6. Exiting the program : <code>exit</code></a></h3>
+<h3 id="notification-system"><a class="link" href="#notification-system">3.6. Notification System</a></h3>
+<div class="paragraph">
+<p>Horo will post notifications to your system tray to remind you that an event is starting or that a task is due.</p>
+</div>
+<div class="paragraph">
+<p>Take note that Horo can only post reminders as long as the app is open. To tell if Horo is running, check that the appropriate icon appears in the system tray</p>
+</div>
+<div class="paragraph">
+<p>(picture: H icon)</p>
+</div>
+<div class="paragraph">
+<p>Also take note that notifications are switched on by default. There is no need to switch notifications on if you&#8217;re launching the app for the first time. However, because Horo remembers your preferences, you may have to switch them on again if they were previously switched off.</p>
+</div>
+<div class="paragraph">
+<p>You can tell if notifications are switched on by mousing over the icon in the system tray.</p>
+</div>
+<div class="paragraph">
+<p>(picture: H icon mouseover)</p>
+</div>
+<div class="sect3">
+<h4 id="notification-popups"><a class="link" href="#notification-popups">3.6.1. Notification Popups</a></h4>
+<div class="paragraph">
+<p>When Horo posts a notification, it should appear at the bottom-right side of the screen, where the system tray should be.</p>
+</div>
+<div class="paragraph">
+<p>(picture: popup)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="switch-notifications-on"><a class="link" href="#switch-notifications-on">3.6.2. Switch notifications on</a></h4>
+<div class="paragraph">
+<p>Format:<br>
+<strong><code>notif_on</code></strong>
+<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br>
+(picture: notif_on in command box)</p>
+</li>
+<li>
+<p>An in-app popup should appear, displaying “Notifications switched on”. The log view should also record this action.<br>
+(picture: notif on feedback)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="switch-notifications-off"><a class="link" href="#switch-notifications-off">3.6.3. Switch notifications off</a></h4>
+<div class="paragraph">
+<p>Format:<br>
+<strong><code>notif_off</code></strong>
+<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you would like to switch notifications off, type the command <strong><code>notif_off</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br>
+(picture: notif_off in command box)</p>
+</li>
+<li>
+<p>An in-app popup should appear, displaying “Notifications switched off”. The log view should also record this action.<br>
+(picture: notif off feedback)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.7. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.
 <br>
@@ -578,9 +734,15 @@ E.g. <code>find --tag homework cs2100</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
+<p><strong>Switch notifications on</strong> : <code>notif_on</code></p>
+</li>
+<li>
+<p><strong>Switch notifications off</strong> : <code>notif_off</code></p>
+</li>
+<li>
 <p><strong>Exiting the Program</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-19 07:19:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 07:36:40 UTC</div></div></div></body></html>

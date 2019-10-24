@@ -17,7 +17,8 @@
 <li><a href="#Design-Logic">2.3. Logic component</a></li>
 <li><a href="#Design-Model">2.4. Model component</a></li>
 <li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-Notification">2.6. Notification System</a></li>
+<li><a href="#Design-Commons">2.7. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
@@ -152,29 +153,116 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
 </div>
-<div class="title">Figure 4. Structure of the UI Component</div>
+<div class="title">Figure 4. Main structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is contains 3 main view parts - <code>CalendarPanel</code>, <code>ListPanel</code>, <code>LogPanel</code>. It also holds several other UI parts e.g. <code>PopUpPanel</code> and <code>Command Box</code>. Every one of the UI classes will abstract from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework, and layout of these UI parts are defined in <code>.fxml</code> files which are found in the <code>src/main/resources/view</code> folder. One example of the layout would be: <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a>, whose FXML link is specified in <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code>UI</code> component does the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user two different types commands using the <code>Logic</code> component.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One command, when executed, affect the actual Events.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p>The other command is executed to change the view of the UI. There are currently 3 main views in the application: <code>CalendarPanel</code>, <code>ListPanel</code>, <code>LogPanel</code>.</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p>It listens for any changes in the list of events using a listener:  <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/model/listeners/EventListListener.java"><code>EventListListener</code></a>.</p>
+</li>
+<li>
+<p>It also listens for the output to the user with another listener: <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/listeners/UserOutputListener.java"><code>UserOutputListener</code></a>.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="calendar-ui-view"><a class="link" href="#calendar-ui-view">2.2.1. Calendar UI View</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiCalendarClassDiagram.png" alt="UiCalendarClassDiagram">
+</div>
+<div class="title">Figure 5. Structure of the Calendar UI View</div>
+</div>
+<div class="paragraph">
+<p>The Calendar View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/CalendarPanel.java"><code>CalendarPanel</code></a>, which holds several different other UI parts linked together to form the overall UI. In the Calendar View, it displays two UI parts of the Calendar: <code>CalendarScreen</code> and <code>TimelineView</code>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/CalendarScreen.java"><code>CalendarScreen</code></a> is the screen which displays the calendar of a certain month and year to the user. It contains 6 x 7 instance of <code>CalendarGridDay</code>, which displays the days of the month.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/TimelineView.java"><code>TimelineView</code></a> is the screen which displays the timeline using 3 different classes which abstract from <code>TimelineView</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/TimelineDayView.java"><code>TimelineDayView</code></a> displays the timeline of a particular day in a certain month and year.</p>
+</li>
+<li>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/TimelineWeekView.java"><code>TimelineWeekView</code></a> displays the timeline of a particular week. The week is according to the <code>CalendarScreen</code>, where each row represents a week of a month.</p>
+</li>
+<li>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/TimelineMonthView.java"><code>TimelineMonthView</code></a> displays the timeline of a particular month in a certain year.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of these timeline will hold up to a certain amount of <code>CardHolder</code> depending on the type of <code>TimelineView</code>. Each of these <code>CardHolder</code> will then hold an amount of EventCards for displaying the event name and date.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-ui-view"><a class="link" href="#list-ui-view">2.2.2. List UI View</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiListClassDiagram.png" alt="UiListClassDiagram">
+</div>
+<div class="title">Figure 6. Structure of the List UI View</div>
+</div>
+<div class="paragraph">
+<p>The List View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/ListPanel.java"><code>ListPanel</code></a> which contains two lists views, <code>EventListView</code> and <code>TaskListView</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/EventListView.java"><code>EventListView</code></a> displays the list of Events containing every piece of information of the Events.</p>
+</li>
+<li>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/TaskListView.java"><code>TaskListView</code></a> displays the list of Task, containing every piece of information of each Task. [<em>To be implemented</em>]</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Similar to <code>TimelineView</code>, <code>EventListView</code> and <code>TaskListView</code> will contain a list of <code>Card</code>, but it will not be held in the <code>CardHolder</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="log-ui-view"><a class="link" href="#log-ui-view">2.2.3. Log UI View</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiLogClassDiagram.png" alt="UiLogClassDiagram">
+</div>
+<div class="title">Figure 7. Structure of the Log UI View</div>
+</div>
+<div class="paragraph">
+<p>The Log View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/log/LogPanel.java"><code>LogPanel</code></a> which contains several instances of <code>LogBox</code>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/log/LogBox.java"><code>LogBox</code></a> displays literal information back to the user when it is called by <code>MainWindow</code> when it listens for a command.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -183,7 +271,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
 </div>
-<div class="title">Figure 5. Structure of the Logic Component</div>
+<div class="title">Figure 8. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -215,7 +303,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 9. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -236,7 +324,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
 </div>
-<div class="title">Figure 7. Structure of the Model Component</div>
+<div class="title">Figure 10. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -281,7 +369,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 11. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -301,7 +389,60 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Notification"><a class="link" href="#Design-Notification">2.6. Notification System</a></h3>
+<div class="paragraph">
+<p>(Picture: Notification System)</p>
+</div>
+<div class="paragraph">
+<p>Notifications are handled through the NotificationManager, itself found in the Logic component. There does not exist a singular Notification component. Rather, functional classes for the Notification System are have been split across the Logic and UI components, depending on their functionality.</p>
+</div>
+<div class="sect3">
+<h4 id="logic-classes"><a class="link" href="#logic-classes">2.6.1. Logic Classes</a></h4>
+<div class="paragraph">
+<p>Logic classes are reponsible for deciding if a notification should be posted. As with other components, their functionality is accessed through the <code>NotificationManager</code> class. The <code>NotificationManager</code> class maintains a reference to a <code>NotificationCheckingThread</code> as well as a <code>SystemTrayCommunicator</code>.</p>
+</div>
+<div class="paragraph">
+<p>The logic classes of the Notification System can be found under the <code>notification</code> package under the <code>Logic</code> component.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>NotificationCheckingThread</code> is a daemon thread that runs in parallel with the main application. It checks for new notifications to post every minute.</p>
+</li>
+<li>
+<p>The <code>NotificationChecker</code> is responsible for checking <code>Model</code> for any notifications that need to be posted.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ui-classes"><a class="link" href="#ui-classes">2.6.2. UI Classes</a></h4>
+<div class="paragraph">
+<p>UI classes are responsible for displaying notifications.</p>
+</div>
+<div class="paragraph">
+<p>The UI classes of the Notification System can be found under the <code>systemtray</code> package under the <code>ui</code> component.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>PopupListener</code> class is the main channel of communication between the logic and UI classes. When a notification needs to be posted, it will relay the information from the logic to UI classes.</p>
+</li>
+<li>
+<p>The <code>SystemTrayCommunicator</code> handles posting notifications and displaying the app&#8217;s icon on the System Tray.</p>
+</li>
+<li>
+<p>The <code>PopupNotification</code> class carries the information that will be posted on a popup notification.</p>
+</li>
+<li>
+<p>The <code>NotificationClickActionListener</code> is called when the user clicks on a popup notification.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.7. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -319,43 +460,31 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>UndoableHistory</code>.
-It contains an undo/redo history, stored internally as an <code>eventListStateList</code> and a <code>currentStateIndex</code>.
-<code>UndoableHistory</code> also contains a <code>mainEventList</code>, which is the <code>EventList</code> that the GUI is in sync with.</p>
-</div>
-<div class="paragraph">
-<p>It is important that the <code>Model</code> works only with the <code>mainEventList</code> (and not duplicates) for this reason.
-This <code>mainEventList</code> is updated every time an undo or redo occurs.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, it implements the following operations:</p>
+<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
+It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
+Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>UndoableHistory#commit()</code>&#8201;&#8212;&#8201;Creates a deep-copy of the <code>mainEventList</code> state and saves that copy to its history.</p>
+<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
 </li>
 <li>
-<p><code>UndoableHistory#undo()</code>&#8201;&#8212;&#8201;Retrieve <code>mainEventList</code> 's previous state data from its duplicate and restore <code>mainEventList</code></p>
+<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
 </li>
 <li>
-<p><code>UndoableHistory#redo()</code>&#8201;&#8212;&#8201;Retrieve <code>mainEventList</code> 's future state data from its duplicate and restore <code>mainEventList</code></p>
-</li>
-<li>
-<p><code>UndoableHistory#clearFutureHistory()</code>&#8201;&#8212;&#8201;Delete all duplicates of <code>mainEventList</code> that occur after the index given by the <code>currentStateIndex</code>
-in <code>eventListStateList</code></p>
+<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitToHistory()</code>, <code>Model#undoFromHistory()</code> and <code>Model#redoFromHistory()</code>, and <code>Model#clearFutureHistory()</code> respectively.</p>
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UndoableHistory</code> will be initialized with the initial <code>mainEventList</code>. A duplicate of <code>mainEventList</code> will be added to <code>eventListStateList</code>
-and the <code>currentStateIndex</code> will point to that single <code>EventList</code> state in the list.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -363,7 +492,7 @@ and the <code>currentStateIndex</code> will point to that single <code>EventList
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete_event 5</code> command to delete the 5th event in the event list. The <code>delete</code> command calls <code>Model#commitToHistory()</code>, causing the modified state of the event list after the <code>delete 5</code> command executes to be saved in the <code>eventListStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted event list state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -371,7 +500,7 @@ and the <code>currentStateIndex</code> will point to that single <code>EventList
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add_task “Celebrate Horo’s Birthday”</code> to add a new task. The <code>add</code> command also calls <code>Model#commitToHistory()</code>, causing another modified event list state to be saved into the <code>eventListStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -385,13 +514,13 @@ and the <code>currentStateIndex</code> will point to that single <code>EventList
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitToHistory()</code>, so the event list state will not be saved into the <code>eventListStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoFromHistory()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous event list state, and restores the event list to that state.</p>
+<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -405,7 +534,7 @@ If a command fails its execution, it will not call <code>Model#commitToHistory()
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStateIndex</code> is 0, pointing to the initial event list state, then there are no previous event list states to restore. The <code>undo</code> command uses <code>Model#canUndoHistory()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -431,7 +560,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoFromHistory()</code>, which shifts the <code>currentStateIndex</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -440,13 +569,13 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStateIndex</code> is <code>eventListStateList.size() - 1</code>, pointing to the latest event list state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoHistory()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the event list, such as <code>list</code>, will usually not call <code>Model#commitToHistory()</code>, <code>Model#undoFromHistory()</code> or <code>Model#redoFromHistory()</code>. Thus, the <code>eventListStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -454,8 +583,7 @@ If the <code>currentStateIndex</code> is <code>eventListStateList.size() - 1</co
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#clearFutureHistory</code> and then Model#commitToHistory()<code>.
-Since the `currentStateIndex</code> is not pointing at the end of the <code>eventListStateList</code>, all event list states after the <code>currentStateIndex</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add_task “Celebrate Horo’s Birthday”</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -635,16 +763,16 @@ Since the `currentStateIndex</code> is not pointing at the end of the <code>even
 <p>requires reminders for their Events and Tasks.</p>
 </li>
 <li>
-<p>prefer desktop apps over other types.</p>
+<p>prefer desktop apps over other types</p>
 </li>
 <li>
-<p>can type fast.</p>
+<p>can type fast</p>
 </li>
 <li>
-<p>prefers typing over mouse input.</p>
+<p>prefers typing over mouse input</p>
 </li>
 <li>
-<p>is reasonably comfortable using CLI apps.</p>
+<p>is reasonably comfortable using CLI apps</p>
 </li>
 </ul>
 </div>
@@ -1142,6 +1270,41 @@ Use case resumes at step 1</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Google Calendar</strong></p>
+</div>
+<div class="paragraph">
+<p>Company: Google</p>
+</div>
+<div class="paragraph">
+<p>Pros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A Calendar application that is capable of storing Events and Tasks as well.</p>
+</li>
+<li>
+<p>Mostly uses GUI for interaction with user instead of having CLI, favouring to the common crowd.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mostly uses GUI for interaction with user instead of having CLI, which does not favour those who prefers CLI.</p>
+</li>
+<li>
+<p>It requires an account to be usable.</p>
+</li>
+<li>
+<p>The desktop version requires a browser, which in turn requires Internet and hence not offline.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1201,4 +1364,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-19 07:19:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 07:36:40 UTC</div></div></div></body></html>
