@@ -19,6 +19,7 @@
 <li><a href="#Design-Storage">2.5. Storage component</a></li>
 <li><a href="#Design-Notification">2.6. Notification System</a></li>
 <li><a href="#Design-Commons">2.7. Common classes</a></li>
+<li><a href="#Design-Ics">2.8. Ics Component</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
@@ -614,6 +615,34 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.7. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Ics"><a class="link" href="#Design-Ics">2.8. Ics Component</a></h3>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ics/IcsParser.java"><code>IcsParser.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The ICS component is made up of two parts: ICS file importer, and ICS file exporter.</p>
+</div>
+<div class="paragraph">
+<p>The file importer makes use of a custom parser that converts files with the <code>.ics</code> file extension
+to <code>EventSource</code> objects in Horo.</p>
+</div>
+<div class="paragraph">
+<p>The file exporter takes the <code>EventSource</code> objects stored in the <code>Model</code> singleton object and
+generates ICS String representations of them. Check out the
+<a href="https://en.wikipedia.org/wiki/ICalendar">ICalendar Wiki Page</a> for more information on the specifications.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can export Horo&#8217;s save data as a file.</p>
+</li>
+<li>
+<p>Can import other Horo&#8217;s save data from a <code>.ics</code> file.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1533,4 +1562,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 15:41:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 16:02:39 UTC</div></div></div></body></html>
