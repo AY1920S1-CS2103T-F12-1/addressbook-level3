@@ -14,7 +14,7 @@
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
 <li><a href="#Design-Ui">2.2. UI component</a></li>
-<li><a href="#Design-Logic">2.3. Logic component</a></li>
+<li><a href="#Design-Logic">2.3. CommandManager component</a></li>
 <li><a href="#Design-Model">2.4. Model component</a></li>
 <li><a href="#Design-Storage">2.5. Storage component</a></li>
 <li><a href="#Design-Notification">2.6. Notification System</a></li>
@@ -271,56 +271,225 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
-<div id="fig-LogicClassDiagram" class="imageblock">
-<div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
-</div>
-<div class="title">Figure 8. Structure of the Logic Component</div>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. CommandManager component</a></h3>
+<div class="sect3">
+<h4 id="command"><a class="link" href="#command">2.3.1. Command</a></h4>
+<div class="paragraph">
+<p>A <code>Command</code> is defined to be an immutable function, that can be invoked at any time, to perform any set of instructions. After executing the set of instructions, it will optionally return output to be displayed to the user.</p>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<p>In Horo, a <code>Command</code> implemented as an abstract class with an abstract <code>execute()</code> method. To create a new concrete command, extend from <code>Command</code> and implement <code>execute()</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandManager.png" alt="CommandManager">
+</div>
+<div class="title">Figure 8. Class diagram of Commands</div>
+</div>
+<div class="paragraph">
+<p>If your concrete command requires any dependencies during execution, it is recommended to pass in the dependency from the constructor.</p>
+</div>
+<div class="paragraph">
+<p>For example, if your command needs to be able to access <code>ModelManager</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>public class MyCommand extends Command {
+	private final ModelManager model;
+	MyCommand(ModelManager model) {
+		this.model = model;
+	}
+
+	@Override
+    CommandOutput execute() {
+        this.model.doSomething();
+		...
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandparser"><a class="link" href="#commandparser">2.3.2. CommandParser</a></h4>
+<div class="paragraph">
+<p>A <code>CommandParser</code> is defined to be able to parse a <code>String</code> of user input, and return a <code>Command</code>.</p>
+</div>
+<div class="paragraph">
+<p>In Horo, a <code>CommandParser</code> is implemented as a finite state machine (FSM). It parses user input token by token, and it transitions from state to state depending on the next token.</p>
+</div>
+<div class="paragraph">
+<p>What the FSM is trying to do is tokenize user input into:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Command keyword</code></p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
-</li>
-<li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
-</li>
-<li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
-</li>
-<li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p><code>Command phrase(s)</code></p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>A <strong>command keyword</strong> is defined as the first sequence of consecutive, non-whitespace characters of the user input. For the rest of this guide, a sequence of consecutive, non-whitespace characters will be referred to as a ‘word’. A word can be described in the form of a regular expression (regex) as <code>[^\s]+</code>.</p>
+</div>
+<div class="paragraph">
+<p>Examples of valid command keywords:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>exit</code></p>
+</li>
+<li>
+<p><code>add_event</code></p>
+</li>
+<li>
+<p><code>123</code></p>
+</li>
+<li>
+<p><code>😺</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A <strong>command phrase</strong> is defined as either a word, or multiple words delimited by whitespace surrounded by quotes. Command phrases come after a command keyword.</p>
+</div>
+<div class="paragraph">
+<p>Examples of valid command phrases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Horse</code></p>
+</li>
+<li>
+<p><code>”Homework”</code></p>
+</li>
+<li>
+<p><code>”Horo’s Birthday”</code></p>
+</li>
+<li>
+<p><code>”24/10/2019 07:00”</code></p>
+</li>
+<li>
+<p><code>’24/10/2019 07:00’</code></p>
+</li>
+<li>
+<p><code>--description</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A valid command contains exactly one command keyword, and zero or more command phrases.</p>
+</div>
+<div class="paragraph">
+<p><code>[keyword] [phrase] [phrase] [phrase] &#8230;&#8203;</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
+<img src="images/CommandParser.png" alt="CommandParser">
 </div>
-<div class="title">Figure 9. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 9. State diagram of CommandParser</div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>After tokenizing, the command keyword is sent to a <code>CommandKeywordParser</code>, which returns a <code>CommandBuilder</code>. The remaining command phrases are sent to the <code>CommandBuilder</code>, which returns the <code>Command</code> we want.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandkeywordparser"><a class="link" href="#commandkeywordparser">2.3.3. CommandKeywordParser</a></h4>
+<div class="paragraph">
+<p>A <code>CommandKeywordParser</code> is defined to be able to parse a command keyword, and return a <code>CommandBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>In Horo, a <code>CommandKeywordParser</code> uses a <code>HashMap</code> to map a command keyword to a <code>Supplier&lt;CommandBuilder&gt;</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandbuilder"><a class="link" href="#commandbuilder">2.3.4. CommandBuilder</a></h4>
+<div class="paragraph">
+<p>A <code>CommandBuilder</code> is defined to be able to accept an arbitrary amount of command settings, and eventually create a <code>Command</code> using those settings.</p>
+</div>
+<div class="paragraph">
+<p>In Horo, a <code>CommandBuilder</code> is implemented such that the entire definition of a <code>Command</code> is in the <code>CommandBuilder</code>. The <code>CommandBuilder</code> will use those definitions to automagically parse command phrases.</p>
+</div>
+<div class="paragraph">
+<p>The definition of a command is split into two parts:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Command argument(s)</code></p>
+</li>
+<li>
+<p><code>Command option(s)</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A <strong>command option</strong> is defined to have a keyword and a list of arguments.
+An <strong>option’s keyword</strong> is defined to be a command phrase.
+An <strong>option’s argument</strong> is defined to be a command phrase that is not an option’s keyword. An option’s argument is a command phrase that lies after the option’s keyword.</p>
+</div>
+<div class="paragraph">
+<p>Example of option’s keyword &amp; arguments below. The option’s keyword is underlined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><u>--description</u> Horse</code></p>
+</li>
+<li>
+<p><code><u>--tags</u> Animal Cat Dog</code></p>
+</li>
+<li>
+<p><code><u>-d</u> Horse</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A <strong>command argument</strong> is defined to be a command phrase that is not an option’s keyword. This is similar to an option’s argument, except that the position of this argument in the user input is important. A command argument is a command phrase that lies after the command keyword, and before any command option’s keywords.</p>
+</div>
+<div class="paragraph">
+<p>Example of command’s arguments below. The command’s keyword is underlined.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><u>add_event</u> Horse “24/10/2019 10:00”</code></p>
+</li>
+<li>
+<p><code><u>delete_event</u> 1 2 3</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="argument"><a class="link" href="#argument">2.3.5. Argument</a></h4>
+<div class="paragraph">
+<p>A command’s argument and an option’s argument are both considered an <code>Argument</code>. An argument will be parsed from a command phrase to another object. The <code>Argument</code> class is a generic class, where the type of the class defines what type of object the command phrase be parsed into.</p>
+</div>
+<div class="paragraph">
+<p>For example, an <code>Argument&lt;DateTime&gt;</code> which receives “24/10/2019 10:00” will be parsed into a <code>DateTime</code> object.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="variable-argument"><a class="link" href="#variable-argument">2.3.6. Variable Argument</a></h4>
+<div class="paragraph">
+<p>A <code>VariableArgument</code> is a special type of argument. A variable argument will be parsed from a list of command phrases to a list of similar type objects. The <code>VariableArgument</code> class is a generic class, where the type of the class defines what types of objects the command phrases should be parsed into. A variable argument can accept zero or more command phrases to be parsed.</p>
+</div>
+<div class="paragraph">
+<p>For example, a <code>VariableArgument&lt;Integer&gt;</code> which receives {1, 2, 3} will be parsed into a list of Integers. <code>A VariableArgument&lt;Integer&gt;</code> which receives {} will be parsed into an empty list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="argumentlist"><a class="link" href="#argumentlist">2.3.7. ArgumentList</a></h4>
+<div class="paragraph">
+<p>A command is said to contain a list of arguments, and it’s options are said to contain a list of arguments too. Both are considered an <code>ArgumentList</code>. An <code>ArgumentList</code> is defined to contain zero or more <code>Arguments</code>, and zero or one <code>VariableArguments</code>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, if a variable argument is defined, it will be treated as the last argument in the <code>ArgumentList</code>. This is because a variable argument can accept zero or more command phrases, which will prevent other arguments from receiving command phrases if it is not the last argument.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1405,4 +1574,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-26 01:10:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 07:43:37 UTC</div></div></div></body></html>
