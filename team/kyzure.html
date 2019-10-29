@@ -163,41 +163,60 @@
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>UndoRedoManager</code>. It contains a history (of <code>EventList</code> states), stored internally as an <code>eventListStateList</code>, as well as a <code>currentStateIndex</code>, which contains the index of the current state. <code>UndoRedoManager</code> also contains a <code>mainEventList</code>, which is the <code>EventList</code> that the GUI is in sync with.</p>
+<p>The undo/redo mechanism is facilitated by <code>UndoRedoManager</code>, which contains <code>undoStateList</code> - a history of <code>UndoRedoStates</code>. Each <code>UndoRedoState</code> object contains two lists: one to store <code>EventSources</code> and the other to store <code>TaskSources</code>, together representing the state of all event and task data at that point in time. UndoRedoManager also contains a <code>currentStateIndex</code>, which keeps track of the index of the <code>UndoRedoState</code> being used presently.</p>
 </div>
 <div class="paragraph">
-<p>It is important that the <code>Model</code> works only with the <code>mainEventList</code> (and not duplicates) for this reason. To achieve this, <code>eventListStateList</code> contains deep-copies of the <code>mainEventList</code>, which are created and saved to <code>eventListStateList</code> each time a state-changing command that is also not the undo or redo command (such as add_task or delete_task) is being executed. These state-changing commands that are neither undo or redo commands will modify <code>mainEventList</code> directly before the deep-copies of the modified <code>mainEventList</code> are created and stored.</p>
+<p>A key point to take note of is that <code>ModelManager</code> contains an <code>eventList</code> (a list of <code>EventSources</code>) and a <code>taskList</code> (a list of <code>TaskSources</code>), both of which cannot be reinitialized. This is because these two lists are directly in sync with the GUI; changes to these specific list instances are reflected as changes to the GUI, but changes to other copies of <code>EventSource</code> or <code>TaskSource</code> lists will not affect the GUI. Hence, the history of <code>UndoRedoStates</code> held by <code>UndoRedoManager</code> stores deep-copies of <code>EventSource</code> and <code>TaskSource</code> lists. Should there be a need to revert back to a past or future state (if undo or redo is called), these lists will retrieve their data from the appropriate copy of <code>UndoRedoState</code> in the list of duplicates.</p>
 </div>
 <div class="paragraph">
-<p>Every time an undo or redo occurs, the <code>mainEventList</code> is reverted to a past or future state of itself by retrieving its data from the appropriate copy in the list of duplicates. This allows us to always work with the same <code>EventList</code> instance throughout the program execution, which is crucial since this particular instance is in sync with the GUI; only changes to this instance are reflected as changes to the GUI.</p>
-</div>
-<div class="paragraph">
-<p>In addition, <code>UndoRedoManager</code> implements the following operations:</p>
+<p><code>UndoRedoManager</code> also implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>UndoRedoManager#commit()</code>&#8201;&#8212;&#8201;Creates a deep-copy of the mainEventList state and saves that copy to its history using EventList’s copy-constructor</p>
+<p><code>UndoRedoManager#commit(UndoRedoState state)</code>&#8201;&#8212;&#8201;Adds the new state (which contains a deep-copied version of <code>TaskSource</code> and <code>EventSource</code> lists) to the <code>undoStateList</code></p>
 </li>
 <li>
-<p><code>UndoRedoManager#undo()</code>&#8201;&#8212;&#8201;Retrieve mainEventList&#8217;s previous state data from its duplicate and restore mainEventList</p>
+<p><code>UndoRedoManager#undo()</code>&#8201;&#8212;&#8201;Restore <code>eventList</code> and <code>taskList</code> in <code>ModelManager</code> to their previous versions from the appropriate duplicate in <code>undoStateList</code> via an <code>UndoRedoListener</code></p>
 </li>
 <li>
-<p><code>UndoRedoManager#redo()</code>&#8201;&#8212;&#8201;Retrieve mainEventList&#8217;s future state data from its duplicate and restore mainEventList</p>
+<p><code>UndoRedoManager#redo()</code>&#8201;&#8212;&#8201;Restore <code>eventList</code> and <code>taskList</code> in <code>ModelManager</code> to their future versions from the appropriate duplicate in <code>undoStateList</code> via an <code>UndoRedoListener</code></p>
 </li>
 <li>
-<p><code>UndoRedoManager#clearFutureHistory()</code> -- Delete all duplicates of <code>mainEventList</code> that occur after the index given by the <code>currentStateIndex</code> in <code>eventListStateList</code></p>
+<p><code>UndoRedoManager#clearFutureHistory()</code> -- Delete all duplicates of <code>UndoRedoState</code> that occur in <code>undoStateList</code> after the index given by the <code>currentStateIndex</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitToHistory()</code>, <code>Model#undoFromHistory()</code> and <code>Model#redoFromHistory()</code>, and <code>Model#clearFutureHistory()</code> respectively.</p>
+<p>The <code>UndoCommand</code> and <code>RedoCommand</code> will interact directly with <code>UndoRedoManager</code> while other state-changing commands (such as adding or deleting tasks) will interact only with <code>ModelManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>There are three key <strong>Listener</strong> interfaces that help us achieve the desired undo-redo functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EventListListener</code></p>
+</li>
+<li>
+<p><code>TaskListListener</code></p>
+</li>
+<li>
+<p><code>UndoRedoListener</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>UndoRedoManager</code> implements the <code>EventListListener</code> interface’s method <code>onEventListChange(List&lt;EventSource&gt; events)</code> to “listen” for any changes to <code>ModelManager</code>’s <code>eventList</code>. (e.g. when an event is added or deleted) If such a change exists, it will be handled by first calling <code>UndoRedoManager#clearFutureHistory()</code>, instantiating a <code>UndoRedoState</code> with a deep-copied version of the <code>taskList</code> and the modified <code>eventList</code>, and calling <code>UndoRedoManager#commit(UndoRedoState state)</code> to commit this state. <code>UndoRedoManager</code> also implements <code>TaskListListener</code> in the same fashion, except that changes to the <code>taskList</code> are “listened” to rather than the <code>eventList</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ModelManager</code> implements the <code>UndoRedoListener</code> interface’s method <code>onUndoRedo(UndoRedoState state)</code> to “listen” for any undo or redo being executed. This will be handled by updating <code>ModelManager</code>’s <code>eventList</code> and <code>taskList</code> data to match the data of the <code>UndoRedoState</code> with index <code>currentStateIndex</code> in <code>undoStateList</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user runs the program for the first time. The <code>UndoRedoManager</code> will be initialized with the initial <code>mainEventList</code>. A duplicate of <code>mainEventList</code> will be added to <code>eventListStateList</code> and the <code>currentStateIndex</code> will point to that single <code>EventList</code> state in the list.</p>
+<p>Step 1. The user runs the program for the first time. The <code>UndoRedoManager</code> will be initialized with the initial <code>undoStateList</code>. An <code>UndoRedoState</code> will be added to <code>undoStateList</code> and the <code>currentStateIndex</code> will point to that single <code>undoRedoState</code> in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -205,7 +224,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes add_event “Suntec City Computer Fair” --at “17/11/2019 12:00”. This add_event command will first call <code>Model#clearFutureHistory()</code> in order to discard all future states (in case an undo command was called before) as they are no longer useful. In this case, there are no future states to discard. All other state-changing commands that are not undo or redo will discard future states as well when executed. Then, the event will be added to <code>mainEventList</code>. Finally, <code>Model#commitToHistory()</code> will be called, causing the modified <code>mainEventList</code> to be deep-copied and saved to <code>eventListStateList</code>, and the <code>currentStateIndex</code> is incremented by one to contain the index of the newly inserted event list state.</p>
+<p>Step 2. The user executes <code>add_event “Suntec City Computer Fair” --at “17/11/2019 12:00”</code>. The event will be added to <code>ModelManager</code>’s <code>eventList</code>. Then, <code>UndoRedoManager#onEventListChange(List&lt;EventSource&gt; events)</code> will be called (as there has been a change to the <code>eventList</code>), clearing all future states beyond the <code>currentStateIndex</code> as they are no longer useful. In this particular case, there are no future states to be cleared. Then, the modified <code>eventList</code> and <code>taskList</code> will be deep-copied and a new <code>UndoRedoState</code> containing the deep-copies will be added to <code>undoStateList</code>. The <code>currentStateIndex</code> is incremented by one to contain the index of the newly inserted undo redo state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -219,17 +238,17 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+If a command fails its execution, it will not result in any change to <code>ModelManager#eventList</code> or <code>ModelManager#taskList</code>. Hence, there is no change to trigger the listener methods and thus no <code>UndoRedoState</code> will be saved to <code>undoStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. Suppose the user decides that adding the task was a mistake. He/she then executes the undo command to rectify the error. The undo command will call <code>Model#undoFromHistory()</code>, which will decrement the <code>currentStateIndex</code> by one to contain the index of the previous event list state, which <code>mainEventList</code> resets its data to.</p>
+<p>Step 3. Suppose the user decides that adding the task was a mistake. He/she then executes the undo command to rectify the error. The undo command will decrement the <code>currentStateIndex</code> by one to contain the index of the previous undo redo state, thereafter triggering the <code>UndoRedoListener#onUndoRedo</code> method. This method updates <code>ModelManager</code>’s <code>eventList</code> and <code>taskList</code> data to match the data of the <code>UndoRedoState</code> with index <code>currentStateIndex</code> in <code>undoStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoRedoState3.png" alt="UndoRedoState3">
+<img src="../images/UndoRedoState2.png" alt="UndoRedoState2">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -239,7 +258,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial event list state, then there are no previous event list states to restore. The <code>undo</code> command uses <code>Model#canUndoEventList()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStateIndex</code> is 0, pointing to the initial undo redo state, then there are no previous undo redo states to restore. The undo command uses <code>UndoRedoManager#canUndo()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -249,7 +268,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial e
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="100%">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -265,7 +284,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 </table>
 </div>
 <div class="paragraph">
-<p>The redo command does the opposite — it calls Model#redoFromHistory(), which increments the currentStateIndex by one to contain the index of the previously undone state. The mainEventList then resets its data to this state.</p>
+<p>The redo command does the opposite — it calls <code>UndoRedoManager#redo()</code>, which increments the <code>currentStateIndex</code> by one to contain the index of the previously undone state. The <code>UndoRedoListener</code> then causes <code>ModelManager#eventList</code> and <code>ModelManager#taskList</code> to reset their data to this state’s list data.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -274,25 +293,25 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStateIndex</code> is at index <code>eventListStateList.size() - 1</code>, pointing to the latest event list state, then there are no undone event list states to restore. The <code>redo</code> command uses <code>Model#canRedoEventList()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStateIndex</code> is at index <code>undoStateList.size() - 1</code>, pointing to the latest undo redo state, then there are no undone undo redo states to restore. The <code>redo</code> command uses <code>UndoRedoManager#canRedo()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user decides to execute the command list. Non-state-changing commands such as list do not manipulate task and event data. Hence, these commands will not call <code>Model#clearFutureHistory()</code> or <code>Model#commitToHistory()</code> no changes to the current state have been made. Thus, the <code>eventListStateList</code> remains unchanged.</p>
+<p>Step 4. The user decides to execute the command <code>log</code>. Non-state-changing commands such as <code>log</code> do not manipulate task and event data. Since no changes to <code>taskList</code> or <code>eventList</code> have been made, the listener methods will not be triggered and no <code>UndoRedoState</code> will be saved to <code>undoStateList</code>. Thus, the <code>undoStateList</code> remains unchanged.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState3.png" alt="UndoRedoState3">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5. The user executes <code>delete_event 1</code>, removing the event from <code>ModelManager</code>’s <code>eventList</code>. <code>UndoRedoManager#onEventListChange(List&lt;EventSource&gt; events)</code> will be called (as there has been a change to the <code>eventList</code>), purging all future states beyond the <code>currentStateIndex</code> as they are no longer useful. Then, the modified <code>eventList</code> and <code>taskList</code> will be deep-copied and a new <code>UndoRedoState</code> containing the deep-copies will be added to <code>undoStateList</code>. The <code>currentStateIndex</code> is incremented by one to contain the index of the newly inserted undo redo state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/UndoRedoState4.png" alt="UndoRedoState4">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 5. The user executes delete_event 1, which calls <code>Model#clearFutureHistory()</code>, deletes the event from <code>mainEventList</code>, and then calls <code>Model#commitToHistory()</code>. As mentioned in Step 2, all event list states after the <code>currentStateIndex</code> will be purged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoState5.png" alt="UndoRedoState5">
 </div>
 </div>
 <div class="paragraph">
@@ -311,60 +330,27 @@ If the <code>currentStateIndex</code> is at index <code>eventListStateList.size(
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves <code>EventSource</code> and <code>TaskSource</code> data every time a change has been made.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Easy to understand and implement.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>Cons: Performance issues may arise due to the relatively larger memory usage required.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself; inverse functions have to be implemented (if I undo the deletion of a person, it would be equivalent to adding him back to the list)</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Uses less memory as we only need to keep track of what commands have been executed and their parameters, as opposed to storing all task and event data between every change.</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
+<p>Cons: Every command will have to be implemented twice, since their inverse operations will all be different. This is compounded by the fact that we have to ensure the correctness of every inverse operation individually as well.</p>
 </li>
 </ul>
 </div>
@@ -390,4 +376,4 @@ If the <code>currentStateIndex</code> is at index <code>eventListStateList.size(
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 13:11:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 16:17:13 UTC</div></div></div></body></html>
