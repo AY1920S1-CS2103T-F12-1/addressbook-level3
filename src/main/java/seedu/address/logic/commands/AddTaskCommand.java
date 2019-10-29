@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_ADD_TASK_SUCCESS;
 
 import java.util.Objects;
 
-import seedu.address.model.DateTime;
 import seedu.address.model.ModelManager;
 import seedu.address.model.tasks.TaskSource;
 import seedu.address.ui.UserOutput;
@@ -19,11 +18,12 @@ public class AddTaskCommand extends Command {
 
     AddTaskCommand(AddTaskCommandBuilder builder) {
         String description = Objects.requireNonNull(builder.getDescription());
-        DateTime dueDate = Objects.requireNonNull(builder.getDueDate());
 
         this.model = builder.getModel();
-        this.task = TaskSource.newBuilder(description, dueDate)
-                .build();
+        this.task = TaskSource.newBuilder(description)
+            .setDueDate(builder.getDueDate())
+            .setTags(builder.getTags())
+            .build();
     }
 
     public static CommandBuilder newBuilder(ModelManager model) {

@@ -13,17 +13,17 @@ public class TaskSource {
 
     // Required
     private final String description;
-    private final DateTime dueDate;
-    private final boolean isCompleted;
 
     // Optional
-    //private final Duration expectedDuration;
+    private final DateTime due;
+    // private final Duration expectedDuration;
     private final Set<String> tags;
+    private final boolean isDone;
 
     TaskSource(TaskSourceBuilder taskSourceBuilder) {
         this.description = taskSourceBuilder.getDescription();
-        this.dueDate = taskSourceBuilder.getDueDate();
-        this.isCompleted = taskSourceBuilder.getCompletionStatus();
+        this.isDone = taskSourceBuilder.isDone();
+        this.due = taskSourceBuilder.getDueDate();
         this.tags = taskSourceBuilder.getTags();
     }
 
@@ -34,13 +34,13 @@ public class TaskSource {
      */
     public TaskSource(TaskSource taskSource) {
         this.description = taskSource.description;
-        this.dueDate = taskSource.dueDate;
-        this.isCompleted = taskSource.isCompleted;
+        this.due = taskSource.due;
+        this.isDone = taskSource.isDone;
         this.tags = taskSource.tags;
     }
 
-    public static TaskSourceBuilder newBuilder(String description, DateTime dueDate) {
-        return new TaskSourceBuilder(description, dueDate);
+    public static TaskSourceBuilder newBuilder(String description) {
+        return new TaskSourceBuilder(description);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class TaskSource {
         if (object instanceof TaskSource) {
             TaskSource t = (TaskSource) object;
             return Objects.equals(this.description, t.description)
-                    && Objects.equals(this.dueDate, t.dueDate)
-                    && this.isCompleted == t.isCompleted
+                    && Objects.equals(this.due, t.due)
+                    && this.isDone == t.isDone
                     && Objects.equals(this.tags, t.tags);
         }
         return false;
@@ -60,11 +60,11 @@ public class TaskSource {
     }
 
     public DateTime getDueDate() {
-        return this.dueDate;
+        return this.due;
     }
 
-    public boolean getCompletionStatus() {
-        return isCompleted;
+    public boolean isDone() {
+        return isDone;
     }
 
     public Set<String> getTags() {

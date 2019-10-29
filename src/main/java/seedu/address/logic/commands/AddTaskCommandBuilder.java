@@ -18,15 +18,16 @@ import seedu.address.model.ModelManager;
 class AddTaskCommandBuilder extends CommandBuilder {
 
     public static final String OPTION_TAGS = "--tag";
+    public static final String OPTION_DUE_DATE_TIME = "--due";
 
     private static final String ARGUMENT_DESCRIPTION = "DESCRIPTION";
-    private static final String ARGUMENT_DUE_DATE_DATE_TIME = "DUE_DATE_DATE_TIME";
+    private static final String ARGUMENT_DUE_DATE_TIME = "DUE_DATE_TIME";
     private static final String ARGUMENT_TAGS = "TAGS";
 
     private final ModelManager model;
 
     private String description;
-    private DateTime dueDate;
+    private DateTime due;
     private List<String> tags;
 
     AddTaskCommandBuilder(ModelManager model) {
@@ -36,20 +37,21 @@ class AddTaskCommandBuilder extends CommandBuilder {
     @Override
     RequiredArgumentList defineCommandArguments() {
         return ArgumentList.required()
-            .addArgument(StringArgument.newBuilder(ARGUMENT_DESCRIPTION, v -> this.description = v))
-            .addArgument(DateTimeArgument.newBuilder(ARGUMENT_DUE_DATE_DATE_TIME, v -> this.dueDate = v));
+            .addArgument(StringArgument.newBuilder(ARGUMENT_DESCRIPTION, v -> this.description = v));
     }
 
     @Override
     Map<String, OptionalArgumentList> defineCommandOptions() {
         return Map.of(
             OPTION_TAGS, ArgumentList.optional()
-                .setVariableArguments(StringVariableArguments.newBuilder(ARGUMENT_TAGS, v -> this.tags = v))
+                .setVariableArguments(StringVariableArguments.newBuilder(ARGUMENT_TAGS, v -> this.tags = v)),
+            OPTION_DUE_DATE_TIME, ArgumentList.optional()
+                .addArgument(DateTimeArgument.newBuilder(ARGUMENT_DUE_DATE_TIME, v -> this.due = v))
         );
     }
 
     ModelManager getModel() {
-        return model;
+        return this.model;
     }
 
     String getDescription() {
@@ -57,7 +59,11 @@ class AddTaskCommandBuilder extends CommandBuilder {
     }
 
     DateTime getDueDate() {
-        return this.dueDate;
+        return this.due;
+    }
+
+    List<String> getTags() {
+        return this.tags;
     }
 
     @Override

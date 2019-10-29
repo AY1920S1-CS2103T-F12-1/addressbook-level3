@@ -23,6 +23,9 @@ public class AddEventCommand extends Command {
 
         this.model = builder.getModel();
         this.event = EventSource.newBuilder(description, start)
+            .setEnd(builder.getEnd())
+            .setRemind(builder.getRemind())
+            .setTags(builder.getTags())
             .build();
     }
 

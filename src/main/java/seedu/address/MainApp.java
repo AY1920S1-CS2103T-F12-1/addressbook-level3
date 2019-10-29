@@ -13,7 +13,9 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.DayViewCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExportIcsCommand;
 import seedu.address.logic.commands.ImportIcsCommand;
 import seedu.address.logic.commands.MonthViewCommand;
@@ -37,6 +39,8 @@ public class MainApp extends Application {
     private static final String COMMAND_DELETE_EVENT = "delete_event";
     private static final String COMMAND_EDIT_EVENT = "edit_event";
     private static final String COMMAND_ADD_TASK = "add_task";
+    private static final String COMMAND_DELETE_TASK = "delete_task";
+    private static final String COMMAND_EDIT_TASK = "edit_task";
     private static final String COMMAND_UNDO = "undo";
     private static final String COMMAND_REDO = "redo";
     private static final String COMMAND_IMPORT_ICS = "import";
@@ -65,6 +69,8 @@ public class MainApp extends Application {
         commandManager.addCommand(COMMAND_DELETE_EVENT, () -> DeleteEventCommand.newBuilder(modelManager));
         commandManager.addCommand(COMMAND_EDIT_EVENT, () -> EditEventCommand.newBuilder(modelManager));
         commandManager.addCommand(COMMAND_ADD_TASK, () -> AddTaskCommand.newBuilder(modelManager));
+        commandManager.addCommand(COMMAND_DELETE_TASK, () -> DeleteTaskCommand.newBuilder(modelManager));
+        commandManager.addCommand(COMMAND_EDIT_TASK, () -> EditTaskCommand.newBuilder(modelManager));
         commandManager.addCommand(COMMAND_UNDO, () -> UndoCommand.newBuilder(undoRedoManager));
         commandManager.addCommand(COMMAND_REDO, () -> RedoCommand.newBuilder(undoRedoManager));
         commandManager.addCommand(COMMAND_IMPORT_ICS, () -> ImportIcsCommand.newBuilder(modelManager));

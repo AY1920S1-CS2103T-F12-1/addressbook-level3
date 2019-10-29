@@ -4,8 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_EDIT_EVENT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_INDEX;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,7 +29,7 @@ public class EditEventCommand extends Command {
 
     EditEventCommand(EditEventCommandBuilder builder) {
         this.model = builder.getModel();
-        this.indexes = Objects.requireNonNull(builder.getIndexes());
+        this.indexes = builder.getIndexes();
         this.description = builder.getDescription();
         this.start = builder.getStart();
         this.end = builder.getEnd();
@@ -45,16 +45,17 @@ public class EditEventCommand extends Command {
     public UserOutput execute() throws CommandException {
         List<EventSource> list = model.getEventList();
 
-        List<EventSource> events = new ArrayList<>();
+        List<EventSource> toEdit = new ArrayList<>();
         for (Integer index : indexes) {
             try {
-                events.add(list.get(index));
+                toEdit.add(list.get(index));
             } catch (IndexOutOfBoundsException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_EVENT_INDEX, index + 1));
             }
         }
 
-        for (EventSource event : events) {
+        // Replace field if it is not null.
+        for (EventSource event : toEdit) {
             String description;
             if (this.description == null) {
                 description = event.getDescription();
@@ -69,12 +70,36 @@ public class EditEventCommand extends Command {
                 start = this.start;
             }
 
+            DateTime end;
+            if (this.end == null) {
+                end = event.getEnd();
+            } else {
+                end = this.end;
+            }
+
+            DateTime remind;
+            if (this.remind == null) {
+                remind = event.getRemind();
+            } else {
+                remind = this.remind;
+            }
+
+            Collection<String> tags;
+            if (this.tags == null) {
+                tags = event.getTags();
+            } else {
+                tags = this.tags;
+            }
+
             EventSource replacement = EventSource.newBuilder(description, start)
+                .setEnd(end)
+                .setRemind(remind)
+                .setTags(tags)
                 .build();
             model.replaceEvent(event, replacement);
         }
 
-        return new UserOutput(String.format(MESSAGE_EDIT_EVENT_SUCCESS, events.stream()
+        return new UserOutput(String.format(MESSAGE_EDIT_EVENT_SUCCESS, toEdit.stream()
             .map(EventSource::getDescription)
             .collect(Collectors.joining(", "))));
     }

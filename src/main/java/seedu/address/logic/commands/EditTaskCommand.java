@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_EDIT_TASK_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_INDEX;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,14 +23,14 @@ public class EditTaskCommand extends Command {
     private final ModelManager model;
     private final List<Integer> indexes;
     private final String description;
-    private final DateTime dueDate;
+    private final DateTime due;
     private final List<String> tags;
 
     EditTaskCommand(EditTaskCommandBuilder builder) {
         this.model = builder.getModel();
         this.indexes = Objects.requireNonNull(builder.getIndexes());
         this.description = builder.getDescription();
-        this.dueDate = builder.getDueDate();
+        this.due = builder.getDueDate();
         this.tags = builder.getTags();
     }
 
@@ -41,16 +42,17 @@ public class EditTaskCommand extends Command {
     public UserOutput execute() throws CommandException {
         List<TaskSource> list = model.getTaskList();
 
-        List<TaskSource> tasks = new ArrayList<>();
+        List<TaskSource> toEdit = new ArrayList<>();
         for (Integer index : indexes) {
             try {
-                tasks.add(list.get(index));
+                toEdit.add(list.get(index));
             } catch (IndexOutOfBoundsException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_TASK_INDEX, index + 1));
             }
         }
 
-        for (TaskSource task : tasks) {
+        // Replace field if it is not null.
+        for (TaskSource task : toEdit) {
             String description;
             if (this.description == null) {
                 description = task.getDescription();
@@ -58,20 +60,29 @@ public class EditTaskCommand extends Command {
                 description = this.description;
             }
 
-            DateTime dueDate;
-            if (this.dueDate == null) {
-                dueDate = task.getDueDate();
+            DateTime due;
+            if (this.due == null) {
+                due = task.getDueDate();
             } else {
-                dueDate = this.dueDate;
+                due = this.due;
             }
 
-            TaskSource replacement = TaskSource.newBuilder(description, dueDate)
-                    .build();
+            Collection<String> tags;
+            if (this.tags == null) {
+                tags = task.getTags();
+            } else {
+                tags = this.tags;
+            }
+
+            TaskSource replacement = TaskSource.newBuilder(description)
+                .setDueDate(due)
+                .setTags(tags)
+                .build();
             model.replaceTask(task, replacement);
         }
 
-        return new UserOutput(String.format(MESSAGE_EDIT_TASK_SUCCESS, tasks.stream()
-                .map(TaskSource::getDescription)
-                .collect(Collectors.joining(", "))));
+        return new UserOutput(String.format(MESSAGE_EDIT_TASK_SUCCESS, toEdit.stream()
+            .map(TaskSource::getDescription)
+            .collect(Collectors.joining(", "))));
     }
 }

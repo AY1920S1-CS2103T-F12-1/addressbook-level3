@@ -5,9 +5,6 @@ package seedu.address.commons.core;
  */
 public class Messages {
 
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!";
     public static final String MESSAGE_REQUIRED_COMMAND_ARGUMENT = "Argument '%s' is required!";
@@ -35,6 +32,11 @@ public class Messages {
     public static final String MESSAGE_DAY_VIEW_SUCCESS = "Changed Day to: %s";
     public static final String MESSAGE_WEEK_VIEW_SUCCESS = "Changed Week to week of: %s";
     public static final String MESSAGE_MONTH_VIEW_SUCCESS = "Changed Month to: %s";
+
+    public static final String MESSAGE_DELETE_EVENT_EMPTY = "Please fill in at least INDEXES or TAGS.";
+    public static final String MESSAGE_DELETE_EVENT_FAILURE = "No matching events.";
+    public static final String MESSAGE_DELETE_TASK_EMPTY = "Please fill in at least INDEXES or TAGS.";
+    public static final String MESSAGE_DELETE_TASK_FAILURE = "No matching tasks.";
 
     public static final String MESSAGE_NOTIFICATION_OFF = "Notifications have been turned off.";
     public static final String MESSAGE_NOTIFICATION_ON = "Notifications have been turned on.";

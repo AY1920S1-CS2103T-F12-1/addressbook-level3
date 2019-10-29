@@ -32,9 +32,8 @@ class DeleteEventCommandTest {
     }
 
     @Test
-    void execute_requiredCommand_success() {
-        // TODO: This should throw an exception
-        assertDoesNotThrow(() -> {
+    void execute_emptyCommand_failure() {
+        assertThrows(CommandException.class, () -> {
             ModelManager model = new ModelManager();
             assertEquals(model.getEventList().size(), 0);
 

@@ -31,7 +31,7 @@ class EditTaskCommandBuilder extends CommandBuilder {
 
     private List<Integer> indexes;
     private String description;
-    private DateTime dueDate;
+    private DateTime due;
     private List<String> tags;
 
     EditTaskCommandBuilder(ModelManager model) {
@@ -50,7 +50,7 @@ class EditTaskCommandBuilder extends CommandBuilder {
                 OPTION_DESCRIPTION, ArgumentList.optional()
                         .addArgument(StringArgument.newBuilder(ARGUMENT_DESCRIPTION, o -> this.description = o)),
                 OPTION_DUE_DATE_DATE_TIME, ArgumentList.optional()
-                        .addArgument(DateTimeArgument.newBuilder(ARGUMENT_DUE_DATE_DATE_TIME, o -> this.dueDate = o)),
+                        .addArgument(DateTimeArgument.newBuilder(ARGUMENT_DUE_DATE_DATE_TIME, o -> this.due = o)),
                 OPTION_TAGS, ArgumentList.optional()
                         .setVariableArguments(StringVariableArguments.newBuilder(ARGUMENT_TAGS, o -> this.tags = o))
         );
@@ -69,7 +69,7 @@ class EditTaskCommandBuilder extends CommandBuilder {
     }
 
     DateTime getDueDate() {
-        return this.dueDate;
+        return this.due;
     }
 
     List<String> getTags() {

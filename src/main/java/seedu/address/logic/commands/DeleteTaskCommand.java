@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TASK_EMPTY;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TASK_FAILURE;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TASK_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,19 +38,47 @@ public class DeleteTaskCommand extends Command {
     public UserOutput execute() throws CommandException {
         List<TaskSource> list = model.getTaskList();
 
-        List<TaskSource> tasks = new ArrayList<>();
-        for (Integer index : indexes) {
-            try {
-                tasks.add(list.get(index));
-            } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(String.format(MESSAGE_INVALID_TASK_INDEX, index + 1));
+        List<TaskSource> toDelete = new ArrayList<>();
+        if (this.indexes.isEmpty()) {
+            if (this.tags.isEmpty()) {
+                throw new CommandException(MESSAGE_DELETE_TASK_EMPTY);
+            }
+
+            // Indexes empty but tags is not empty:
+            // Delete all tasks with matching tags.
+            for (TaskSource task : list) {
+                Set<String> tags = task.getTags();
+                if (tags == null || tags.containsAll(this.tags)) {
+                    toDelete.add(task);
+                }
+            }
+        } else {
+            // Indexes not empty:
+            // Delete given tasks with matching tags
+            for (Integer index : indexes) {
+                try {
+                    TaskSource task = list.get(index);
+                    // Delete TaskSource only if it matches all tags.
+                    Set<String> tags = task.getTags();
+                    if (tags == null || tags.containsAll(this.tags)) {
+                        toDelete.add(list.get(index));
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    throw new CommandException(String.format(MESSAGE_INVALID_TASK_INDEX, index + 1));
+                }
             }
         }
 
-        for (TaskSource task : tasks) {
+        // No tasks found.
+        if (toDelete.isEmpty()) {
+            throw new CommandException(MESSAGE_DELETE_TASK_FAILURE);
+        }
+
+        for (TaskSource task : toDelete) {
             model.removeTask(task);
         }
-        return new UserOutput(String.format(MESSAGE_DELETE_TASK_SUCCESS, tasks.stream()
+
+        return new UserOutput(String.format(MESSAGE_DELETE_TASK_SUCCESS, toDelete.stream()
                 .map(TaskSource::getDescription)
                 .collect(Collectors.joining(", "))));
     }

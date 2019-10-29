@@ -14,18 +14,26 @@ import seedu.address.model.DateTime;
 public class TaskSourceBuilder {
 
     // Required
-    private String description;
-    private DateTime dueDate;
-    private boolean isCompleted;
+    private final String description;
 
-    //Optional
-    //private Duration expectedDuration;
+    // Optional
+    private DateTime due;
+    // private Duration expectedDuration;
     private Set<String> tags;
+    private boolean isDone;
 
-    public TaskSourceBuilder(String description, DateTime dueDate) {
+    public TaskSourceBuilder(String description) {
         this.description = Objects.requireNonNull(description);
-        this.dueDate = Objects.requireNonNull(dueDate);
-        this.isCompleted = false;
+    }
+
+    public TaskSourceBuilder setDueDate(DateTime due) {
+        this.due = due;
+        return this;
+    }
+
+    public TaskSourceBuilder setDone(boolean done) {
+        isDone = done;
+        return this;
     }
 
     public TaskSourceBuilder setTags(Collection<String> tags) {
@@ -42,11 +50,11 @@ public class TaskSourceBuilder {
     }
 
     DateTime getDueDate() {
-        return dueDate;
+        return due;
     }
 
-    boolean getCompletionStatus() {
-        return isCompleted;
+    boolean isDone() {
+        return isDone;
     }
 
     Set<String> getTags() {
