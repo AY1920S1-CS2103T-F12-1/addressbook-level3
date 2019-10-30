@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Teh Hao Rui Marcus - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Teh Hao Rui Marcus - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-horo-overview"><a class="link" href="#project-horo-overview">Project Horo - Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Our group of 5 software engineering students were tasked to enhance or morph
+a basic command line interface Address Book application for our Software Engineering project.
+We chose to morph it into a personal time management helper app called <strong>Horo</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Horo</strong> enables users to keep tracks of their upcoming tasks and events,
+reminding users when a deadline or event draws near,
+and users can also share their data through iCalendar (ICS) files.</p>
+</div>
+<div class="paragraph">
+<p>This is how the main page of our app looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/HoroMainViewDescription.png" alt="HoroMainViewDescription">
+</div>
+<div class="title">Figure 1. Horo&#8217;s Graphical User Interface (GUI)</div>
+</div>
+<div class="paragraph">
+<p>n this project, my role was to design and implement the code for the export and import commands.
+The following sections illustrate these enhancements in more detail,
+including some of the relevant documentation I have added
+to the User Guide and Developer Guide in relation to these enhancements.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 71.4286%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight (called a mark-up) indicates that
+this is a command that can be inputted into the command line and executed by the application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section summarizes my contributions to the team project, including coding and documentation.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><em>Enhancement added:</em> The ability to import and export <strong>Horo</strong>’s Event and Task data through ICS files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How to use it:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command <code>export</code> allows users to export <strong>Horo</strong>’s data into an ICS file.
+This file will be in the same directory as the <strong>Horo</strong> app.</p>
+</li>
+<li>
+<p>The user may use the command <code>import &lt;filepath&gt;</code>, where <code>&lt;filepath&gt;</code> is the path to the ICS file,
+or any other <strong>Horo</strong> save file, in order to import its data to the current app.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Justification:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If users want to share their event details with their friends,
+they can easily do so by exporting <strong>Horo</strong>’s save data, sharing the ICS file,
+and having their friends import the save data from the file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>As ICS is a widely used format for exporting and importing calendars into various calendar apps,
+our app can also import and export data to and from other calendar apps.</p>
+</li>
+<li>
+<p>Although there are existing libraries for ICS files, my code is not dependant on any of them,
+as I did not want to introduce bugs into our app, thus I wrote a custom parser that better suited our needs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Code Contributed:</em> I mainly contributed code to the “ics” package of our repository.
+    Click the link <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ics/IcsParser.java">here</a> for a sample of my code!</p>
+</div>
+<div class="paragraph">
+<p><em>Other contributions:</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project Management</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed the release of v1.1.</p>
+</li>
+<li>
+<p>Came up with the code integration workflow.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added information about the ICS package to the User Guide and Developer Guide. (Pull Requests
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/11">#11</a>, <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/98">#98</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Team:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reviewed Pull Requests with non-trivial review comments:
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/51">#51</a>, <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/55">#55</a></p>
+</li>
+<li>
+<p>Reported bugs found on Horo in the Discord server.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated Travis Continuous Integration to the team repository.</p>
+</li>
+<li>
+<p>Integrated a Github webhook to the team’s Discord server.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As part of the requirements, we had to update the original User Guide with instructions
+regarding how to use our new features.
+This section contains an excerpt from the User Guide showing how to use the export command.</p>
+</div>
+<hr>
+<div class="sect2">
+<h3 id="icalendar-ics-integration"><a class="link" href="#icalendar-ics-integration">iCalendar (ICS) Integration</a></h3>
+<div class="paragraph">
+<p>Horo stores data in the ICS format. Files saved in this format have the extension <code>.ics</code>.
+This allows for data to be imported to and exported from other calendar applications that also use the <code>.ics</code> format.</p>
+</div>
+<div class="sect3">
+<h4 id="export-current-calendar-code-export-directory-directory-code"><a class="link" href="#export-current-calendar-code-export-directory-directory-code">Export current calendar : <code>export --directory ["DIRECTORY"]</code></a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
+</div>
+<div class="title">Figure 2. Export Command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportFileScreenShot.png" alt="ExportFileScreenShot">
+</div>
+<div class="title">Figure 3. Exported File</div>
+</div>
+<div class="paragraph">
+<p><br>
+The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
+If no directory is specified, the file will be created in the same directory as Horo.
+<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>export</code><br>
+<code>export --directory ["DIRECTORY"]</code>
+<br></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>export --directory "C:\Users\USER_NAME\Desktop\Horo"</code>
+<br></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following section shows my additions to the Horo Developer Guide for the import and export features.</p>
+</div>
+<hr>
+<div class="sect2">
+<h3 id="ics-component"><a class="link" href="#ics-component">Ics Component</a></h3>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ics/IcsParser.java"><code>IcsParser.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The ICS component is made up of two parts: ICS file importer, and ICS file exporter.</p>
+</div>
+<div class="paragraph">
+<p>The file importer makes use of a custom parser that converts files with the <code>.ics</code> file extension
+to <code>EventSource</code> objects in Horo.</p>
+</div>
+<div class="paragraph">
+<p>The file exporter takes the <code>EventSource</code> objects stored in the <code>Model</code> singleton object and
+generates ICS String representations of them. Check out the
+<a href="https://en.wikipedia.org/wiki/ICalendar">ICalendar Wiki Page</a> for more information on the specifications.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can export Horo&#8217;s save data as a file
+The <code>ICS</code> Component,with a <code>.ics</code> extension.</p>
+</li>
+<li>
+<p>Can import other Horo&#8217;s save data from a <code>.ics</code> file.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 17:45:12 UTC</div></div></div></body></html>
