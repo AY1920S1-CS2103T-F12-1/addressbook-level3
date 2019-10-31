@@ -301,7 +301,7 @@ Commands can be undone up to the starting up of the program
 Format: +
 `undo`
 
-==== Redo **`[coming in v2.0]`**
+==== Redo 
 
 Redoes the previously undone command
 {empty} +
