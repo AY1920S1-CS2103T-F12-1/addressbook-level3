@@ -830,8 +830,20 @@ Commands can be undone up to the program&#8217;s launch.
 </div>
 <div class="paragraph">
 <p><br>
-The <code>redo</code> command redoes a previously undone command.+
-The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command (e.g. add_event, delete_event, edit). If you&#8217;ve ever used another application with undo-redo functionality, just imagine that Horo&#8217;s undo-redo functions are as intuitive as theirs.
+The <code>redo</code> command redoes a previously undone command.
+The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command (e.g. add_event, delete_event, edit).</p>
+</div>
+<div class="paragraph">
+<p>For example, suppose you added an event <code>"Attend Horo&#8217;s Birthday"</code> and ran the <code>undo</code> command, thus removing the event from Horo.
+Now, if you run <code>redo</code>, the previous state of Horo before the latest <code>undo</code> command was executed will be restored;
+<code>"Attend Horo&#8217;s Birthday"</code> will once again appear in Horo.</p>
+</div>
+<div class="paragraph">
+<p>However, if you had executed any state-changing command (except for <code>undo</code> or <code>redo</code>) just after undoing the <code>add_event</code> command,
+calling redo will then amount to no effect.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve ever used another application with undo-redo functionality, just imagine that Horo&#8217;s undo-redo functions are as intuitive as theirs.
 <br></p>
 </div>
 <div class="paragraph">
@@ -1007,4 +1019,4 @@ The <code>import</code> command imports an ICS file from the specified filepath.
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 17:05:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 17:32:06 UTC</div></div></div></body></html>
