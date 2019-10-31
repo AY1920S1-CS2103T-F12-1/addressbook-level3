@@ -811,16 +811,24 @@ If the <code>currentStateIndex</code> is at index <code>undoStateList.size() - 1
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ics/IcsParser.java"><code>IcsParser.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The ICS component is made up of two parts: ICS file importer, and ICS file exporter.</p>
+<p>The ICS component is made up of 2 main sub-components: ICS file parser, and ICS file exporter.</p>
 </div>
 <div class="paragraph">
-<p>The file importer makes use of a custom parser that converts files with the <code>.ics</code> file extension
-to <code>EventSource</code> objects in Horo.</p>
+<p>The file parser makes use of a custom parser that converts files with the <code>.ics</code> file extension
+to <code>EventSource</code> and <code>TaskSource</code> objects in Horo.</p>
 </div>
 <div class="paragraph">
-<p>The file exporter takes the <code>EventSource</code> objects stored in the <code>Model</code> singleton object and
-generates ICS String representations of them. Check out the
-<a href="https://en.wikipedia.org/wiki/ICalendar">ICalendar Wiki Page</a> for more information on the specifications.</p>
+<p>Here is an overview of how the ICS component looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/IcsComponentDiagram.png" alt="IcsComponentDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The file exporter uses the <code>IcsConverter</code> class to convert <code>EventSource</code> and <code>TaskSource</code> objects
+stored in the <code>ModelManager</code> singleton object into their ICS String representations. Check out the
+<a href="https://en.wikipedia.org/wiki/ICalendar">iCalendar Wiki Page</a> for more information on the specifications.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -832,6 +840,52 @@ The <code>ICS</code> Component,with a <code>.ics</code> extension.</p>
 <p>Can import other Horo&#8217;s save data from a <code>.ics</code> file.</p>
 </li>
 </ul>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.1. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings"><a class="link" href="#aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings">Aspect: Handling of Horo TaskSource and EventSource conversion to ICS Strings</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current Choice):</strong> Use of a separate class <code>IcsConverter</code> to convert <code>TaskSource</code> and <code>EventSource</code> objects
+their ICS string representations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Adherence to Single Responsibility Principle,
+decouples <code>IcsExporter</code> from the <code>TaskSource</code> and <code>EventSource</code> classes, and keeps code reusable and scalable.</p>
+</li>
+<li>
+<p>Cons: Not consistent with Object-Oriented Programming structure.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a common <code>IcsConvertible</code> Interface for <code>TaskSource</code> and <code>EventSource</code> to implement a <code>toIcsString()</code> function.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Adheres to Object-Oriented Programming structure.</p>
+</li>
+<li>
+<p>Cons: Hard to reuse functions and modify code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen eventually, as I felt that it is more important to adhere to the Single Responsibility Principle
+and keep all code relevant to converting objects to ICS Strings in the same class.</p>
+</div>
+<div class="paragraph">
+<p>This further makes it easier for future debugging,
+and makes adding new exportable objects a lot easier as there are common functions that can be used.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1490,4 +1544,4 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 15:24:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 15:32:52 UTC</div></div></div></body></html>
