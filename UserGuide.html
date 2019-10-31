@@ -20,7 +20,7 @@
 <li><a href="#notification-system">3.5. Notification System</a></li>
 <li><a href="#undo-redo">3.6. Undo-Redo</a></li>
 <li><a href="#icalendar-ics-integration">3.7. iCalendar (ICS) Integration</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
+<li><a href="#exiting-the-program">3.8. Exiting the program</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -33,6 +33,9 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Horo</strong> is a command-line interface scheduling application. It helps the user maintain a to-do list and a calendar, and posts timely reminders on their desktop. This User Guide provides documentation of <strong>Horo</strong>'s functionalities. Users may refer to this guide as a reference for what the application can do, as well as the commands that Horo will accept..</p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -83,6 +86,9 @@
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -100,7 +106,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>E.g. <code>command_name &lt;argument1&gt; &lt;argument2&gt;&#8230;&#8203;</code></p>
+<p>E.g. <code><strong>command_name</strong> &lt;argument1&gt; &lt;argument2&gt;&#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
@@ -113,7 +119,7 @@
 <p>E.g. <code>"Buy Groceries"</code></p>
 </li>
 <li>
-<p>E.g. <code>add_task "Buy Groceries"</code></p>
+<p>E.g. <code><strong>add_task</strong> "Buy Groceries"</code></p>
 </li>
 </ul>
 </div>
@@ -123,10 +129,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>E.g. <code>--date 17/09/2019</code></p>
+<p>E.g. <code><strong>--date</strong> 17/09/2019</code></p>
 </li>
 <li>
-<p>E.g. <code>calendar --date 17/09/2019</code></p>
+<p>E.g. <code><strong>calendar</strong> <strong>--date</strong> 17/09/2019</code></p>
 </li>
 </ul>
 </div>
@@ -135,6 +141,11 @@
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
 <p><strong>Command Format for this User Guide</strong></p>
 </div>
@@ -145,7 +156,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>E.g. <code>add_task TASK</code></p>
+<p>E.g. <code><strong>add_task</strong> TASK</code></p>
 </li>
 </ul>
 </div>
@@ -155,7 +166,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>E.g. <code>delete_task INDEX&#8230;&#8203;</code></p>
+<p>E.g. <code><strong>delete_task</strong> INDEX&#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
@@ -168,30 +179,38 @@
 <p>e.g. given the command format <code>-d|--description DESCRIPTION</code>, the following inputs accomplish the same thing:</p>
 </li>
 <li>
-<p><code>--description "Buy Groceries"</code></p>
+<p><code><strong>--description</strong> "Buy Groceries"</code></p>
 </li>
 <li>
-<p><code>-d "Buy Groceries"</code></p>
+<p><code><strong>-d</strong> "Buy Groceries"</code></p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 <div class="sect2">
 <h3 id="asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong">3.1. Asking for help : <code>help</code> <strong><code>[coming in v2.0]</code></strong></a></h3>
 <div class="paragraph">
-<p>Provides a guide if you ever need help with Horo&#8217;s commands and command formats.
-<br>
-Format and Example:<br>
-<code>help</code></p>
+<p>Provides a guide if you ever need help with Horo&#8217;s commands and command formats.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>help</strong></code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="calendar-events-and-task"><a class="link" href="#calendar-events-and-task">3.2. Calendar, Events and Task</a></h3>
 <div class="paragraph">
-<p>The following commands are related to Events and Tasks, which Horo recognises as different entities. Stated below are the differences between Events and Tasks:
-<br></p>
+<p>The following commands are related to Events and Tasks, which Horo recognises as different entities. Stated below are the differences between Events and Tasks:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -206,18 +225,17 @@ Format and Example:<br>
 <p>Cannot be marked as done.</p>
 </li>
 <li>
-<p>Will be automatically removed from the Calendar past its due date, provided it is a non-recurring event.
-<br></p>
+<p>Will be automatically removed from the Calendar past its due date, provided it is a non-recurring event.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Task <strong><code>[coming in v2.0]</code></strong></p>
+<p>Task</p>
 <div class="ulist">
 <ul>
 <li>
-<p>May show up on the Calendar if a due-date is specified.</p>
+<p>Will show up on the Calendar only if a due-date is specified.</p>
 </li>
 <li>
 <p>Can be marked as done.</p>
@@ -230,6 +248,9 @@ Format and Example:<br>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 <div class="sect3">
 <h4 id="adding-events"><a class="link" href="#adding-events">3.2.1. Adding Events</a></h4>
 <div class="imageblock">
@@ -239,8 +260,10 @@ Format and Example:<br>
 <div class="title">Figure 2. Add Event Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-You may use the <code>add_event</code> command to add an event to the calendar.</p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>You may use the <code>add_event</code> command to add an event to the calendar.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -264,6 +287,9 @@ You may use the <code>add_event</code> command to add an event to the calendar.<
 <code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00”</code><br>
 <code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00” <strong>--remind</strong> “18/08/2019 12:00” <strong>--tag</strong> Birthday Rori</code></p>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="deleting-events"><a class="link" href="#deleting-events">3.2.2. Deleting Events</a></h4>
@@ -274,8 +300,10 @@ You may use the <code>add_event</code> command to add an event to the calendar.<
 <div class="title">Figure 3. Delete Event Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-You may use the <code>delete_event</code> command to delete one or more events from the calendar.</p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -296,7 +324,10 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <code><strong>delete_event</strong> 1 2 3</code> : Deletes events 1, 2 and 3.<br>
 <code><strong>delete_event</strong> <strong>--tag</strong> Birthday</code> : Deletes events tagged as <code>Birthday</code>.<br>
 <code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.<br>
-<code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 events only if they have also been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+<code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -308,8 +339,10 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <div class="title">Figure 4. Edit Event Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-You may use the <code>edit_event</code> command to edit one or more existing events.</p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>You may use the <code>edit_event</code> command to edit one or more existing events.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -335,8 +368,11 @@ Events which matches <code>INDEX</code> will be edited.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>edit_event 1 2 3 --tag Rori</code> : Edits events 1, 2 and 3.<br>
-<code>edit_event 1 --description “Play Monster Hunter” --start “17/08/2019 19:00” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
+<code><strong>edit_event</strong> 1 2 3 <strong>--tag</strong> Rori</code> : Edits events 1, 2 and 3.<br>
+<code><strong>edit_event</strong> 1 <strong>--description</strong> “Play Monster Hunter” <strong>--start</strong> “17/08/2019 19:00” <strong>--remind</strong> “17/08/2019 12:00” <strong>--tag</strong> Kyzure</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -348,19 +384,32 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="title">Figure 5. Adds Task to Task List</div>
 </div>
 <div class="paragraph">
-<p>The <code>add_task</code> command Adds a task to the to-do list.
-<br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>add_task DESCRIPTION [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>You may use the <code>add_task</code> command to add a task to the to-do list.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>add_task</strong> DESCRIPTION</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--due</strong> DUE_DATE</code><br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>DUE_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>add_task “Buy Rori a birthday cake”</code><br>
-<code>add_task “Buy Rori a birthday cake” --remind “18/08/2019 12:00”</code><br>
-<code>add_task “Buy Rori a birthday cake” --tag "Birthday Rori"</code></p>
+<code><strong>add_task</strong> “Buy Rori a birthday cake”</code><br>
+<code><strong>add_task</strong> “Buy Rori a birthday cake” <strong>--due</strong> “18/08/2019 12:00”</code><br>
+<code><strong>add_task</strong> “Buy Rori a birthday cake” <strong>--tag</strong> "Birthday Rori"</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -372,25 +421,33 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="title">Figure 6. Delete Task from the task list.</div>
 </div>
 <div class="paragraph">
-<p>The <code>delete_task</code> command deletes 1 or more events from the to-do list. Events may be specified by index, or by their associated tags.
-<br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>delete_task [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>You may use the <code>delete_task</code> command to delete one or more tasks from the to-do list.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>delete_task</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Remarks:<br>
+Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>delete_task 1</code><br>
-<code>delete_task 1 2 3</code><br>
-* This will delete tasks 1 through 3
-<code>delete_task --tag Birthday</code><br>
-* This will delete all tasks tagged as <code>Birthday</code>.
-<code>delete_task 1 2 3 --tag Birthday</code>
-* This will deleted tasks 1 through 3 ONLY IF they have also been tagged as <code>Birthday</code>.
-<code>delete_task --tag Birthday --tag "Present"</code>
-* This will delete all tasks tagged as <code>Birthday</code> AND <code>PRESENT</code>.</p>
+<code><strong>delete_task</strong> 1</code><br>
+<code><strong>delete_task</strong> 1 2 3</code> : Deletes tasks 1, 2 and 3.<br>
+<code><strong>delete_task</strong> <strong>--tag</strong> Birthday</code> : Deletes tasks tagged as <code>Birthday</code>.<br>
+<code><strong>delete_task</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes tasks tagged as <code>Birthday</code> and <code>Rori</code>.<br>
+<code><strong>delete_task</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes tasks 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -402,35 +459,51 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="title">Figure 7. Edit Task for Tasks</div>
 </div>
 <div class="paragraph">
-<p>The <code>edit_task</code> command edits 1 or more existing events. Events should be specified by their index only.<br>
-<br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>edit_task INDEX&#8230;&#8203; [--description DESCRIPTION] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>The <code>edit_task</code> command edits 1 or more existing events. Events should be specified by their index only.<br></p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>edit_task</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--description</strong> DESCRIPTION</code><br>
+<code><strong>--due</strong> DUE_DATE</code><br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>DUE_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br></p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>edit_task 1 2 3 --tag Present</code><br>
-<code>edit_task 1 --description “Buy Rori a present” --remind “17/08/2019 12:00” --tag Present</code></p>
+<code><strong>edit_task</strong> 1 2 3 <strong>--tag</strong> Present</code> : Edits tasks 1, 2 and 3.<br>
+<code><strong>edit_task</strong> 1 <strong>--description</strong> “Buy Rori a present” <strong>--due</strong> “17/08/2019 12:00” <strong>--tag</strong> Present</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="making-recurring-events-code-recur-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#making-recurring-events-code-recur-code-strong-code-coming-in-v2-0-code-strong">3.2.7. Making recurring Events: <code>recur</code> <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>recur</code> command makes an Event show up repeatedly in the Calendar.
-<br></p>
+<p>The <code>recur</code> command makes an Event show up repeatedly in the Calendar.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>recur INDEX&#8230;&#8203; [-f|--frequency FREQUENCY]</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>recur</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>-f</strong>|<strong>--frequency</strong></code> FREQUENCY</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>recur 1 2 3 -f daily</code><br>
-<code>recur 1 2 3 --frequency daily</code></p>
+<code><strong>recur</strong> 1 2 3 <strong>-f</strong> daily</code><br>
+<code><strong>recur</strong> 1 2 3 <strong>--frequency</strong> daily</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -443,25 +516,35 @@ Events which matches <code>INDEX</code> will be edited.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong">3.2.8. Finding Events and Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>find</code> command returns Events or Tasks whose name or tag contains the specified keyword. If no optional arguments are specified, all items which name or tags contain the keyword will be returned.
-<br></p>
+<p>The <code>find</code> command returns Events or Tasks whose name or tag contains the specified keyword. If no optional arguments are specified, all items which name or tags contain the keyword will be returned.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>find [KEYWORD] [--event KEYWORD] [--task KEYWORD] [--tag KEYWORD&#8230;&#8203;]</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>find</strong> KEYWORD</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>find Birthday</code><br>
-<code>find --event Rori</code><br>
-<code>find --task Rori</code><br>
-<code>find --tag Birthday</code><br>
-<code>find --tag Birthday Pet</code></p>
+<p>Command Parameters:<br>
+<code><strong>--event</strong> KEYWORD</code><br>
+<code><strong>--task</strong> KEYWORD</code><br>
+<code><strong>--tag</strong> KEYWORD&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>find</strong> Birthday</code><br>
+<code><strong>find</strong> <strong>--event</strong> Rori</code><br>
+<code><strong>find</strong> <strong>--task</strong> Rori</code><br>
+<code><strong>find</strong> <strong>--tag</strong> Birthday</code><br>
+<code><strong>find</strong> <strong>--tag</strong> Birthday Pet</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -470,16 +553,22 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <p>The <code>done</code> command marks a Task as complete. Tasks may be specified by index, or by their associated tags.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>done INDEX&#8230;&#8203;</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>done</strong> INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>done 1</code><br>
-<code>done 1 2 3</code>
-<code>done --tag Birthday</code><br>
-<code>done 1 2 3 --tag Birthday</code></p>
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>done</strong> 1</code><br>
+<code><strong>done</strong> 1 2 3</code>
+<code><strong>done</strong> --tag Birthday</code><br>
+<code><strong>done</strong> 1 2 3 --tag Birthday</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -491,63 +580,89 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="sect3">
 <h4 id="adding-tags-to-events-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tags-to-events-strong-code-coming-in-v2-0-code-strong">3.3.1. Adding Tags to Events<strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>tag_event</code> command adds tags to the specified Events.
-<br></p>
+<p>The <code>tag_event</code> command adds tags to the specified Events.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>tag_event INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>tag_event</strong> INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>tag_event 1 2 3 --tag Birthday</code></p>
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>tag_event</strong> 1 2 3</code>
+<code><strong>tag_event</strong> 1 2 3 <strong>--tag</strong> Birthday</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="adding-tags-to-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tags-to-tasks-strong-code-coming-in-v2-0-code-strong">3.3.2. Adding Tags to Tasks<strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>tag_task</code> command adds tags to the specified Tasks.
-<br></p>
+<p>The <code>tag_task</code> command adds tags to the specified Tasks.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>tag_task INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>tag_task</strong> INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>tag_task 1 2 3 --tag Birthday</code></p>
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>tag_task</strong> 1 2 3</code>
+<code><strong>tag_task</strong> 1 2 3 <strong>--tag</strong> Birthday</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="removing-tags-from-events-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#removing-tags-from-events-strong-code-coming-in-v2-0-code-strong">3.3.3. Removing Tags from events <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>untag_event</code> command removes tags from the specified Events.
-<br></p>
+<p>The <code>untag_event</code> command removes tags from the specified Events.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>untag_event INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code></p>
+<p>Command Format:<br>
+<code><strong>untag_event</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>untag_event 1 2 3 --tag Birthdays</code></p>
+<code><strong>untag_event</strong> 1 2 3</code><br>
+<code><strong>untag_event</strong> 1 2 3 <strong>--tag</strong> Birthdays</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="removing-tags-from-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#removing-tags-from-tasks-strong-code-coming-in-v2-0-code-strong">3.3.4. Removing Tags from Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
 <div class="paragraph">
-<p>The <code>untag_task</code> command removes tags from the specified Tasks.
-<br></p>
+<p>The <code>untag_task</code> command removes tags from the specified Tasks.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>untag_task INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code></p>
+<p>Command Format:<br>
+<code><strong>untag_task</strong> INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>untag_task 1 2 3 --tag Birthdays</code></p>
+<p>Command Parameters:<br>
+<strong>--tag</strong> TAG&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>untag_task</strong> 1 2 3</code><br>
+<code><strong>untag_task</strong> 1 2 3 <strong>--tag</strong> Birthdays</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -557,7 +672,7 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <p>The following commands are related to the changing the display of the UI.</p>
 </div>
 <div class="sect3">
-<h4 id="changing-screen-view-to-calendar-view-code-calendar-date-code"><a class="link" href="#changing-screen-view-to-calendar-view-code-calendar-date-code">3.4.1. Changing Screen View to Calendar View: <code>calendar [DATE]</code></a></h4>
+<h4 id="changing-screen-view-to-calendar-view"><a class="link" href="#changing-screen-view-to-calendar-view">3.4.1. Changing Screen View to Calendar View</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui">
@@ -565,30 +680,40 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="title">Figure 8. Calendar View Command for Calendar</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>calendar</code> command switches the display to the Calendar View, which displays a calendar of the specified month and year in addition to a timeline of the specified day, week or month.
-<br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p>The Calendar View will display the specified date. If no date is specified, the last specified date will be displayed. This defaults to the current date.
-<br></p>
+<p>The <code>calendar</code> command switches the display to the Calendar View, which displays a calendar of the specified month and year in addition to a timeline of the specified day, week or month.</p>
 </div>
 <div class="paragraph">
-<p>Upon the initial launch of the application, the timeline and calendar dates will be set to the system&#8217;s current date.
-<br></p>
+<p>The Calendar View will display the specified date. If no date is specified, the last specified date will be displayed. This defaults to the current date.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>calendar</code>
-<code>calendar [DATE]</code></p>
+<p>Upon the initial launch of the application, the timeline and calendar dates will be set to the system&#8217;s current date.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>calendar</strong></code><br></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--date</strong> DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>DATE</code> : <code>DD/MM/YYYY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>calendar 11/10/2019</code></p>
+<code><strong>calendar</strong></code> : Switch back to calendar view, without changing the date.<br>
+<code><strong>calendar</strong> <strong>--date</strong> 11/10/2019</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-timeline-to-a-given-day-code-day-date-code"><a class="link" href="#changing-timeline-to-a-given-day-code-day-date-code">3.4.2. Changing Timeline to a given day: <code>day [DATE]</code></a></h4>
+<h4 id="changing-timeline-to-a-given-day"><a class="link" href="#changing-timeline-to-a-given-day">3.4.2. Changing Timeline to a given day</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/DayViewCommandScreenShot.png" alt="DayViewCommandScreenShot">
@@ -596,23 +721,29 @@ The <code>calendar</code> command switches the display to the Calendar View, whi
 <div class="title">Figure 9. Day View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>day</code> command sets the timeline in the Calendar View to that of the specified day. In addition, this command will cause a switch to the Calendar View if it is not the current display.
-<br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>day [DATE]</code>
-<br></p>
+<p>The <code>day</code> command sets the timeline in the Calendar View to that of the specified day. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>day</strong> DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>DATE</code> : <code>DD/MM/YYYY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>day 11/10/2019</code>
-<br></p>
+<code><strong>day</strong> 11/10/2019</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-timeline-to-a-given-week-code-week-date-month_year-code"><a class="link" href="#changing-timeline-to-a-given-week-code-week-date-month_year-code">3.4.3. Changing Timeline to a given week: <code>week [DATE] [MONTH_YEAR]</code></a></h4>
+<h4 id="changing-timeline-to-a-given-week"><a class="link" href="#changing-timeline-to-a-given-week">3.4.3. Changing Timeline to a given week</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/WeekViewCommandScreenShot.png" alt="WeekViewCommandScreenShot">
@@ -620,23 +751,29 @@ The <code>day</code> command sets the timeline in the Calendar View to that of t
 <div class="title">Figure 10. Week View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>week</code> command sets the timeline in the Calendar View to the week of the specified day of the month. In addition, this command will cause a switch to the Calendar View if it is not the current display.
-<br></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>week</code> command sets the timeline in the Calendar View to the week of the specified day of the month. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
-<code><strong>week</strong> DATE</code>
-<br></p>
+<code><strong>week</strong> DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>DATE</code> : <code>DD/MM/YYYY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>week 01/11/2019</code>
-<br></p>
+<code><strong>week</strong> 01/11/2019</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-timeline-to-a-given-month-code-month-month_year-code"><a class="link" href="#changing-timeline-to-a-given-month-code-month-month_year-code">3.4.4. Changing Timeline to a given month: <code>month [MONTH_YEAR]</code></a></h4>
+<h4 id="changing-timeline-to-a-given-month"><a class="link" href="#changing-timeline-to-a-given-month">3.4.4. Changing Timeline to a given month</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/MonthViewCommandScreenShot.png" alt="MonthViewCommandScreenShot">
@@ -644,23 +781,29 @@ The <code>week</code> command sets the timeline in the Calendar View to the week
 <div class="title">Figure 11. Month View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>month</code> command sets the timeline in the Calendary view to that of the specified month. In addition, this command will cause a switch to the Calendar View if it is not the current display.
-<br></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>month</code> command sets the timeline in the Calendary view to that of the specified month. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
-<code><strong>month</strong> MONTH_YEAR</code>
-<br></p>
+<code><strong>month</strong> MONTH_YEAR</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>MONTH_YEAR</code> : <code>MM/YYYY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>month 11/2019</code>
-<br></p>
+<code><strong>month</strong> 11/2019</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-screen-view-to-list-view-code-list-code"><a class="link" href="#changing-screen-view-to-list-view-code-list-code">3.4.5. Changing Screen View to List View: <code>list</code></a></h4>
+<h4 id="changing-screen-view-to-list-view"><a class="link" href="#changing-screen-view-to-list-view">3.4.5. Changing Screen View to List View</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ListCommandScreenShot.png" alt="ListCommandScreenShot">
@@ -668,17 +811,21 @@ The <code>month</code> command sets the timeline in the Calendary view to that o
 <div class="title">Figure 12. List View Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>list</code> command will switch the display to the List View, which displays a list of upcoming events on the left, and a to-do list of tasks on the right side.
-<br></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>list</code> command will switch the display to the List View, which displays a list of upcoming events on the left, and a to-do list of tasks on the right side.</p>
 </div>
 <div class="paragraph">
 <p>Command Format and Example:<br>
 <code><strong>list</strong></code></p>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="changing-screen-view-to-log-view-code-log-code"><a class="link" href="#changing-screen-view-to-log-view-code-log-code">3.4.6. Changing Screen View to Log View: <code>log</code></a></h4>
+<h4 id="changing-screen-view-to-log-view"><a class="link" href="#changing-screen-view-to-log-view">3.4.6. Changing Screen View to Log View</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogCommandScreenShot.png" alt="LogCommandScreenShot">
@@ -686,13 +833,14 @@ The <code>list</code> command will switch the display to the List View, which di
 <div class="title">Figure 13. Log View Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>log</code> command switches the display to the Log View, which displays a catalogue of all past responses to input commands.
-<br></p>
+<p>The <code>log</code> command switches the display to the Log View, which displays a catalogue of all past responses to input commands.</p>
 </div>
 <div class="paragraph">
 <p>Command Format and Example:<br>
 <code><strong>log</strong></code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -723,6 +871,9 @@ Also take note that notifications are switched on by default upon launch. This s
 </div>
 <div class="title">Figure 15. Mousing over the Horo tray icon</div>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 <div class="sect3">
 <h4 id="notification-popups"><a class="link" href="#notification-popups">3.5.1. Notification Popups</a></h4>
 <div class="paragraph">
@@ -733,6 +884,9 @@ Also take note that notifications are switched on by default upon launch. This s
 <img src="images/PopUpScreenShot.png" alt="PopUpScreenShot">
 </div>
 <div class="title">Figure 16. A Popup Notification</div>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -764,6 +918,9 @@ Also take note that notifications are switched on by default upon launch. This s
 </div>
 <div class="title">Figure 18. Feedback for the <code>notif_on</code> command</div>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="switch-notifications-off"><a class="link" href="#switch-notifications-off">3.5.3. Switch notifications off</a></h4>
@@ -794,6 +951,9 @@ Also take note that notifications are switched on by default upon launch. This s
 </div>
 <div class="title">Figure 20. Feedback for the <code>notif_off</code> command</div>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -810,14 +970,18 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="title">Figure 21. Undo Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>undo</code> command undoes the previous command.<br>
-Commands can be undone up to the program&#8217;s launch.
-<br></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>undo</code> command undoes the previous command.<br>
+Commands can be undone up to the program&#8217;s launch.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
 <code><strong>undo</strong></code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -829,8 +993,10 @@ Commands can be undone up to the program&#8217;s launch.
 <div class="title">Figure 22. Redo Command</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>redo</code> command redoes a previously undone command.
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>redo</code> command redoes a previously undone command.
 The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command (e.g. add_event, delete_event, edit).</p>
 </div>
 <div class="paragraph">
@@ -843,13 +1009,14 @@ Now, if you run <code>redo</code>, the previous state of Horo before the latest 
 calling redo will then amount to no effect.</p>
 </div>
 <div class="paragraph">
-<p>If you&#8217;ve ever used another application with undo-redo functionality, just imagine that Horo&#8217;s undo-redo functions are as intuitive as theirs.
-<br></p>
+<p>If you&#8217;ve ever used another application with undo-redo functionality, just imagine that Horo&#8217;s undo-redo functions are as intuitive as theirs.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
-<code><strong>redo</strong></code>
-<br></p>
+<code><strong>redo</strong></code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -860,7 +1027,7 @@ calling redo will then amount to no effect.</p>
 This allows for data to be imported to and exported from other calendar applications that also use the <code>.ics</code> format.</p>
 </div>
 <div class="sect3">
-<h4 id="export-current-calendar-code-export-directory-directory-code"><a class="link" href="#export-current-calendar-code-export-directory-directory-code">3.7.1. Export current calendar : <code>export --directory ["DIRECTORY"]</code></a></h4>
+<h4 id="export-current-calendar"><a class="link" href="#export-current-calendar">3.7.1. Export current calendar</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
@@ -874,25 +1041,24 @@ This allows for data to be imported to and exported from other calendar applicat
 <div class="title">Figure 24. Exported File</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
-If no directory is specified, the file will be created in the same directory as Horo.
-<br></p>
+<p>The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
+If no directory is specified, the file will be created in the same directory as Horo.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
 <code><strong>export</strong></code><br>
-<code><strong>export</strong> <strong>--directory</strong> DIRECTORY</code>
-<br></p>
+<code><strong>export</strong> <strong>--directory</strong> DIRECTORY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code><strong>export</strong> <strong>--directory</strong> "C:\Users\USER_NAME\Desktop\Horo"</code>
-<br></p>
+<code><strong>export</strong> <strong>--directory</strong> "C:\Users\USER_NAME\Desktop\Horo"</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="import-other-calendar-code-import-directory-code"><a class="link" href="#import-other-calendar-code-import-directory-code">3.7.2. Import other calendar : <code>import ["DIRECTORY"]</code></a></h4>
+<h4 id="import-other-calendar"><a class="link" href="#import-other-calendar">3.7.2. Import other calendar</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
@@ -906,29 +1072,32 @@ If no directory is specified, the file will be created in the same directory as 
 <div class="title">Figure 26. Imported File</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>import</code> command imports an ICS file from the specified filepath.
-<br></p>
+<p>The <code>import</code> command imports an ICS file from the specified filepath.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
-<code><strong>import</strong> FILEPATH</code>
-<br></p>
+<code><strong>import</strong> FILEPATH</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code><strong>import</strong> "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code>
-<br></p>
+<code><strong>import</strong> "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program"><a class="link" href="#exiting-the-program">3.8. Exiting the program</a></h3>
 <div class="paragraph">
 <p>Exits the program.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>exit</code></p>
+<p>Command Format:<br>
+<code><strong>exit</strong></code></p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -939,6 +1108,9 @@ The <code>import</code> command imports an ICS file from the specified filepath.
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app on the other computer and overwrite the empty data file it creates with Horo&#8217;s save file.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -975,7 +1147,7 @@ The <code>import</code> command imports an ICS file from the specified filepath.
 <p><strong>Removing a Tag</strong> : <code><strong>remove_tag</strong> INDEX&#8230;&#8203; <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Find</strong> : `<strong>find</strong> KEYWORD&#8230;&#8203; <strong>--tag</strong> TAG `<br></p>
+<p><strong>Find</strong> : <code><strong>find</strong> KEYWORD&#8230;&#8203; <strong>--tag</strong> TAG</code><br></p>
 </li>
 <li>
 <p><strong>Calendar View</strong> : <code><strong>calendar</strong> <strong>--date</strong> MONTH_YEAR</code></p>
@@ -1019,4 +1191,4 @@ The <code>import</code> command imports an ICS file from the specified filepath.
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 17:32:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 17:47:14 UTC</div></div></div></body></html>
