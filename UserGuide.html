@@ -19,8 +19,8 @@
 <li><a href="#ui">3.4. UI</a></li>
 <li><a href="#notification-system">3.5. Notification System</a></li>
 <li><a href="#undo-redo">3.6. Undo-Redo</a></li>
-<li><a href="#ics-integration">3.7. .ics Integration</a></li>
-<li><a href="#exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong">3.8. Exiting the program : <code>exit</code> <strong><code>[coming in v2.0]</code></strong></a></li>
+<li><a href="#icalendar-ics-integration">3.7. iCalendar (ICS) Integration</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -60,21 +60,20 @@
 </div>
 </li>
 <li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.</p>
 </li>
 <li>
-<p>Here are some example commands you can try:</p>
+<p>Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><strong>add_event</strong> Celebrate Rori’s Birthday</code>: adds an event to the event book.</p>
+<p><code><strong>add_task</strong> "Buy Groceries"</code>: adds a task to Horo.</p>
 </li>
 <li>
-<p><code><strong>delete</strong> -task 3</code> : deletes the 3rd event shown in the event book.</p>
+<p><code><strong>delete_task</strong> 1</code> : deletes the first task in Horo.</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the application.</p>
+<p><code><strong>exit</strong></code> : exits Horo.</p>
 </li>
 </ul>
 </div>
@@ -97,42 +96,37 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>The first word of any command should be a non-capitalized keyword, followed by any necessary arguments.</p>
+<p>You can enter a command by typing the command name first followed by arguments of the command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>help</code></p>
-</li>
-<li>
-<p>e.g. <code>done 1</code></p>
+<p>E.g. <code>command_name &lt;argument1&gt; &lt;argument2&gt;&#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>If an argument contains any whitespace, it should be contained between double apostrophes.</p>
+<p>If you want to type an argument containing blank spaces, surround your sentence within quotation marks.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>delete 1</code></p>
+<p>E.g. <code>"Buy Groceries"</code></p>
 </li>
 <li>
-<p>e.g. <code>add_event "Celebrate Rori&#8217;s Birthday" "17/09/2019"</code></p>
+<p>E.g. <code>add_task "Buy Groceries"</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Any optional arguments should follow the main command, and be preceded by the delimiter <code>[--parameter name]</code>.</p>
+<p>Command parameters are prefixed by <code>--</code>, and they are optional.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>add_event "Celebrate Rori&#8217;s Birthday" "17/09/2019 19:00" --remind "16/09/2019 08:00"</code>
-Take note of a mandatory space between the parameters&#8217;s name and the argument itself. The example:</p>
+<p>E.g. <code>--date 17/09/2019</code></p>
 </li>
 <li>
-<p>e.g. <code>add_event "Celebrate Rori&#8217;s Birthday" "17/09/2019 19:00" --remind"16/09/2019 08:00"</code>
-would therefore be invalid.</p>
+<p>E.g. <code>calendar --date 17/09/2019</code></p>
 </li>
 </ul>
 </div>
@@ -142,52 +136,42 @@ would therefore be invalid.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Command Format specifically for this User Guide</strong></p>
+<p><strong>Command Format for this User Guide</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Terms that are fully capitalized are user-specified.</p>
+<p>Arguments are fully capitalized which are to be supplied by you.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>event EVENT</code></p>
+<p>E.g. <code>add_task TASK</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Terms in square brackets <code>[]</code> are optional.</p>
+<p>Arguments suffixed with ellipsis (<code>&#8230;&#8203;</code>) indicate that the argument can be entered zero or more times.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. `event EVENT [--at DATE_TIME]</p>
+<p>E.g. <code>delete_task INDEX&#8230;&#8203;</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Terms followed by an ellipsis <code>&#8230;&#8203;</code> can be used any number of times, including zero.</p>
+<p>Parameters separated by a vertical bar <code>|</code> can be used interchangeably.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. <code>event EVENT [--at DATE_TIME] [--tag TAG_1] [--tag TAG_2]&#8230;&#8203;</code></p>
-</li>
-</ul>
-</div>
+<p>e.g. given the command format <code>-d|--description DESCRIPTION</code>, the following inputs accomplish the same thing:</p>
 </li>
 <li>
-<p>Terms separated by a vertical bar <code>|</code> can be used interchangeably.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. given the command format <code>recur INDEX&#8230;&#8203; [-f|--frequency FREQUENCY]</code>, the following inputs accomplish the same thing:</p>
+<p><code>--description "Buy Groceries"</code></p>
 </li>
 <li>
-<p><code>recur 1 2 3 -f daily</code></p>
-</li>
-<li>
-<p><code>recur 1 2 3 --frequency daily</code></p>
+<p><code>-d "Buy Groceries"</code></p>
 </li>
 </ul>
 </div>
@@ -256,20 +240,29 @@ Format and Example:<br>
 </div>
 <div class="paragraph">
 <p><br>
-The <code>add_event</code> command adds an event to the calendar.
-<br></p>
+You may use the <code>add_event</code> command to add an event to the calendar.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>add_event DESCRIPTION DATE_TIME [--end DATE_TIME] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>add_event</strong> DESCRIPTION START_DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--end</strong> END_DATE</code><br>
+<code><strong>--remind</strong> REMIND_DATE</code><br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>START_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>END_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>REMIND_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00”</code><br>
-<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --end “18/08/2019 20:00”</code><br>
-<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --remind “18/08/2019 12:00”</code><br>
-<code>add_event “Celebrate Rori’s Birthday” “18/08/2019 16:00” --tag "Birthday Rori"</code><br></p>
+<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00”</code><br>
+<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00”</code><br>
+<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00” <strong>--remind</strong> “18/08/2019 12:00” <strong>--tag</strong> Birthday Rori</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -282,25 +275,28 @@ The <code>add_event</code> command adds an event to the calendar.
 </div>
 <div class="paragraph">
 <p><br>
-The <code>delete_event</code> command deletes 1 or more events from the calendar. Events may be specified by index, or by their associated tags.
+You may use the <code>delete_event</code> command to delete one or more events from the calendar.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>delete_event</strong> INDEX&#8230;&#8203;</code>
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>delete_event [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Remarks:<br>
+Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>delete_event 1</code><br>
-<code>delete_event 1 2 3</code><br>
-* This will delete events 1 through 3
-<code>delete_event --tag Birthday</code><br>
-* This will delete all events tagged as <code>Birthday</code>.
-<code>delete_event 1 2 3 --tag Birthday</code>
-* This will deleted events 1 through 3 ONLY IF they have also been tagged as <code>Birthday</code>.
-<code>delete_event --tag Birthday --tag "Present"</code>
-* This will delete all events tagged as <code>Birthday</code> AND <code>PRESENT</code>.</p>
+<code><strong>delete_event</strong> 1</code><br>
+<code><strong>delete_event</strong> 1 2 3</code> : Deletes events 1, 2 and 3.<br>
+<code><strong>delete_event</strong> <strong>--tag</strong> Birthday</code> : Deletes events tagged as <code>Birthday</code>.<br>
+<code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.<br>
+<code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 events only if they have also been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -313,22 +309,44 @@ The <code>delete_event</code> command deletes 1 or more events from the calendar
 </div>
 <div class="paragraph">
 <p><br>
-The <code>edit_event</code> command edits 1 or more existing events. Events should be specified by their index only.<br>
-<br></p>
+You may use the <code>edit_event</code> command to edit one or more existing events.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>edit_event INDEX&#8230;&#8203; [--description DESCRIPTION] [--at DATE_TIME]  [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code>
-<br></p>
+<p>Command Format:<br>
+<code><strong>edit_event</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--description</strong> DESCRIPTION</code><br>
+<code><strong>--start</strong> START_DATE</code><br>
+<code><strong>--end</strong> END_DATE</code><br>
+<code><strong>--remind</strong> REMIND_DATE</code><br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>START_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>END_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>REMIND_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
+</div>
+<div class="paragraph">
+<p>Remarks:<br>
+Events which matches <code>INDEX</code> will be edited.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code>edit_event 1 2 3 --tag Rori</code><br>
+<code>edit_event 1 2 3 --tag Rori</code> : Edits events 1, 2 and 3.<br>
 <code>edit_event 1 --description “Play Monster Hunter” --start “17/08/2019 19:00” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tasks-strong-code-coming-in-v2-0-code-strong">3.2.4. Adding Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="adding-tasks"><a class="link" href="#adding-tasks">3.2.4. Adding Tasks</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddTaskCommandScreenShot.png" alt="AddTaskCommandScreenShot">
+</div>
+<div class="title">Figure 5. Adds Task to Task List</div>
+</div>
 <div class="paragraph">
 <p>The <code>add_task</code> command Adds a task to the to-do list.
 <br></p>
@@ -346,7 +364,13 @@ The <code>edit_event</code> command edits 1 or more existing events. Events shou
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#deleting-tasks-strong-code-coming-in-v2-0-code-strong">3.2.5. Deleting Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="deleting-tasks"><a class="link" href="#deleting-tasks">3.2.5. Deleting Tasks</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteTaskCommandScreenShot.png" alt="DeleteTaskCommandScreenShot">
+</div>
+<div class="title">Figure 6. Delete Task from the task list.</div>
+</div>
 <div class="paragraph">
 <p>The <code>delete_task</code> command deletes 1 or more events from the to-do list. Events may be specified by index, or by their associated tags.
 <br></p>
@@ -370,7 +394,13 @@ The <code>edit_event</code> command edits 1 or more existing events. Events shou
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#editing-tasks-strong-code-coming-in-v2-0-code-strong">3.2.6. Editing Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
+<h4 id="editing-tasks"><a class="link" href="#editing-tasks">3.2.6. Editing Tasks</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditTaskCommandScreenShot.png" alt="EditTaskCommandScreenShot">
+</div>
+<div class="title">Figure 7. Edit Task for Tasks</div>
+</div>
 <div class="paragraph">
 <p>The <code>edit_task</code> command edits 1 or more existing events. Events should be specified by their index only.<br>
 <br></p>
@@ -532,7 +562,7 @@ The <code>edit_event</code> command edits 1 or more existing events. Events shou
 <div class="content">
 <img src="images/Ui.png" alt="Ui">
 </div>
-<div class="title">Figure 5. Calendar View Command for Calendar</div>
+<div class="title">Figure 8. Calendar View Command for Calendar</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -563,7 +593,7 @@ The <code>calendar</code> command switches the display to the Calendar View, whi
 <div class="content">
 <img src="images/DayViewCommandScreenShot.png" alt="DayViewCommandScreenShot">
 </div>
-<div class="title">Figure 6. Day View Command for the Timeline</div>
+<div class="title">Figure 9. Day View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -587,7 +617,7 @@ The <code>day</code> command sets the timeline in the Calendar View to that of t
 <div class="content">
 <img src="images/WeekViewCommandScreenShot.png" alt="WeekViewCommandScreenShot">
 </div>
-<div class="title">Figure 7. Week View Command for the Timeline</div>
+<div class="title">Figure 10. Week View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -595,13 +625,13 @@ The <code>week</code> command sets the timeline in the Calendar View to the week
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>week [DATE] [MONTH_YEAR]</code>
+<p>Command Format:<br>
+<code><strong>week</strong> DATE</code>
 <br></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>week 11/2019</code>
+<code>week 01/11/2019</code>
 <br></p>
 </div>
 </div>
@@ -611,7 +641,7 @@ The <code>week</code> command sets the timeline in the Calendar View to the week
 <div class="content">
 <img src="images/MonthViewCommandScreenShot.png" alt="MonthViewCommandScreenShot">
 </div>
-<div class="title">Figure 8. Month View Command for the Timeline</div>
+<div class="title">Figure 11. Month View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -619,8 +649,8 @@ The <code>month</code> command sets the timeline in the Calendary view to that o
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>month [MONTH_YEAR]</code>
+<p>Command Format:<br>
+<code><strong>month</strong> MONTH_YEAR</code>
 <br></p>
 </div>
 <div class="paragraph">
@@ -630,12 +660,12 @@ The <code>month</code> command sets the timeline in the Calendary view to that o
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-screen-view-to-list-view-code-list-code-strong-code-coming-in-v1-3-code-strong"><a class="link" href="#changing-screen-view-to-list-view-code-list-code-strong-code-coming-in-v1-3-code-strong">3.4.5. Changing Screen View to List View: <code>list</code> <strong><code>[coming in v1.3]</code></strong></a></h4>
+<h4 id="changing-screen-view-to-list-view-code-list-code"><a class="link" href="#changing-screen-view-to-list-view-code-list-code">3.4.5. Changing Screen View to List View: <code>list</code></a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ListCommandScreenShot.png" alt="ListCommandScreenShot">
 </div>
-<div class="title">Figure 9. List View Command</div>
+<div class="title">Figure 12. List View Command</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -643,8 +673,8 @@ The <code>list</code> command will switch the display to the List View, which di
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format and Example:<br>
-<code>list</code></p>
+<p>Command Format and Example:<br>
+<code><strong>list</strong></code></p>
 </div>
 </div>
 <div class="sect3">
@@ -653,7 +683,7 @@ The <code>list</code> command will switch the display to the List View, which di
 <div class="content">
 <img src="images/LogCommandScreenShot.png" alt="LogCommandScreenShot">
 </div>
-<div class="title">Figure 10. Log View Command</div>
+<div class="title">Figure 13. Log View Command</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -661,8 +691,8 @@ The <code>log</code> command switches the display to the Log View, which display
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format and Example:<br>
-<code>log</code></p>
+<p>Command Format and Example:<br>
+<code><strong>log</strong></code></p>
 </div>
 </div>
 </div>
@@ -678,7 +708,7 @@ The <code>log</code> command switches the display to the Log View, which display
 <div class="content">
 <img src="images/HoroIconScreenShot.png" alt="HoroIconScreenShot">
 </div>
-<div class="title">Figure 11. Horo tray icon</div>
+<div class="title">Figure 14. Horo tray icon</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -691,7 +721,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/IconMouseOverScreenShot.png" alt="IconMouseOverScreenShot">
 </div>
-<div class="title">Figure 12. Mousing over the Horo tray icon</div>
+<div class="title">Figure 15. Mousing over the Horo tray icon</div>
 </div>
 <div class="sect3">
 <h4 id="notification-popups"><a class="link" href="#notification-popups">3.5.1. Notification Popups</a></h4>
@@ -702,7 +732,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/PopUpScreenShot.png" alt="PopUpScreenShot">
 </div>
-<div class="title">Figure 13. A Popup Notification</div>
+<div class="title">Figure 16. A Popup Notification</div>
 </div>
 </div>
 <div class="sect3">
@@ -711,8 +741,8 @@ Also take note that notifications are switched on by default upon launch. This s
 <p>The <code>notif_on</code> command switches notifications on.<br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<strong><code>notif_on</code></strong></p>
+<p>Command Format:<br>
+<code><strong>notif_on</strong></code></p>
 </div>
 <div class="paragraph">
 <p><br>
@@ -722,7 +752,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOnCommandBoxScreenShot.png" alt="NotificationOnCommandBoxScreenShot">
 </div>
-<div class="title">Figure 14. <code>notif_on</code> command in the Command Box</div>
+<div class="title">Figure 17. <code>notif_on</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -732,7 +762,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOnFeedbackScreenShot.png" alt="NotificationOnFeedbackScreenShot">
 </div>
-<div class="title">Figure 15. Feedback for the <code>notif_on</code> command</div>
+<div class="title">Figure 18. Feedback for the <code>notif_on</code> command</div>
 </div>
 </div>
 <div class="sect3">
@@ -741,8 +771,8 @@ Also take note that notifications are switched on by default upon launch. This s
 <p>The <code>notif_off</code> command switches notifications off.<br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<strong><code>notif_off</code></strong></p>
+<p>Command Format:<br>
+<code><strong>notif_off</strong></code></p>
 </div>
 <div class="paragraph">
 <p><br>
@@ -752,7 +782,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOffCommandBoxScreenShot.png" alt="NotificationOffCommandBoxScreenShot">
 </div>
-<div class="title">Figure 16. <code>notif_off</code> command in the Command Box</div>
+<div class="title">Figure 19. <code>notif_off</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -762,21 +792,22 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOffFeedbackScreenShot.png" alt="NotificationOffFeedbackScreenShot">
 </div>
-<div class="title">Figure 17. Feedback for the <code>notif_off</code> command</div>
+<div class="title">Figure 20. Feedback for the <code>notif_off</code> command</div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="undo-redo"><a class="link" href="#undo-redo">3.6. Undo-Redo</a></h3>
 <div class="paragraph">
-<p>The following commands allow you to undo and redo previously input commands.
-==== Undo</p>
+<p>The following commands allow you to undo and redo previously input commands.</p>
 </div>
+<div class="sect3">
+<h4 id="undo"><a class="link" href="#undo">3.6.1. Undo</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoCommandScreenShot.png" alt="UndoCommandScreenShot">
 </div>
-<div class="title">Figure 18. Undo Command</div>
+<div class="title">Figure 21. Undo Command</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -785,16 +816,17 @@ Commands can be undone up to the program&#8217;s launch.
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>undo</code></p>
+<p>Command Format:<br>
+<code><strong>undo</strong></code></p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="redo"><a class="link" href="#redo">3.6.1. Redo</a></h4>
+<h4 id="redo"><a class="link" href="#redo">3.6.2. Redo</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/RedoCommandScreenShot.png" alt="RedoCommandScreenShot">
 </div>
-<div class="title">Figure 19. Redo Command</div>
+<div class="title">Figure 22. Redo Command</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -803,16 +835,17 @@ The <code>redo</code> command is able to redo any undone commands that have not 
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>redo</code>
+<p>Command Format:<br>
+<code><strong>redo</strong></code>
 <br></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ics-integration"><a class="link" href="#ics-integration">3.7. .ics Integration</a></h3>
+<h3 id="icalendar-ics-integration"><a class="link" href="#icalendar-ics-integration">3.7. iCalendar (ICS) Integration</a></h3>
 <div class="paragraph">
-<p>Horo stores data in the .ics format. This allows for data to be imported to and exported from other calendar applications that also use the .ics format.</p>
+<p>Horo stores data in the ICS format. Files saved in this format have the extension <code>.ics</code>.
+This allows for data to be imported to and exported from other calendar applications that also use the <code>.ics</code> format.</p>
 </div>
 <div class="sect3">
 <h4 id="export-current-calendar-code-export-directory-directory-code"><a class="link" href="#export-current-calendar-code-export-directory-directory-code">3.7.1. Export current calendar : <code>export --directory ["DIRECTORY"]</code></a></h4>
@@ -820,28 +853,29 @@ The <code>redo</code> command is able to redo any undone commands that have not 
 <div class="content">
 <img src="images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
 </div>
-<div class="title">Figure 20. Export Command</div>
+<div class="title">Figure 23. Export Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ExportFileScreenShot.png" alt="ExportFileScreenShot">
 </div>
-<div class="title">Figure 21. Exported File</div>
+<div class="title">Figure 24. Exported File</div>
 </div>
 <div class="paragraph">
 <p><br>
-The <code>export</code> command exports your current calendar as a .ics file to the specified directory. If no directory is specified, the file will be created in the root folder of the application.
+The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
+If no directory is specified, the file will be created in the same directory as Horo.
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>export</code><br>
-<code>export --directory ["DIRECTORY"]</code>
+<p>Command Format:<br>
+<code><strong>export</strong></code><br>
+<code><strong>export</strong> <strong>--directory</strong> DIRECTORY</code>
 <br></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>export --directory "C:\Users\USER_NAME\Desktop\Horo"</code>
+<code><strong>export</strong> <strong>--directory</strong> "C:\Users\USER_NAME\Desktop\Horo"</code>
 <br></p>
 </div>
 </div>
@@ -851,37 +885,38 @@ The <code>export</code> command exports your current calendar as a .ics file to 
 <div class="content">
 <img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
 </div>
-<div class="title">Figure 22. Import Command</div>
+<div class="title">Figure 25. Import Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ImportFileScreenShot.png" alt="ImportFileScreenShot">
 </div>
-<div class="title">Figure 23. Imported File</div>
+<div class="title">Figure 26. Imported File</div>
 </div>
 <div class="paragraph">
 <p><br>
-The <code>import</code> command imports an .ics format file from the specified directory.
+The <code>import</code> command imports an ICS file from the specified filepath.
 <br></p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>import ["DIRECTORY"]</code>
+<p>Command Format:<br>
+<code><strong>import</strong> FILEPATH</code>
 <br></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>import "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code>
+<code><strong>import</strong> "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code>
 <br></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#exiting-the-program-code-exit-code-strong-code-coming-in-v2-0-code-strong">3.8. Exiting the program : <code>exit</code> <strong><code>[coming in v2.0]</code></strong></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
-<p>Exits the program.
-<br>
-Format: <code>exit</code></p>
+<p>Exits the program.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>exit</code></p>
 </div>
 </div>
 </div>
@@ -901,84 +936,75 @@ Format: <code>exit</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Help</strong> : <code>help</code><br></p>
+<p><strong>Help</strong> : <code><strong>help</strong></code><br></p>
 </li>
 <li>
-<p><strong>Adding an Event</strong> : <code>add_event DESCRIPTION DATE_TIME [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>add_event "Celebrate Horo&#8217;s Birthday" --at 17/09/2019 23:59</code></p>
+<p><strong>Adding an Event</strong> : <code><strong>add_event</strong> DESCRIPTION START_DATE <strong>--end</strong> END_DATE <strong>--remind</strong> REMIND_DATE <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Deleting Events</strong> : <code>delete_event [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>delete_event 1 2 3</code></p>
+<p><strong>Deleting Events</strong> : <code><strong>delete_event</strong> INDEX&#8230;&#8203; <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Editing Events</strong> : <code>edit_event INDEX&#8230;&#8203; [--description DESCRIPTION] [--at DATE_TIME] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>edit_event 1 --description “Play Monster Hunter” --at “17/08/2019 19:00” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
+<p><strong>Editing Events</strong> : <code><strong>edit_event</strong> INDEX&#8230;&#8203; <strong>--description</strong> DESCRIPTION <strong>--start</strong> START_DATE <strong>--end</strong> END_DATE <strong>--remind</strong> REMIND_DATE <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Adding a Task</strong> : <code>add_task DESCRIPTION [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>add_task “Celebrate Horo’s Birthday” --tag Birthday</code></p>
+<p><strong>Adding a Task</strong> : <code><strong>add_task</strong> DESCRIPTION <strong>--due</strong> DUE_DATE <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Deleting Tasks</strong> : <code>delete_task [INDEX&#8230;&#8203;] [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>delete_task 1 2 3</code></p>
+<p><strong>Deleting Tasks</strong> : <code><strong>delete_task</strong> INDEX&#8230;&#8203; <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Editing Tasks</strong> : <code>edit_task INDEX&#8230;&#8203; [--description DESCRIPTION] [--remind DATE_TIME] [--tag TAG&#8230;&#8203;]</code><br>
-e.g. <code>edit_task 1 --description “Play Monster Hunter” --remind “17/08/2019 12:00” --tag Kyzure</code></p>
+<p><strong>Editing Tasks</strong> : <code><strong>edit_task</strong> INDEX&#8230;&#8203; <strong>--description</strong> DESCRIPTION <strong>--due</strong> DUE_DATE <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Adding a Tag</strong> : <code>tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code><br>
-e.g. <code>tag 1 2 3 --tag Birthday</code></p>
+<p><strong>Adding a Tag</strong> : <code><strong>tag</strong> INDEX&#8230;&#8203; <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Removing a Tag</strong> : <code>remove_tag INDEX&#8230;&#8203; --tag TAG&#8230;&#8203;</code><br>
-e.g. <code>remove_tag 1 2 3 --tag Birthday</code></p>
+<p><strong>Removing a Tag</strong> : <code><strong>remove_tag</strong> INDEX&#8230;&#8203; <strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find [--tag TAG] KEYWORD&#8230;&#8203;</code><br>
-e.g. <code>find --tag homework cs2100</code></p>
+<p><strong>Find</strong> : `<strong>find</strong> KEYWORD&#8230;&#8203; <strong>--tag</strong> TAG `<br></p>
 </li>
 <li>
-<p><strong>Calendar View</strong> : <code>calendar [MONTH_YEAR]</code></p>
+<p><strong>Calendar View</strong> : <code><strong>calendar</strong> <strong>--date</strong> MONTH_YEAR</code></p>
 </li>
 <li>
-<p><strong>Day View for Timeline</strong> : <code>day [DATE]</code></p>
+<p><strong>Day View for Timeline</strong> : <code><strong>day</strong> DATE</code></p>
 </li>
 <li>
-<p><strong>Week View for Timeline</strong> : <code>week [DATE]</code></p>
+<p><strong>Week View for Timeline</strong> : <code><strong>week</strong> DATE</code></p>
 </li>
 <li>
-<p><strong>Month View for Timeline</strong> : <code>month [MONTH_YEAR]</code></p>
+<p><strong>Month View for Timeline</strong> : <code><strong>month</strong> MONTH_YEAR</code></p>
 </li>
 <li>
-<p><strong>List View</strong> : <code>list</code></p>
+<p><strong>List View</strong> : <code><strong>list</strong></code></p>
 </li>
 <li>
-<p><strong>Log View</strong> : <code>log</code></p>
+<p><strong>Log View</strong> : <code><strong>log</strong></code></p>
 </li>
 <li>
-<p><strong>Undo</strong> : <code>undo</code></p>
+<p><strong>Undo</strong> : <code><strong>undo</strong></code></p>
 </li>
 <li>
-<p><strong>Redo</strong> : <code>redo</code></p>
+<p><strong>Redo</strong> : <code><strong>redo</strong></code></p>
 </li>
 <li>
-<p><strong>Switch notifications on</strong> : <code>notif_on</code></p>
+<p><strong>Switch notifications on</strong> : <code><strong>notif_on</strong></code></p>
 </li>
 <li>
-<p><strong>Switch notifications off</strong> : <code>notif_off</code></p>
+<p><strong>Switch notifications off</strong> : <code><strong>notif_off</strong></code></p>
 </li>
 <li>
-<p><strong>Export .ics File</strong> : <code>export --directory ["DIRECTORY"]</code></p>
+<p><strong>Export .ics File</strong> : <code><strong>export</strong> <strong>--directory</strong> DIRECTORY</code></p>
 </li>
 <li>
-<p><strong>Import .ics File</strong> : <code>import ["FILE_PATH"]</code></p>
+<p><strong>Import .ics File</strong> : <code><strong>import</strong> FILE_PATH</code></p>
 </li>
 <li>
-<p><strong>Exiting the Program</strong> : <code>exit</code></p>
+<p><strong>Exiting the Program</strong> : <code><strong>exit</strong></code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 17:45:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 15:24:31 UTC</div></div></div></body></html>
