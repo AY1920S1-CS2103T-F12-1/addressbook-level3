@@ -55,11 +55,34 @@
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+</li>
+<li>
+<p>If double-clicking fails to start the app then do the following steps:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open up Command Prompt</p>
+</li>
+<li>
+<p>Change directory to your <code>horo.jar</code> location saved location.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It is prefable to change your <code>horo.jar</code> location to an empty folder.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Type <code>java -jar horo.jar</code> and GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
 <div class="title">Figure 1. Startup Screen Shot of Horo</div>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -222,7 +245,7 @@
 <p>Will show up on the Calendar.</p>
 </li>
 <li>
-<p>Cannot be marked as done.</p>
+<p>Cannot be marked as done. <strong><code>[coming in v2.0]</code></strong></p>
 </li>
 <li>
 <p>Will be automatically removed from the Calendar past its due date, provided it is a non-recurring event.</p>
@@ -235,10 +258,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Will show up on the Calendar only if a due-date is specified.</p>
+<p>Will show up on the Calendar only if a due-date is specified. Otherwise it will be specified in the List.</p>
 </li>
 <li>
-<p>Can be marked as done.</p>
+<p>Can be marked as done. <strong><code>[coming in v2.0]</code></strong></p>
 </li>
 <li>
 <p>If not accomplished by its due date, will be automatically archived into an undone list.</p>
@@ -299,11 +322,18 @@
 </div>
 <div class="title">Figure 3. Delete Event Command</div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EventCardScreenShot.png" alt="EventCardScreenShot">
+</div>
+<div class="title">Figure 4. Index found on the top right of the event.</div>
+</div>
 <div class="paragraph">
 <p><br></p>
 </div>
 <div class="paragraph">
-<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.</p>
+<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.<br>
+Note that deletion is based of a zero-indexing that is found on the event&#8217;s top right corner.<br></p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -336,7 +366,7 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <div class="content">
 <img src="images/EditEventCommandScreenShot.png" alt="EditEventCommandScreenShot">
 </div>
-<div class="title">Figure 4. Edit Event Command</div>
+<div class="title">Figure 5. Edit Event Command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -381,7 +411,7 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="content">
 <img src="images/AddTaskCommandScreenShot.png" alt="AddTaskCommandScreenShot">
 </div>
-<div class="title">Figure 5. Adds Task to Task List</div>
+<div class="title">Figure 6. Adds Task to Task List</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -418,13 +448,20 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="content">
 <img src="images/DeleteTaskCommandScreenShot.png" alt="DeleteTaskCommandScreenShot">
 </div>
-<div class="title">Figure 6. Delete Task from the task list.</div>
+<div class="title">Figure 7. Delete Task from the task list.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TaskCardScreenShot.png" alt="TaskCardScreenShot">
+</div>
+<div class="title">Figure 8. Index found on the top right of the task.</div>
 </div>
 <div class="paragraph">
 <p><br></p>
 </div>
 <div class="paragraph">
-<p>You may use the <code>delete_task</code> command to delete one or more tasks from the to-do list.</p>
+<p>You may use the <code>delete_task</code> command to delete one or more tasks from the to-do list.<br>
+Note that deletion is based of a zero-indexing that is found on the task&#8217;s top right corner.<br></p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -440,7 +477,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code><strong>delete_task</strong> 1</code><br>
+<code><strong>delete_task</strong> 0</code><br>
 <code><strong>delete_task</strong> 1 2 3</code> : Deletes tasks 1, 2 and 3.<br>
 <code><strong>delete_task</strong> <strong>--tag</strong> Birthday</code> : Deletes tasks tagged as <code>Birthday</code>.<br>
 <code><strong>delete_task</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes tasks tagged as <code>Birthday</code> and <code>Rori</code>.<br>
@@ -456,7 +493,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/EditTaskCommandScreenShot.png" alt="EditTaskCommandScreenShot">
 </div>
-<div class="title">Figure 7. Edit Task for Tasks</div>
+<div class="title">Figure 9. Edit Task for Tasks</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -671,13 +708,16 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="paragraph">
 <p>The following commands are related to the changing the display of the UI.</p>
 </div>
+<div class="paragraph">
+<p>Take note that UI-related commands are not affected by the <code>undo</code> and <code>redo</code> commands (For more information, see <a href="#undo-redo">Section 3.6, &#8220;Undo-Redo&#8221;</a>).</p>
+</div>
 <div class="sect3">
 <h4 id="changing-screen-view-to-calendar-view"><a class="link" href="#changing-screen-view-to-calendar-view">3.4.1. Changing Screen View to Calendar View</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui">
 </div>
-<div class="title">Figure 8. Calendar View Command for Calendar</div>
+<div class="title">Figure 10. Calendar View Command for Calendar</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -718,7 +758,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/DayViewCommandScreenShot.png" alt="DayViewCommandScreenShot">
 </div>
-<div class="title">Figure 9. Day View Command for the Timeline</div>
+<div class="title">Figure 11. Day View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -748,7 +788,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/WeekViewCommandScreenShot.png" alt="WeekViewCommandScreenShot">
 </div>
-<div class="title">Figure 10. Week View Command for the Timeline</div>
+<div class="title">Figure 12. Week View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -778,7 +818,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/MonthViewCommandScreenShot.png" alt="MonthViewCommandScreenShot">
 </div>
-<div class="title">Figure 11. Month View Command for the Timeline</div>
+<div class="title">Figure 13. Month View Command for the Timeline</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -808,7 +848,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/ListCommandScreenShot.png" alt="ListCommandScreenShot">
 </div>
-<div class="title">Figure 12. List View Command</div>
+<div class="title">Figure 14. List View Command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -830,7 +870,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/LogCommandScreenShot.png" alt="LogCommandScreenShot">
 </div>
-<div class="title">Figure 13. Log View Command</div>
+<div class="title">Figure 15. Log View Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>log</code> command switches the display to the Log View, which displays a catalogue of all past responses to input commands.</p>
@@ -856,7 +896,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/HoroIconScreenShot.png" alt="HoroIconScreenShot">
 </div>
-<div class="title">Figure 14. Horo tray icon</div>
+<div class="title">Figure 16. Horo tray icon</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -869,7 +909,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/IconMouseOverScreenShot.png" alt="IconMouseOverScreenShot">
 </div>
-<div class="title">Figure 15. Mousing over the Horo tray icon</div>
+<div class="title">Figure 17. Mousing over the Horo tray icon</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -883,10 +923,13 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/PopUpScreenShot.png" alt="PopUpScreenShot">
 </div>
-<div class="title">Figure 16. A Popup Notification</div>
+<div class="title">Figure 18. A Popup Notification</div>
 </div>
 <div class="paragraph">
 <p><br></p>
+</div>
+<div class="paragraph">
+<p>Take note that that following commands are UI-related commands, and are thus unaffected by the <code>undo</code> and <code>redo</code> commands (For more information, see <a href="#undo-redo">Section 3.6, &#8220;Undo-Redo&#8221;</a>).</p>
 </div>
 </div>
 <div class="sect3">
@@ -906,7 +949,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOnCommandBoxScreenShot.png" alt="NotificationOnCommandBoxScreenShot">
 </div>
-<div class="title">Figure 17. <code>notif_on</code> command in the Command Box</div>
+<div class="title">Figure 19. <code>notif_on</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -916,7 +959,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOnFeedbackScreenShot.png" alt="NotificationOnFeedbackScreenShot">
 </div>
-<div class="title">Figure 18. Feedback for the <code>notif_on</code> command</div>
+<div class="title">Figure 20. Feedback for the <code>notif_on</code> command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -939,7 +982,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOffCommandBoxScreenShot.png" alt="NotificationOffCommandBoxScreenShot">
 </div>
-<div class="title">Figure 19. <code>notif_off</code> command in the Command Box</div>
+<div class="title">Figure 21. <code>notif_off</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
@@ -949,7 +992,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/NotificationOffFeedbackScreenShot.png" alt="NotificationOffFeedbackScreenShot">
 </div>
-<div class="title">Figure 20. Feedback for the <code>notif_off</code> command</div>
+<div class="title">Figure 22. Feedback for the <code>notif_off</code> command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -961,13 +1004,38 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="paragraph">
 <p>The following commands allow you to undo and redo previously input commands.</p>
 </div>
+<div class="paragraph">
+<p>The below commands will only affect state-changing, and not UI-related commands. The commands that will be affected are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>add_event</strong></p>
+</li>
+<li>
+<p><strong>delete_event</strong></p>
+</li>
+<li>
+<p><strong>edit_event</strong></p>
+</li>
+<li>
+<p><strong>add_task</strong></p>
+</li>
+<li>
+<p><strong>delete_task</strong></p>
+</li>
+<li>
+<p><strong>edit_task</strong></p>
+</li>
+</ul>
+</div>
 <div class="sect3">
 <h4 id="undo"><a class="link" href="#undo">3.6.1. Undo</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoCommandScreenShot.png" alt="UndoCommandScreenShot">
 </div>
-<div class="title">Figure 21. Undo Command</div>
+<div class="title">Figure 23. Undo Command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -990,7 +1058,7 @@ Commands can be undone up to the program&#8217;s launch.</p>
 <div class="content">
 <img src="images/RedoCommandScreenShot.png" alt="RedoCommandScreenShot">
 </div>
-<div class="title">Figure 22. Redo Command</div>
+<div class="title">Figure 24. Redo Command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -1032,13 +1100,13 @@ This allows for data to be imported to and exported from other calendar applicat
 <div class="content">
 <img src="images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
 </div>
-<div class="title">Figure 23. Export Command</div>
+<div class="title">Figure 25. Export Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ExportFileScreenShot.png" alt="ExportFileScreenShot">
 </div>
-<div class="title">Figure 24. Exported File</div>
+<div class="title">Figure 26. Exported File</div>
 </div>
 <div class="paragraph">
 <p>The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
@@ -1063,13 +1131,13 @@ If no directory is specified, the file will be created in the same directory as 
 <div class="content">
 <img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
 </div>
-<div class="title">Figure 25. Import Command</div>
+<div class="title">Figure 27. Import Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ImportFileScreenShot.png" alt="ImportFileScreenShot">
 </div>
-<div class="title">Figure 26. Imported File</div>
+<div class="title">Figure 28. Imported File</div>
 </div>
 <div class="paragraph">
 <p>The <code>import</code> command imports an ICS file from the specified filepath.</p>
@@ -1191,4 +1259,4 @@ If no directory is specified, the file will be created in the same directory as 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:00:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 15:08:37 UTC</div></div></div></body></html>
