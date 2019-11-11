@@ -47,7 +47,11 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#notification-system">G.2. Notification System</a></li>
+<li><a href="#adding-deleting-and-editing-events">G.2. Adding, Deleting and Editing Events</a></li>
+<li><a href="#import-and-export">G.3. Import and Export</a></li>
+<li><a href="#notification-system">G.4. Notification System</a></li>
+<li><a href="#ui-system">G.5. Ui System</a></li>
+<li><a href="#undoing-and-redoing-commands">G.6. Undoing and Redoing Commands</a></li>
 </ul>
 </li>
 </ul>
@@ -2462,6 +2466,65 @@ Expected: Shows the GUI with the calendar at today&#8217;s date, with no events 
 </ol>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-deleting-and-editing-events"><a class="link" href="#adding-deleting-and-editing-events">G.2. Adding, Deleting and Editing Events</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Start Horo with no save data.</p>
+</li>
+<li>
+<p>Enter <code>list</code> into the command box.</p>
+</li>
+<li>
+<p>Enter <code>add_event "My Event Description" "11/11/2019 12:00"</code> into the command box.</p>
+</li>
+<li>
+<p>Expected: An event will be created with the title "My Event Description", with start date "11/11/2019 12:00".</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter <code>edit_event 0 --description "New Event Description"</code> into the command box.</p>
+</li>
+<li>
+<p>Expected: Your event "My Event Description" will be renamed to "New Event Description".</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter <code>delete_event 0</code> into the command box.</p>
+</li>
+<li>
+<p>Expected: Your event "New Event Description" will be deleted, leaving an empty list view.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-and-export"><a class="link" href="#import-and-export">G.3. Import and Export</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Export</p>
 <div class="olist loweralpha">
@@ -2510,7 +2573,7 @@ Expected: The imported events and tasks should be the same as when they were exp
 </div>
 </div>
 <div class="sect2">
-<h3 id="notification-system"><a class="link" href="#notification-system">G.2. Notification System</a></h3>
+<h3 id="notification-system"><a class="link" href="#notification-system">G.4. Notification System</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2535,5 +2598,331 @@ Expected: Upon the next minute, a notification should be posted to your desktop 
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="ui-system"><a class="link" href="#ui-system">G.5. Ui System</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change between different UI views</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Make sure you are on a different view panel than the one you are going to execute.</p>
+</li>
+<li>
+<p>Test case: <code>list</code><br>
+Expected: Changes to the list view panel.</p>
+</li>
+<li>
+<p>Test case: <code>log</code><br>
+Expected: Changes to the log view panel.</p>
+</li>
+<li>
+<p>Test case: <code>calendar</code><br>
+Expected: Changes to the calendar view panel.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:19:10 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Change date of the calendar without changing the timeline.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>calendar --date "10/2019"</code><br>
+Expected: Calendar date will change accordingly</p>
+</li>
+<li>
+<p>If you are not in the calendar view panel, it should change the current view to the calendar view.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Change date of the timeline in calendar view</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>week dd/MM/yyyy</code><br>
+Expected: Changes the timeline to the week view containing that day in the given week.</p>
+</li>
+<li>
+<p>Test case: <code>month MM/yyyy</code><br>
+Expected: Changes the timeline to the month view of the specified month and year.</p>
+</li>
+<li>
+<p>Test case: <code>day dd/MM/yyyy</code><br>
+Expected: Changes the timeline to the day view of the specified day, month and year.</p>
+</li>
+<li>
+<p>For all the test cases, if you are not in calendar view panel, it should change the current view to the calendar view.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-and-redoing-commands"><a class="link" href="#undoing-and-redoing-commands">G.6. Undoing and Redoing Commands</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Undoing an <code>add_event</code> or <code>add_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Firstly, switch to the List-view of Horo</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>listview</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Input the following command to add an event:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_event "Test Event" "[CURRENT DATE] [CURRENT TIME]</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To add a task, input the following command:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_task "Test Task"</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The added event or task is now visible in the List-view of Horo</p>
+</li>
+<li>
+<p>Now, run the undo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>undo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The added event or task is no longer visible in the List-view of Horo</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Redoing an <code>add_event</code> or <code>add_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Continuing from the above undo command, now run the redo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>redo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: the formerly added event or task reappears in the List-view of Horo</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Undoing <code>delete_event</code> or <code>delete_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Firstly, switch to the List-view of Horo</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>listview</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Input the following command to add an event: (Since our delete command allows multiple deletion, try adding more than one)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_event "Test Event" "[CURRENT DATE] [CURRENT TIME]</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To add a task, input the following command:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_task "Test Task"</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The added event or task is now visible in the List-view of Horo</p>
+</li>
+<li>
+<p>Now, delete the event or task that you have added (you can delete multiple by specifying multiple indexes delimited by spaces)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>delete_event [INDEX/ES OF EVENT IN LIST VIEW]</code></p>
+</li>
+<li>
+<p><code>delete_task [INDEX/ES OF TASK IN LIST VIEW]</code></p>
+</li>
+<li>
+<p>Example: <code>delete_event 0 1 2</code> (deletes the events with index 0, 1 and 2)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The added events or tasks are no longer visible in the List-view of Horo</p>
+</li>
+<li>
+<p>Run the undo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>undo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The deleted events and tasks are again visible in the List-view of Horo</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Redoing a <code>delete_event</code> or <code>delete_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Continuing from the above undo command, now run the redo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>redo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: the formerly added events or tasks are once again removed from the List-view of Horo</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Undoing <code>edit_event</code> or <code>edit_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Firstly, switch to the List-view of Horo</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>listview</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Input the following command to add an event:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_event "Test Event" "[CURRENT DATE] [CURRENT TIME]</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To add a task, input the following command:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>add_task "Test Task"</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The added event or task is now visible in the List-view of Horo</p>
+</li>
+<li>
+<p>Now, edit the event or task that you have added (the description, due date and tags are optional)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>edit_event [INDEX OF EVENT IN LIST VIEW] [NEW DESCRIPTION] [NEW DUE DATE] [NEW TAG]</code></p>
+</li>
+<li>
+<p>Example: <code>edit_task 1 --description "Buy Rori a present" --due "17/08/2019 12:00" --tag Present</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: Any of the specified new description, due date or tag of the event or task will replace the old information in the List-view</p>
+</li>
+<li>
+<p>Run the undo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>undo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: The task or event will contain its old data before the edit was being made</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Redoing a <code>edit_event</code> or <code>edit_task</code> command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Continuing from the above undo command, now run the redo command</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>redo</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected: the event or task has been updated again to the new information that was initially specified in the edit command</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:48:05 UTC</div></div></div></body></html>

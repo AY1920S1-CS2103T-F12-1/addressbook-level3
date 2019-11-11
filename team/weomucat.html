@@ -28,7 +28,7 @@ Our application, named <strong>Horo</strong>, aims to allow efficient management
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Ui.png" alt="GUI">
+<img src="../images/Ui.png" alt="GUI" width="600">
 </div>
 <div class="title">Figure 1. Graphical user interface (GUI) of Horo</div>
 </div>
@@ -208,7 +208,7 @@ It was also designed to be very extensible for developers to build upon it.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Below are excerpts taken from the User Guide, written by me.</p>
+<p>The section below contains excerpts taken from the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/docs/UserGuide.adoc">User Guide</a>, written by me.</p>
 </div>
 </div>
 </div>
@@ -254,6 +254,16 @@ It was also designed to be very extensible for developers to build upon it.</p>
 </li>
 <li>
 <p>E.g. <code><strong>calendar</strong> <strong>--date</strong> 09/2019</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Please take note that commands with extra arguments given are truncated.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. The <code><strong>calendar</strong></code> command does not accept any arguments, therefore if you enter <code><strong>calendar</strong> 09/2019</code>, <code>09/2019</code> will be silently discarded.</p>
 </li>
 </ul>
 </div>
@@ -312,71 +322,84 @@ It was also designed to be very extensible for developers to build upon it.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="3-2-1-adding-events"><a class="link" href="#3-2-1-adding-events">3.2.1. Adding Events</a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="../images/AddEventCommandScreenShot.png" alt="AddEventCommandScreenShot">
-</div>
-<div class="title">Figure 2. Add Event Command</div>
-</div>
-<div class="paragraph">
-<p>You may use the <code>add_event</code> command to add an event to the calendar.</p>
-</div>
-<div class="paragraph">
-<p>Command Format:<br>
-<code><strong>add_event</strong> DESCRIPTION START_DATE</code></p>
-</div>
-<div class="paragraph">
-<p>Command Parameters:<br>
-<code><strong>--end</strong> END_DATE</code><br>
-<code><strong>--remind</strong> REMIND_DATE</code><br>
-<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
-</div>
-<div class="paragraph">
-<p>Argument Format:<br>
-<code>START_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
-<code>END_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
-<code>REMIND_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:<br>
-<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00"</code><br>
-<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00"</code><br>
-<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00" <strong>--remind</strong> "18/08/2019 12:00" <strong>--tag</strong> Birthday Rori</code></p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
 <h3 id="3-2-2-deleting-events"><a class="link" href="#3-2-2-deleting-events">3.2.2. Deleting Events</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="../images/DeleteEventCommandScreenShot.png" alt="DeleteEventCommandScreenShot">
+<img src="../images/DeleteEventCommandScreenShot.png" alt="DeleteEventCommandScreenShot" width="550">
 </div>
-<div class="title">Figure 3. Delete Event Command</div>
-</div>
-<div class="paragraph">
-<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.<br></p>
+<div class="title">Figure 2. Delete Event Command</div>
 </div>
 <div class="paragraph">
-<p>Command Format:<br>
-<code><strong>delete_event</strong> INDEX&#8230;&#8203;</code></p>
+<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.</p>
 </div>
 <div class="paragraph">
-<p>Command Parameters:<br>
-<code><strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
+<p>Command Format:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>delete_event</strong> INDEX&#8230;&#8203;</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>Remarks:<br>
-Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<br>
-<code>INDEX</code> can be found on the event&#8217;s top right corner.</p>
+<p>Command Parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Examples:<br>
-<code><strong>delete_event</strong> 1</code><br>
-<code><strong>delete_event</strong> 1 2 3</code> : Deletes events 1, 2 and 3.<br>
-<code><strong>delete_event</strong> <strong>--tag</strong> Birthday</code> : Deletes events tagged as <code>Birthday</code>.<br>
-<code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.<br>
-<code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><strong>delete_event</strong> 0</code></p>
+</li>
+<li>
+<p><code><strong>delete_event</strong> 0 1 2</code> : Deletes events 0, 1 and 2.</p>
+</li>
+<li>
+<p><code><strong>delete_event</strong> <strong>--tag</strong> Birthday</code> : Deletes events tagged as <code>Birthday</code>.</p>
+</li>
+<li>
+<p><code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+</li>
+<li>
+<p><code><strong>delete_event</strong> 0 1 2 <strong>--tag</strong> Birthday Rori</code> : Deletes events 0, 1 and 2 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.</p>
+</li>
+<li>
+<p><code>INDEX</code> can be found on the event&#8217;s top right corner.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EventCardScreenShot.png" alt="EventCardScreenShot" width="350">
+</div>
+<div class="title">Figure 3. Index found on the top right of the event.</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">
@@ -384,7 +407,7 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Below are excerpts taken from the Developer Guide, written by me.</p>
+<p>The section below contains excerpts of the CommandManager taken from the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/docs/DeveloperGuide.adoc">Developer Guide</a>, written by me.</p>
 </div>
 </div>
 </div>
@@ -506,7 +529,7 @@ All subsequent words will have to be joined into <strong>command phrases</strong
 <p>A state machine is easy to understand and configure.</p>
 </div>
 <div class="paragraph">
-<p>A state machine can tokenize complex command inputs, allowing future developers to parse advanced command inputs.</p>
+<p>A state machine can tokenize complex command inputs. This grants future developers the ability to parse more advanced command inputs.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -545,7 +568,7 @@ All subsequent words will have to be joined into <strong>command phrases</strong
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/CommandBuilderActivityDiagram.png" alt="CommandBuilder" width="300">
+<img src="../images/CommandBuilderActivityDiagram.png" alt="CommandBuilderActivityDiagram" width="300">
 </div>
 <div class="title">Figure 8. Activity diagram of CommandBuilder</div>
 </div>
@@ -615,5 +638,110 @@ All subsequent words will have to be joined into <strong>command phrases</strong
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The section below contains excerpts of the Architecture and Model from the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/docs/DeveloperGuide.adoc">Developer Guide</a>, written by me.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:19:10 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-1-architecture"><a class="link" href="#3-1-architecture">3.1. Architecture</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ArchitectureDiagram.png" alt="ArchitectureDiagram" width="300">
+</div>
+<div class="title">Figure 9. Architecture Diagram</div>
+</div>
+<div class="paragraph">
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of Horo. Given below is a quick overview of each component.</p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>The rest of Horo is managed by seven components:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>CommandManager</code> : Responsible for executing commands from the user.</p>
+</li>
+<li>
+<p><code>Ics</code> : Responsible for handling the importing and exporting of ICS files.</p>
+</li>
+<li>
+<p><code>ModelManager</code> : Responsible for reading and writing to the in-memory data of Horo.</p>
+</li>
+<li>
+<p><code>NotificationManager</code> : Responsible for sending notifications to the user.</p>
+</li>
+<li>
+<p><code>StorageManager</code> : Responsible for reading and writing the Model to an external disk.</p>
+</li>
+<li>
+<p><code>UiManager</code> : Responsible for managing the user interface (UI) of Horo.</p>
+</li>
+<li>
+<p><code>UndoRedoManager</code> : Responsible for tracking changes in ModelManager, and reverting its history when needed.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Most components follow the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer design pattern</a>, to reduce tight coupling and increase cohesion.
+They implement these listeners:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>CommandInputListener</code> : The component will be notified about command input from the user.</p>
+</li>
+<li>
+<p><code>ModelDataListener</code> : The component will be notified whenever the Model changes.</p>
+</li>
+<li>
+<p><code>UserOutputListener</code> : The component will be notified whenever a message needs to be displayed to the user.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-4-modelmanager-component"><a class="link" href="#3-4-modelmanager-component">3.4. ModelManager Component</a></h3>
+<div class="paragraph">
+<p>The <code>ModelManager</code> is responsible for the reading and writing of events and tasks in Horo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelManagerClassDiagram.png" alt="ModelManagerClassDiagram" width="500">
+</div>
+<div class="title">Figure 10. Class diagram of the ModelManager</div>
+</div>
+<div class="paragraph">
+<p>The <code>ModelManager</code> has three main functions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Stores all events and tasks in a wrapper class <code>ModelData</code>.</p>
+</li>
+<li>
+<p>Notifies all <code>ModelDataListeners</code> whenever the <code>ModelData</code> changes.</p>
+</li>
+<li>
+<p>Allows any class with a reference to <code>ModelManager</code> to update the current <code>ModelData</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To give a more concrete example of how <code>ModelManager</code> notifies its listeners, refer to the sequence diagram below of <strong>adding a task</strong> to Horo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelManagerAddTaskSequenceDiagram.png" alt="ModelManagerAddTaskSequenceDiagram">
+</div>
+<div class="title">Figure 11. Sequence diagram of adding a task</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:48:05 UTC</div></div></div></body></html>
