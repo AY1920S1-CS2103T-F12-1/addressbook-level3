@@ -34,9 +34,6 @@
 <div class="paragraph">
 <p><strong>Horo</strong> is a command-line interface scheduling application. It helps the user maintain a to-do list and a calendar, and posts timely reminders on their desktop. This User Guide provides documentation of <strong>Horo</strong>'s functionalities. Users may refer to this guide as a reference for what the application can do, as well as the commands that Horo will accept..</p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -55,6 +52,13 @@
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It is prefable to change your <code>horo.jar</code> location to an empty folder.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>If double-clicking fails to start the app then do the following steps:</p>
@@ -65,13 +69,6 @@
 </li>
 <li>
 <p>Change directory to your <code>horo.jar</code> location saved location.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is prefable to change your <code>horo.jar</code> location to an empty folder.</p>
-</li>
-</ul>
-</div>
 </li>
 <li>
 <p>Type <code>java -jar horo.jar</code> and GUI should appear in a few seconds.</p>
@@ -108,9 +105,6 @@
 <p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 </div>
@@ -160,12 +154,19 @@
 </ul>
 </div>
 </li>
+<li>
+<p>Commands with extra arguments given are truncated.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code><strong>calendar</strong> 09/2019</code> will only execute the <code>calendar</code> command, and remove the <code>09/2019</code> portion.</p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -214,9 +215,6 @@
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 <div class="sect2">
 <h3 id="asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#asking-for-help-code-help-code-strong-code-coming-in-v2-0-code-strong">3.1. Asking for help : <code>help</code> <strong><code>[coming in v2.0]</code></strong></a></h3>
 <div class="paragraph">
@@ -225,9 +223,6 @@
 <div class="paragraph">
 <p>Command Format:<br>
 <code><strong>help</strong></code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 <div class="sect2">
@@ -272,7 +267,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><br></p>
+<p><em>Note: For Events, Remind date must be before Start date, and Start date must be before End date. Likewise for Tasks, Remind date must be before the Due date</em></p>
 </div>
 <div class="sect3">
 <h4 id="adding-events"><a class="link" href="#adding-events">3.2.1. Adding Events</a></h4>
@@ -281,9 +276,6 @@
 <img src="images/AddEventCommandScreenShot.png" alt="AddEventCommandScreenShot">
 </div>
 <div class="title">Figure 2. Add Event Command</div>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 <div class="paragraph">
 <p>You may use the <code>add_event</code> command to add an event to the calendar.</p>
@@ -306,12 +298,9 @@
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00”</code><br>
-<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00”</code><br>
-<code><strong>add_event</strong> “Rori’s Birthday” “18/08/2019 16:00” <strong>--end</strong> “18/08/2019 20:00” <strong>--remind</strong> “18/08/2019 12:00” <strong>--tag</strong> Birthday Rori</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
+<code><strong>add_event</strong> "Rori&#8217;s Birthday" "18/08/2019 16:00"</code><br>
+<code><strong>add_event</strong> "Rori&#8217;s Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00"</code><br>
+<code><strong>add_event</strong> "Rori&#8217;s Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00" <strong>--remind</strong> "18/08/2019 12:00" <strong>--tag</strong> Birthday Rori</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -322,23 +311,12 @@
 </div>
 <div class="title">Figure 3. Delete Event Command</div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EventCardScreenShot.png" alt="EventCardScreenShot">
-</div>
-<div class="title">Figure 4. Index found on the top right of the event.</div>
-</div>
 <div class="paragraph">
-<p><br></p>
-</div>
-<div class="paragraph">
-<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.<br>
-Note that deletion is based of a zero-indexing that is found on the event&#8217;s top right corner.<br></p>
+<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.<br></p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
-<code><strong>delete_event</strong> INDEX&#8230;&#8203;</code>
-<br></p>
+<code><strong>delete_event</strong> INDEX&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Command Parameters:<br>
@@ -346,7 +324,8 @@ Note that deletion is based of a zero-indexing that is found on the event&#8217;
 </div>
 <div class="paragraph">
 <p>Remarks:<br>
-Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.</p>
+Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
+<code>INDEX</code> can be found on the event&#8217;s top right corner.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
@@ -356,9 +335,6 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.<br>
 <code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="editing-events"><a class="link" href="#editing-events">3.2.3. Editing Events</a></h4>
@@ -366,10 +342,7 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <div class="content">
 <img src="images/EditEventCommandScreenShot.png" alt="EditEventCommandScreenShot">
 </div>
-<div class="title">Figure 5. Edit Event Command</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 4. Edit Event Command</div>
 </div>
 <div class="paragraph">
 <p>You may use the <code>edit_event</code> command to edit one or more existing events.</p>
@@ -393,16 +366,22 @@ Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.
 <code>REMIND_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
 </div>
 <div class="paragraph">
-<p>Remarks:<br>
-Events which matches <code>INDEX</code> will be edited.</p>
+<p>Remarks:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Events which matches <code>INDEX</code> will be edited.</p>
+</li>
+<li>
+<p>Specifying the tag when editing an Event will replace the tag entirely instead of appending it.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
 <code><strong>edit_event</strong> 1 2 3 <strong>--tag</strong> Rori</code> : Edits events 1, 2 and 3.<br>
-<code><strong>edit_event</strong> 1 <strong>--description</strong> “Play Monster Hunter” <strong>--start</strong> “17/08/2019 19:00” <strong>--remind</strong> “17/08/2019 12:00” <strong>--tag</strong> Kyzure</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
+<code><strong>edit_event</strong> 1 <strong>--description</strong> "Play Monster Hunter" <strong>--start</strong> "17/08/2019 19:00" <strong>--remind</strong> "17/08/2019 12:00" <strong>--tag</strong> Kyzure</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -411,10 +390,7 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="content">
 <img src="images/AddTaskCommandScreenShot.png" alt="AddTaskCommandScreenShot">
 </div>
-<div class="title">Figure 6. Adds Task to Task List</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 5. Adds Task to Task List</div>
 </div>
 <div class="paragraph">
 <p>You may use the <code>add_task</code> command to add a task to the to-do list.</p>
@@ -434,12 +410,9 @@ Events which matches <code>INDEX</code> will be edited.</p>
 </div>
 <div class="paragraph">
 <p>Examples:<br>
-<code><strong>add_task</strong> “Buy Rori a birthday cake”</code><br>
-<code><strong>add_task</strong> “Buy Rori a birthday cake” <strong>--due</strong> “18/08/2019 12:00”</code><br>
-<code><strong>add_task</strong> “Buy Rori a birthday cake” <strong>--tag</strong> "Birthday Rori"</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
+<code><strong>add_task</strong> "Buy Rori a birthday cake"</code><br>
+<code><strong>add_task</strong> "Buy Rori a birthday cake" <strong>--due</strong> "18/08/2019 12:00"</code><br>
+<code><strong>add_task</strong> "Buy Rori a birthday cake" <strong>--tag</strong> "Birthday Rori"</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -448,16 +421,13 @@ Events which matches <code>INDEX</code> will be edited.</p>
 <div class="content">
 <img src="images/DeleteTaskCommandScreenShot.png" alt="DeleteTaskCommandScreenShot">
 </div>
-<div class="title">Figure 7. Delete Task from the task list.</div>
+<div class="title">Figure 6. Delete Task from the task list.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/TaskCardScreenShot.png" alt="TaskCardScreenShot">
 </div>
-<div class="title">Figure 8. Index found on the top right of the task.</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 7. Index found on the top right of the task.</div>
 </div>
 <div class="paragraph">
 <p>You may use the <code>delete_task</code> command to delete one or more tasks from the to-do list.<br>
@@ -483,9 +453,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>delete_task</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes tasks tagged as <code>Birthday</code> and <code>Rori</code>.<br>
 <code><strong>delete_task</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes tasks 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="editing-tasks"><a class="link" href="#editing-tasks">3.2.6. Editing Tasks</a></h4>
@@ -493,10 +460,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/EditTaskCommandScreenShot.png" alt="EditTaskCommandScreenShot">
 </div>
-<div class="title">Figure 9. Edit Task for Tasks</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 8. Edit Task for Tasks</div>
 </div>
 <div class="paragraph">
 <p>The <code>edit_task</code> command edits 1 or more existing events. Events should be specified by their index only.<br></p>
@@ -516,12 +480,19 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code>DUE_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br></p>
 </div>
 <div class="paragraph">
-<p>Examples:<br>
-<code><strong>edit_task</strong> 1 2 3 <strong>--tag</strong> Present</code> : Edits tasks 1, 2 and 3.<br>
-<code><strong>edit_task</strong> 1 <strong>--description</strong> “Buy Rori a present” <strong>--due</strong> “17/08/2019 12:00” <strong>--tag</strong> Present</code></p>
+<p>Remarks:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specifying the tag when editing a Task will replace the tag entirely instead of appending it.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><br></p>
+<p>Examples:<br>
+<code><strong>edit_task</strong> 1 2 3 <strong>--tag</strong> Present</code> : Edits tasks 1, 2 and 3.<br>
+<code><strong>edit_task</strong> 1 <strong>--description</strong> "Buy Rori a present" <strong>--due</strong> "17/08/2019 12:00" <strong>--tag</strong> Present</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -553,9 +524,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#finding-events-and-tasks-strong-code-coming-in-v2-0-code-strong">3.2.8. Finding Events and Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
@@ -580,9 +548,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>find</strong> <strong>--tag</strong> Birthday</code><br>
 <code><strong>find</strong> <strong>--tag</strong> Birthday Pet</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="completing-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#completing-tasks-strong-code-coming-in-v2-0-code-strong">3.2.9. Completing Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
@@ -603,9 +568,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>done</strong> 1 2 3</code>
 <code><strong>done</strong> --tag Birthday</code><br>
 <code><strong>done</strong> 1 2 3 --tag Birthday</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 </div>
@@ -632,9 +594,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>tag_event</strong> 1 2 3</code>
 <code><strong>tag_event</strong> 1 2 3 <strong>--tag</strong> Birthday</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="adding-tags-to-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#adding-tags-to-tasks-strong-code-coming-in-v2-0-code-strong">3.3.2. Adding Tags to Tasks<strong><code>[coming in v2.0]</code></strong></a></h4>
@@ -653,9 +612,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <p>Examples:<br>
 <code><strong>tag_task</strong> 1 2 3</code>
 <code><strong>tag_task</strong> 1 2 3 <strong>--tag</strong> Birthday</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -676,9 +632,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>untag_event</strong> 1 2 3</code><br>
 <code><strong>untag_event</strong> 1 2 3 <strong>--tag</strong> Birthdays</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="removing-tags-from-tasks-strong-code-coming-in-v2-0-code-strong"><a class="link" href="#removing-tags-from-tasks-strong-code-coming-in-v2-0-code-strong">3.3.4. Removing Tags from Tasks <strong><code>[coming in v2.0]</code></strong></a></h4>
@@ -698,9 +651,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <code><strong>untag_task</strong> 1 2 3</code><br>
 <code><strong>untag_task</strong> 1 2 3 <strong>--tag</strong> Birthdays</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -717,10 +667,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/Ui.png" alt="Ui">
 </div>
-<div class="title">Figure 10. Calendar View Command for Calendar</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 9. Calendar View Command for Calendar</div>
 </div>
 <div class="paragraph">
 <p>The <code>calendar</code> command switches the display to the Calendar View, which displays a calendar of the specified month and year in addition to a timeline of the specified day, week or month.</p>
@@ -745,11 +692,8 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code><strong>calendar</strong></code> : Switch back to calendar view, without changing the date.<br>
+<code><strong>calendar</strong></code> : Switches back to calendar view without changing the date.<br>
 <code><strong>calendar</strong> <strong>--date</strong> 10/2019</code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -758,13 +702,10 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/DayViewCommandScreenShot.png" alt="DayViewCommandScreenShot">
 </div>
-<div class="title">Figure 11. Day View Command for the Timeline</div>
+<div class="title">Figure 10. Day View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br></p>
-</div>
-<div class="paragraph">
-<p>The <code>day</code> command sets the timeline in the Calendar View to that of the specified day. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
+<p>The <code>day</code> command sets the timeline in the Calendar View to that of the specified day. Furthermore, this command will switch the current view to Calendar View as well.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -778,9 +719,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <p>Example:<br>
 <code><strong>day</strong> 11/10/2019</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="changing-timeline-to-a-given-week"><a class="link" href="#changing-timeline-to-a-given-week">3.4.3. Changing Timeline to a given week</a></h4>
@@ -788,13 +726,10 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/WeekViewCommandScreenShot.png" alt="WeekViewCommandScreenShot">
 </div>
-<div class="title">Figure 12. Week View Command for the Timeline</div>
+<div class="title">Figure 11. Week View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br></p>
-</div>
-<div class="paragraph">
-<p>The <code>week</code> command sets the timeline in the Calendar View to the week of the specified day of the month. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
+<p>The <code>week</code> command sets the timeline in the Calendar View to the week of the specified day of the month, as well as switching the current view to Calendar View.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -808,9 +743,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <p>Example:<br>
 <code><strong>week</strong> 01/11/2019</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="changing-timeline-to-a-given-month"><a class="link" href="#changing-timeline-to-a-given-month">3.4.4. Changing Timeline to a given month</a></h4>
@@ -818,13 +750,10 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/MonthViewCommandScreenShot.png" alt="MonthViewCommandScreenShot">
 </div>
-<div class="title">Figure 13. Month View Command for the Timeline</div>
+<div class="title">Figure 12. Month View Command for the Timeline</div>
 </div>
 <div class="paragraph">
-<p><br></p>
-</div>
-<div class="paragraph">
-<p>The <code>month</code> command sets the timeline in the Calendary view to that of the specified month. In addition, this command will cause a switch to the Calendar View if it is not the current display.</p>
+<p>The <code>month</code> command sets the timeline in the Calendar view to that of the specified month and switches the current view to Calendar View.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -838,9 +767,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <p>Example:<br>
 <code><strong>month</strong> 11/2019</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="changing-screen-view-to-list-view"><a class="link" href="#changing-screen-view-to-list-view">3.4.5. Changing Screen View to List View</a></h4>
@@ -848,10 +774,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/ListCommandScreenShot.png" alt="ListCommandScreenShot">
 </div>
-<div class="title">Figure 14. List View Command</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 13. List View Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>list</code> command will switch the display to the List View, which displays a list of upcoming events on the left, and a to-do list of tasks on the right side.</p>
@@ -860,9 +783,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <p>Command Format and Example:<br>
 <code><strong>list</strong></code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="changing-screen-view-to-log-view"><a class="link" href="#changing-screen-view-to-log-view">3.4.6. Changing Screen View to Log View</a></h4>
@@ -870,7 +790,7 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/LogCommandScreenShot.png" alt="LogCommandScreenShot">
 </div>
-<div class="title">Figure 15. Log View Command</div>
+<div class="title">Figure 14. Log View Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>log</code> command switches the display to the Log View, which displays a catalogue of all past responses to input commands.</p>
@@ -878,9 +798,6 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="paragraph">
 <p>Command Format and Example:<br>
 <code><strong>log</strong></code></p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 </div>
@@ -896,11 +813,10 @@ Tasks which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<
 <div class="content">
 <img src="images/HoroIconScreenShot.png" alt="HoroIconScreenShot">
 </div>
-<div class="title">Figure 16. Horo tray icon</div>
+<div class="title">Figure 15. Horo tray icon</div>
 </div>
 <div class="paragraph">
-<p><br>
-Also take note that notifications are switched on by default upon launch. This status is not carried over between sessions. If you would like to switch notifications off, you would have to do so whenever you start Horo up.</p>
+<p>Also take note that notifications are switched on by default upon launch. This status is not carried over between sessions. If you would like to switch notifications off, you would have to do so whenever you start Horo up.</p>
 </div>
 <div class="paragraph">
 <p>You can tell if notifications are switched on by mousing over the icon in the system tray.</p>
@@ -909,10 +825,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/IconMouseOverScreenShot.png" alt="IconMouseOverScreenShot">
 </div>
-<div class="title">Figure 17. Mousing over the Horo tray icon</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 16. Mousing over the Horo tray icon</div>
 </div>
 <div class="sect3">
 <h4 id="notification-popups"><a class="link" href="#notification-popups">3.5.1. Notification Popups</a></h4>
@@ -923,10 +836,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/PopUpScreenShot.png" alt="PopUpScreenShot">
 </div>
-<div class="title">Figure 18. A Popup Notification</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 17. A Popup Notification</div>
 </div>
 <div class="paragraph">
 <p>Take note that that following commands are UI-related commands, and are thus unaffected by the <code>undo</code> and <code>redo</code> commands (For more information, see <a href="#undo-redo">Section 3.6, &#8220;Undo-Redo&#8221;</a>).</p>
@@ -941,25 +851,28 @@ Also take note that notifications are switched on by default upon launch. This s
 <p>Command Format:<br>
 <code><strong>notif_on</strong></code></p>
 </div>
-<div class="paragraph">
-<p><br>
-1. If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotificationOnCommandBoxScreenShot.png" alt="NotificationOnCommandBoxScreenShot">
 </div>
-<div class="title">Figure 19. <code>notif_on</code> command in the Command Box</div>
+<div class="title">Figure 18. <code>notif_on</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
-2. An in-app popup should appear, displaying “Notifications switched on”. The log view should also record this action.<br></p>
+2. An in-app popup should appear, displaying "Notifications switched on". The log view should also record this action.<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotificationOnFeedbackScreenShot.png" alt="NotificationOnFeedbackScreenShot">
 </div>
-<div class="title">Figure 20. Feedback for the <code>notif_on</code> command</div>
+<div class="title">Figure 19. Feedback for the <code>notif_on</code> command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -974,25 +887,28 @@ Also take note that notifications are switched on by default upon launch. This s
 <p>Command Format:<br>
 <code><strong>notif_off</strong></code></p>
 </div>
-<div class="paragraph">
-<p><br>
-1. If you would like to switch notifications off, type the command <strong><code>notif_off</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you would like to switch notifications off, type the command <strong><code>notif_off</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotificationOffCommandBoxScreenShot.png" alt="NotificationOffCommandBoxScreenShot">
 </div>
-<div class="title">Figure 21. <code>notif_off</code> command in the Command Box</div>
+<div class="title">Figure 20. <code>notif_off</code> command in the Command Box</div>
 </div>
 <div class="paragraph">
 <p><br>
-2. An in-app popup should appear, displaying “Notifications switched off”. The log view should also record this action.<br></p>
+2. An in-app popup should appear, displaying "Notifications switched off". The log view should also record this action.<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotificationOffFeedbackScreenShot.png" alt="NotificationOffFeedbackScreenShot">
 </div>
-<div class="title">Figure 22. Feedback for the <code>notif_off</code> command</div>
+<div class="title">Figure 21. Feedback for the <code>notif_off</code> command</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -1027,6 +943,12 @@ Also take note that notifications are switched on by default upon launch. This s
 <li>
 <p><strong>edit_task</strong></p>
 </li>
+<li>
+<p><strong>import</strong></p>
+</li>
+<li>
+<p><strong>export</strong></p>
+</li>
 </ul>
 </div>
 <div class="sect3">
@@ -1035,10 +957,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="images/UndoCommandScreenShot.png" alt="UndoCommandScreenShot">
 </div>
-<div class="title">Figure 23. Undo Command</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 22. Undo Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>undo</code> command undoes the previous command.<br>
@@ -1049,7 +968,92 @@ Commands can be undone up to the program&#8217;s launch.</p>
 <code><strong>undo</strong></code></p>
 </div>
 <div class="paragraph">
-<p><br></p>
+<p>Example:
+Suppose that you have deleted the wrong task from Horo. Rather than having to type the <code>add_task</code> command
+along with the description of the deleted task (to add back the wrongly deleted task), you can simply type in <code>undo</code>,
+which will revert Horo to the state before the deletion of the wrong task was executed.</p>
+</div>
+<div class="paragraph">
+<p>This means Horo is now restored to its desired state, as if you did not commit the deletion mistake at all!
+You can now proceed to delete the right task.</p>
+</div>
+<div class="paragraph">
+<p>Illustration:
+Suppose that we wanted to delete task 2 in the list, but deleted task 3 instead.
+(Horo also has a list view on top of the calendar view; I will illustrate the feature with with the list view)</p>
+</div>
+<div class="paragraph">
+<p>To undo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type undo in the command box, and press the Enter key to execute it.<br></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario1.png" alt="undoScenario1">
+</div>
+<div class="title">Figure 23. <code>undo</code> command in the Command Box</div>
+</div>
+<div class="paragraph">
+<p><br>
+2. The result box will display the message: "Previous command has been undone!"<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario2.png" alt="undoScenario2">
+</div>
+<div class="title">Figure 24. Feedback for the <code>undo</code> command</div>
+</div>
+<div class="paragraph">
+<p><br>
+3. You can see that the wrongly deleted task (task 3) is visible in the list once again.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario3.png" alt="undoScenario3">
+</div>
+<div class="title">Figure 25. Result of the <code>undo</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>The <code>undo</code> command undoes previous commands in reverse chronological order.</strong><br>
+<br>
+Suppose that you have executed the following commands in this order:<br>
+<br>
+1.	Adding a task<br>
+2.	Editing a task<br>
+<br>
+Now, if you execute the <code>undo</code> command, you will first revert Horo to the state before a task was edited.
+Then, if you execute <code>undo</code> again, you will revert Horo to the state before a task was added.<br>
+<br>
+<strong>The <code>undo</code> command only works on state-changing commands.</strong><br>
+<br>
+State-changing commands are those that manipulate task and event data stored in Horo. Examples include <code>add_task</code>, <code>delete_task</code> and <code>edit_task</code>.
+<code>Undo</code> commands only work on these types of commands because there is an actual change in the state of Horo that can be undone.<br>
+<br>
+On the other hand, non-state-changing commands include <code>find</code> and <code>help</code>. These commands are only concerned with producing
+user output for the user in the GUI, but do not modify any of the data stored in Horo. As such, these types of commands
+are ignored by the <code>undo</code> operation since there is nothing to <code>undo</code>.<br>
+<br>
+As such, if we first add a task to Horo, then we call the <code>help</code> command, calling <code>undo</code> will ignore the <code>help</code> command and proceed
+to revert Horo to before a task was added.<br>
+<br>
+<strong>The <code>undo</code> command only executes if there are previous states to revert back to.</strong><br>
+<br>
+If no command has been previously executed, or if Horo has already been reverted to the earliest possible state by multiple <code>undos</code>,
+then calling <code>undo</code> further will amount to no effect.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1058,22 +1062,15 @@ Commands can be undone up to the program&#8217;s launch.</p>
 <div class="content">
 <img src="images/RedoCommandScreenShot.png" alt="RedoCommandScreenShot">
 </div>
-<div class="title">Figure 24. Redo Command</div>
-</div>
-<div class="paragraph">
-<p><br></p>
+<div class="title">Figure 26. Redo Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>redo</code> command redoes a previously undone command.
-The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command (e.g. add_event, delete_event, edit).</p>
+The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command
+(e.g. add_event, delete_event, edit).</p>
 </div>
 <div class="paragraph">
-<p>For example, suppose you added an event <code>"Attend Horo&#8217;s Birthday"</code> and ran the <code>undo</code> command, thus removing the event from Horo.
-Now, if you run <code>redo</code>, the previous state of Horo before the latest <code>undo</code> command was executed will be restored;
-<code>"Attend Horo&#8217;s Birthday"</code> will once again appear in Horo.</p>
-</div>
-<div class="paragraph">
-<p>However, if you had executed any state-changing command (except for <code>undo</code> or <code>redo</code>) just after undoing the <code>add_event</code> command,
+<p>If you had executed any state-changing command (except for <code>undo</code> or <code>redo</code>) just after undoing the <code>add_event</code> command,
 calling redo will then amount to no effect.</p>
 </div>
 <div class="paragraph">
@@ -1084,7 +1081,85 @@ calling redo will then amount to no effect.</p>
 <code><strong>redo</strong></code></p>
 </div>
 <div class="paragraph">
-<p><br></p>
+<p>Illustration:
+Suppose that you wrongly deleted task 3 from the list, but actually wanted to delete task 2 instead.
+As a result, you type in the <code>undo</code> command, and Horo is restored to the previous state where task 3 still exists.</p>
+</div>
+<div class="paragraph">
+<p>However, now you decide that you want to remove task 3 from the list after all. Without having to key in the <code>delete_task</code> command,
+you can simply type in <code>redo</code> and the most recent command that was undone (the deletion of task 3) will be re-executed.
+This results in a list where task 3 is deleted.</p>
+</div>
+<div class="paragraph">
+<p>To redo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type redo in the command box, and press the Enter key to execute it.<br></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario4.png" alt="undoScenario4">
+</div>
+<div class="title">Figure 27. <code>redo</code> command in the Command Box</div>
+</div>
+<div class="paragraph">
+<p><br>
+2. The result box will display the message "Previous undone command has been redone!"<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario5.png" alt="undoScenario5">
+</div>
+<div class="title">Figure 28. Feedback for the <code>redo</code> command</div>
+</div>
+<div class="paragraph">
+<p><br>
+3. You can see that task 3 has been removed from the list.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoScenario6.png" alt="undoScenario6">
+</div>
+<div class="title">Figure 29. Result of the <code>redo</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>The <code>redo</code> command redoes previously undone commands in reverse chronological order.</strong><br>
+<br>
+Suppose that you have executed the following commands in this order:<br>
+<br>
+1.	Adding a task<br>
+2.	Editing a task<br>
+<br>
+As discussed in Undoing a previous command, if we run <code>undo</code> twice, we will revert Horo to before a task was edited,
+and then revert Horo to before a task was added.<br>
+Our sequence of <code>undo</code> commands are in this order:<br>
+<br>
+1.	Undo editing of a task<br>
+2.	Undo adding of a task<br>
+<br>
+Now, if we run the <code>redo</code> command, Horo will be restored to the state after the task was added. If we execute redo again,
+Horo will be restored to the state after the task was edited.<br>
+<br>
+<strong>The <code>redo</code> command only executes if the most recent state-changing command(s) are undo commands.</strong><br>
+<br>
+If no <code>undo</code> command has been executed since the starting up of Horo, or <code>undo</code> commands have been executed
+but other state-changing commands were executed after those <code>undos</code>, then executing the <code>redo</code> command amounts to no effect.<br>
+<br>
+For example, let&#8217;s say I deleted a task from the list, undid that deletion, and then added another task to the list.
+Executing the <code>redo</code> command here will not do anything because <code>add_task</code> was executed after the <code>undo</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1092,25 +1167,34 @@ calling redo will then amount to no effect.</p>
 <h3 id="icalendar-ics-integration"><a class="link" href="#icalendar-ics-integration">3.7. iCalendar (ICS) Integration</a></h3>
 <div class="paragraph">
 <p>Horo stores data in the ICS format. Files saved in this format have the extension <code>.ics</code>.
-This allows for data to be imported to and exported from other calendar applications that also use the <code>.ics</code> format.</p>
+This allows for data to be imported from and exported to other calendar applications that also use the <code>.ics</code> format.</p>
+</div>
+<div class="paragraph">
+<p>This means you can export and import your calendar events and todo items straight from Google Calendar into Horo,
+and vice versa!
+It also means that you can export and import your save data between different machines running Horo.</p>
 </div>
 <div class="sect3">
-<h4 id="export-current-calendar"><a class="link" href="#export-current-calendar">3.7.1. Export current calendar</a></h4>
+<h4 id="export-current-data"><a class="link" href="#export-current-data">3.7.1. Export Current Data</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
 </div>
-<div class="title">Figure 25. Export Command</div>
+<div class="title">Figure 30. Export Command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ExportFileScreenShot.png" alt="ExportFileScreenShot">
 </div>
-<div class="title">Figure 26. Exported File</div>
+<div class="title">Figure 31. Exported File</div>
 </div>
 <div class="paragraph">
 <p>The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
 If no directory is specified, the file will be created in the same directory as Horo.</p>
+</div>
+<div class="paragraph">
+<p>If you want to export the ICS file to a certain directory like your desktop,
+all you have to do is specify it with the <code><strong>--directory</strong></code> parameter.</p>
 </div>
 <div class="paragraph">
 <p>Command Format:<br>
@@ -1121,23 +1205,20 @@ If no directory is specified, the file will be created in the same directory as 
 <p>Example:<br>
 <code><strong>export</strong> <strong>--directory</strong> "C:\Users\USER_NAME\Desktop\Horo"</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="import-other-calendar"><a class="link" href="#import-other-calendar">3.7.2. Import other calendar</a></h4>
-<div class="imageblock">
-<div class="content">
-<img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
-</div>
-<div class="title">Figure 27. Import Command</div>
-</div>
+<h4 id="import-other-ics-data"><a class="link" href="#import-other-ics-data">3.7.2. Import other ICS Data</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ImportFileScreenShot.png" alt="ImportFileScreenShot">
 </div>
-<div class="title">Figure 28. Imported File</div>
+<div class="title">Figure 32. Imported File</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
+</div>
+<div class="title">Figure 33. Import Command</div>
 </div>
 <div class="paragraph">
 <p>The <code>import</code> command imports an ICS file from the specified filepath.</p>
@@ -1150,9 +1231,6 @@ If no directory is specified, the file will be created in the same directory as 
 <p>Example:<br>
 <code><strong>import</strong> "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1164,9 +1242,6 @@ If no directory is specified, the file will be created in the same directory as 
 <p>Command Format:<br>
 <code><strong>exit</strong></code></p>
 </div>
-<div class="paragraph">
-<p><br></p>
-</div>
 </div>
 </div>
 </div>
@@ -1176,9 +1251,6 @@ If no directory is specified, the file will be created in the same directory as 
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app on the other computer and overwrite the empty data file it creates with Horo&#8217;s save file.</p>
-</div>
-<div class="paragraph">
-<p><br></p>
 </div>
 </div>
 </div>
@@ -1259,4 +1331,4 @@ If no directory is specified, the file will be created in the same directory as 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 15:08:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>

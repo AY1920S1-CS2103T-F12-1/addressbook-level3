@@ -20,29 +20,24 @@
 <li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">3.1. Architecture</a></li>
-<li><a href="#Design-Ui">3.2. UI component</a></li>
-<li><a href="#Design-Logic">3.3. Logic component</a></li>
-<li><a href="#Design-Model">3.4. Model component</a></li>
-<li><a href="#Design-Storage">3.5. Storage component</a></li>
-<li><a href="#Design-Commons">3.6. Common classes</a></li>
+<li><a href="#Design-UiManager">3.2. UI Component</a></li>
+<li><a href="#Design-CommandManager">3.3. CommandManager Component</a></li>
+<li><a href="#Design-ModelManager">3.4. ModelManager Component</a></li>
+<li><a href="#Design-StorageManager">3.5. StorageManager Component</a></li>
 </ul>
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
-<li><a href="#notification-system">4.2. Notification System</a></li>
+<li><a href="#Design-UndoRedoManager">4.1. Undo/Redo feature</a></li>
+<li><a href="#Design-NotificationManager">4.2. Notification System</a></li>
 <li><a href="#logging">4.3. Logging</a></li>
 <li><a href="#Design-Ics">4.4. Ics Component</a></li>
+<li><a href="#ui-component">4.5. UI Component</a></li>
 </ul>
 </li>
-<li><a href="#implementation-2">5. Implementation</a>
-<ul class="sectlevel2">
-<li><a href="#Implementation-Configuration">5.1. Configuration</a></li>
-</ul>
-</li>
-<li><a href="#documentation">6. Documentation</a></li>
-<li><a href="#testing">7. Testing</a></li>
-<li><a href="#dev-ops">8. Dev Ops</a></li>
+<li><a href="#documentation">5. Documentation</a></li>
+<li><a href="#testing">6. Testing</a></li>
+<li><a href="#dev-ops">7. Dev Ops</a></li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
 <li><a href="#user-stories">Appendix B: User Stories</a></li>
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
@@ -52,6 +47,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#notification-system">G.2. Notification System</a></li>
 </ul>
 </li>
 </ul>
@@ -100,10 +96,10 @@
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of Horo. Given below is a quick overview of each component.</p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> consists of a class called <code>MainApp</code>. It is responsible for:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -116,81 +112,67 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components.
-The following class plays an important role at the architecture level:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
-</li>
-</ul>
+<p><code>LogsCenter</code> is used by many classes to write log messages to Horo&#8217;s log file.</p>
 </div>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The rest of Horo is managed by seven components:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the App.</p>
+<p><a href="#Design-CommandManager"><strong><code>CommandManager</code></strong></a> : Responsible for executing commands from the user.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
+<p><a href="#Design-Ics"><strong><code>Ics</code></strong></a> : Responsible for handling the importing and exporting of ICS files.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+<p><a href="#Design-ModelManager"><strong><code>ModelManager</code></strong></a> : Responsible for reading and writing to the in-memory data of Horo.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to the hard disk.</p>
+<p><a href="#Design-NotificationManager"><strong><code>NotificationManager</code></strong></a> : Responsible for sending notifications to the user.</p>
 </li>
-</ul>
+<li>
+<p><a href="#Design-StorageManager"><strong><code>StorageManager</code></strong></a> : Responsible for reading and writing the Model to an external disk.</p>
+</li>
+<li>
+<p><a href="#Design-UiManager"><strong><code>UiManager</code></strong></a> : Responsible for managing the user interface (UI) of Horo.</p>
+</li>
+<li>
+<p><a href="#Design-UndoRedoManager"><strong><code>UndoRedoManager</code></strong></a> : Responsible for tracking changes in ModelManager, and reverting its history when needed.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Most components follow the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer design pattern</a>, to reduce tight coupling and increase cohesion.
+They implement these listeners:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p><code>CommandInputListener</code> : The component will be notified about command input from the user.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+<p><code>ModelDataListener</code> : The component will be notified whenever the Model changes.</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
-</div>
-<div class="title">Figure 2. Class Diagram of the Logic Component</div>
-</div>
-<h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
-<div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
-</div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<li>
+<p><code>UserOutputListener</code> : The component will be notified whenever a message needs to be displayed to the user.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
+<h3 id="Design-UiManager"><a class="link" href="#Design-UiManager">3.2. UI Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
 </div>
-<div class="title">Figure 4. Main structure of the UI Component</div>
+<div class="title">Figure 2. Main structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/UiManager.java"><code>UiManager.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is contains 3 main view parts - <code>CalendarPanel</code>, <code>ListPanel</code>, <code>LogPanel</code>. It also holds several other UI parts e.g. <code>PopUpPanel</code> and <code>Command Box</code>. Every one of the UI classes will abstract from the abstract <code>UiPart</code> class.</p>
@@ -217,10 +199,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </li>
 <li>
-<p>It listens for any changes in the list of events using a listener:  <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/model/listeners/EventListListener.java"><code>EventListListener</code></a>.</p>
-</li>
-<li>
-<p>It also listens for the output to the user with another listener: <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/listeners/UserOutputListener.java"><code>UserOutputListener</code></a>.</p>
+<p>Listens for any changes in both lists of Tasks and Events using a listener:  <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/model/listeners/ModelDataListener.java"><code>ModelDataListener</code></a>.</p>
 </li>
 </ul>
 </div>
@@ -230,10 +209,10 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiCalendarClassDiagram.png" alt="UiCalendarClassDiagram">
 </div>
-<div class="title">Figure 5. Structure of the Calendar UI View</div>
+<div class="title">Figure 3. Structure of the Calendar UI View</div>
 </div>
 <div class="paragraph">
-<p>The Calendar View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/CalendarPanel.java"><code>CalendarPanel</code></a>, which holds several different other UI parts linked together to form the overall UI. In the Calendar View, it displays two UI parts of the Calendar: <code>CalendarScreen</code> and <code>TimelineView</code>.</p>
+<p>The Calendar View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/CalendarPanel.java"><code>CalendarPanel</code></a>, which holds several different other UI parts linked together to form the overall UI. In the Calendar View, it displays three different UI parts of the Calendar: <code>CalendarScreen</code>, <code>TimelineView</code> and <code>UpcomingView</code>.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/CalendarScreen.java"><code>CalendarScreen</code></a> is the screen which displays the calendar of a certain month and year to the user. It contains 6 x 7 instance of <code>CalendarGridDay</code>, which displays the days of the month.</p>
@@ -255,7 +234,10 @@ The following class plays an important role at the architecture level:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of these timeline will hold up to a certain amount of <code>CardHolder</code> depending on the type of <code>TimelineView</code>. Each of these <code>CardHolder</code> will then hold an amount of EventCards for displaying the event name and date.</p>
+<p>Each of these timeline will hold up to a certain amount of <code>CardHolder</code> depending on the type of <code>TimelineView</code>. Each of these <code>CardHolder</code> will then hold an amount of <code>Card</code> for displaying the event name and date. The details of <code>Card</code> will be explained in the one of the next few sections.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/calendar/UpcomingView.java"><code>UpcomingView</code></a> represents a miniature list of Events and Tasks that has a start date or due date in the same month as the user&#8217;s system current month, but not before the date as the user&#8217;s date. This list will then hold up to a certain amount of <code>UpcomingEventCard</code> and <code>UpcomingTaskCard</code> which will be explained together with <code>Card</code> as well.</p>
 </div>
 </div>
 <div class="sect3">
@@ -264,7 +246,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiListClassDiagram.png" alt="UiListClassDiagram">
 </div>
-<div class="title">Figure 6. Structure of the List UI View</div>
+<div class="title">Figure 4. Structure of the List UI View</div>
 </div>
 <div class="paragraph">
 <p>The List View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/ListPanel.java"><code>ListPanel</code></a> which contains two lists views, <code>EventListView</code> and <code>TaskListView</code></p>
@@ -275,12 +257,12 @@ The following class plays an important role at the architecture level:</p>
 <p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/EventListView.java"><code>EventListView</code></a> displays the list of Events containing every piece of information of the Events.</p>
 </li>
 <li>
-<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/TaskListView.java"><code>TaskListView</code></a> displays the list of Task, containing every piece of information of each Task. [<em>To be implemented</em>]</p>
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/list/TaskListView.java"><code>TaskListView</code></a> displays the list of Task, containing every piece of information of each Task.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Similar to <code>TimelineView</code>, <code>EventListView</code> and <code>TaskListView</code> will contain a list of <code>Card</code>, but it will not be held in the <code>CardHolder</code>.</p>
+<p>Similar to <code>TimelineView</code>, <code>EventListView</code> and <code>TaskListView</code> will contain a list of <code>Card</code> to display the information.</p>
 </div>
 </div>
 <div class="sect3">
@@ -289,55 +271,123 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/UiLogClassDiagram.png" alt="UiLogClassDiagram">
 </div>
-<div class="title">Figure 7. Structure of the Log UI View</div>
+<div class="title">Figure 5. Structure of the Log UI View</div>
 </div>
 <div class="paragraph">
-<p>The Log View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/log/LogPanel.java"><code>LogPanel</code></a> which contains several instances of <code>LogBox</code>.</p>
+<p>The Log View is made up of the <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/log/LogPanel.java"><code>LogPanel</code></a> which contains the list of <code>LogBox</code>.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/log/LogBox.java"><code>LogBox</code></a> displays literal information back to the user when it is called by <code>MainWindow</code> when it listens for a command.</p>
 </div>
+<div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/panel/PopUpBox.java"><code>PopUpBox</code></a> is rather similar to LogBox. It holds up to the same amount of information, as much until the size of the application window, and collapses the rest. It represents the pop up that animates and displays for a few seconds to the user about the given command.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
-<div id="fig-LogicClassDiagram" class="imageblock">
-<div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
+<div class="sect3">
+<h4 id="card-ui"><a class="link" href="#card-ui">3.2.4. Card UI</a></h4>
+<div class="paragraph">
+<p>Firstly, there are two types of ways to display information to the user regarding a Event or Task.</p>
 </div>
-<div class="title">Figure 8. Structure of the Logic Component</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For Events, it is <code>EventCard</code>, which is abstracted from the <code>Card</code> abstract class, followed by <code>UpcomingEventCard</code></p>
+</li>
+<li>
+<p>For Tasks, it is <code>TaskCard</code>, which is abstracted from the <code>Card</code> abstract class, followed by <code>UpcomingTaskCard</code>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<p>An <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/card/EventCard.java"><code>EventCard</code></a> may display the following information:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p>Event Description</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>Event Start Date</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>Event End Date (Optional)</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>Event Reminder Date (Optional)</p>
 </li>
 <li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p>Event Tags (Optional)</p>
+</li>
+<li>
+<p>Event Index (For deleting or editing)</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>An <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/card/TaskCard.java"><code>TaskCard</code></a> may display the following information:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Task Description</p>
+</li>
+<li>
+<p>Task Due Date (Optional)</p>
+</li>
+<li>
+<p>Task Reminder Date (Optional)</p>
+</li>
+<li>
+<p>Task Tags (Optional)</p>
+</li>
+<li>
+<p>Task Index (For deleting or editing)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As for <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/card/UpcomingEventCard.java"><code>UpcomingEventCard</code></a> and <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/card/UpcomingTaskCard.java"><code>UpcomingTaskCard</code></a>, they only hold the Description of the Event or Task.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-CommandManager"><a class="link" href="#Design-CommandManager">3.3. CommandManager Component</a></h3>
+<div class="paragraph">
+<p>The <code>CommandManager</code> class manages the addition and invoking of <code>Commands</code> in Horo.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
+<img src="images/CommandManagerClassDiagram.png" alt="CommandManagerClassDiagram">
 </div>
-<div class="title">Figure 9. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 6. Class diagram of CommandManager</div>
+</div>
+<div class="paragraph">
+<p>Referring to the diagram above, it performs the following operations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Listen for user input in <code>onCommandInput()</code>.</p>
+</li>
+<li>
+<p>Pass the user input to <code>commandParser</code>, to obtain a <code>Command</code>.</p>
+</li>
+<li>
+<p>Execute the <code>Command</code> and obtain a <code>UserOutput</code>.</p>
+</li>
+<li>
+<p>Notify all <code>userOutputListeners</code> about the <code>UserOutput</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To give a more concrete example of how <code>CommandManager</code> functions, refer to the sequence diagram below of <strong>adding a task</strong> to Horo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandManagerAddTaskSequenceDiagram.png" alt="CommandManagerAddTaskSequenceDiagram">
+</div>
+<div class="title">Figure 7. Sequence diagram of adding a task</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -346,41 +396,345 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div class="paragraph">
+<p>CommandManager closely follows the <a href="https://en.wikipedia.org/wiki/Command_pattern">command design pattern</a>.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="command"><a class="link" href="#command">3.3.1. Command</a></h4>
+<div class="paragraph">
+<p>A <code>Command</code> is defined to be an immutable function, that can be invoked at any time, to perform any set of instructions.
+After executing the set of instructions, it will optionally return output to be displayed to the user.</p>
 </div>
-<div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
-<div class="imageblock">
+<div class="paragraph">
+<p>In Horo, a <code>Command</code> implemented as an abstract class with an abstract <code>execute()</code> method.
+To create a new concrete command, extend from <code>Command</code> and implement <code>execute()</code>.</p>
+</div>
+<div class="paragraph">
+<p>If your concrete command requires any dependencies during execution, it is recommended to pass in the dependency from the constructor.
+For example, if your command needs to be able to access <code>ModelManager</code>:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MyCommand</span> <span class="directive">extends</span> Command {
+    <span class="directive">private</span> <span class="directive">final</span> ModelManager model;
+    MyCommand(ModelManager model) {
+        <span class="local-variable">this</span>.model = model;
+    }
+
+    <span class="annotation">@Override</span>
+    UserOutput execute() {
+        <span class="local-variable">this</span>.model.doSomething();
+        <span class="comment">// ...</span>
+    }
+}</code></pre>
 </div>
-<div class="title">Figure 10. Structure of the Model Component</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandparser"><a class="link" href="#commandparser">3.3.2. CommandParser</a></h4>
+<div class="paragraph">
+<p>A <code>CommandParser</code> is defined to be able to parse a <code>String</code> of user input, and return a <code>Command</code>.</p>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p>In Horo, a <code>CommandParser</code> is implemented as a finite state machine (FSM). It parses user input token by token, and it transitions from state to state depending on the next token.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>What the FSM is trying to do is tokenize user input into:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Command keyword</code></p>
+</li>
+<li>
+<p><code>Command phrase(s)</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A <strong>command keyword</strong> is defined as the first sequence of consecutive, non-whitespace characters of the user input.
+For the rest of this guide, a sequence of consecutive, non-whitespace characters will be referred to as a ‘word’.
+A word can be described in the form of a regular expression (regex) as <code>[^\s]+</code>.</p>
+</div>
+<div class="paragraph">
+<p>Examples of valid command keywords:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p><code>exit</code></p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p><code>add_event</code></p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p><code>123</code></p>
 </li>
 <li>
-<p>does not depend on any of the other three components.</p>
+<p><code>😺</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>A <strong>command phrase</strong> is defined as either a word, or multiple words delimited by whitespace surrounded by quotes.
+Command phrases come after a command keyword.</p>
+</div>
+<div class="paragraph">
+<p>Examples of valid command phrases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Horse</code></p>
+</li>
+<li>
+<p><code>”Homework”</code></p>
+</li>
+<li>
+<p><code>”Horo’s Birthday”</code></p>
+</li>
+<li>
+<p><code>”24/10/2019 07:00”</code></p>
+</li>
+<li>
+<p><code>’24/10/2019 07:00’</code></p>
+</li>
+<li>
+<p><code>--description</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>CommandParser</code> is trying to tokenize any command input into one command keyword, and zero or more command phrases.
+(i.e. <code>[keyword] [phrase] [phrase] [phrase] &#8230;&#8203;</code>).
+To understand how the FSM works, study the activity diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandParserActivityDiagram.png" alt="CommandParserActivityDiagram">
+</div>
+<div class="title">Figure 8. Activity diagram of CommandParser</div>
+</div>
+<div class="paragraph">
+<p>After tokenizing, the command keyword is sent to a <code>CommandKeywordParser</code>, which returns a <code>CommandBuilder</code>.
+The remaining command phrases are sent to the <code>CommandBuilder</code>, which builds the <code>Command</code> we want.</p>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Option 1</th>
+<th class="tableblock halign-left valign-top">Option 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use <code>String.split()</code> to break up command input into tokens.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement a FSM to break up command input into tokens.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Difficulty</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Easy</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Moderate</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">How</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Split the command input by whitespaces, into words. The first word will be the <strong>command keyword</strong>.
+All subsequent words will have to be joined into <strong>command phrases</strong>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Create a <code>State</code> class, and design a state diagram to tokenize the command input into a <strong>command keyword</strong> and <strong>command phrases</strong>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Evaluation</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>I did not choose this option because:</p>
+</div>
+<div class="paragraph">
+<p>Joining words into command phrases can become quite complex, especially when introducing quotation marks.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it is difficult for future developers to maintain and extend logic like this.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>I chose this option because:</strong></p>
+</div>
+<div class="paragraph">
+<p>A state machine is easy to understand and configure.</p>
+</div>
+<div class="paragraph">
+<p>A state machine can tokenize complex command inputs, allowing future developers to parse advanced command inputs.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandkeywordparser"><a class="link" href="#commandkeywordparser">3.3.3. CommandKeywordParser</a></h4>
+<div class="paragraph">
+<p>A <code>CommandKeywordParser</code> is defined to be able to parse a command keyword, and return a <code>CommandBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>In Horo, a <code>CommandKeywordParser</code> uses a <code>HashMap</code> to map a command keyword to a <code>Supplier&lt;CommandBuilder&gt;</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commandbuilder"><a class="link" href="#commandbuilder">3.3.4. CommandBuilder</a></h4>
+<div class="paragraph">
+<p>A <code>CommandBuilder</code> is defined to be able to accept an arbitrary amount of command phrases, and eventually create a <code>Command</code> using those phrases.</p>
+</div>
+<div class="paragraph">
+<p>In Horo, a <code>CommandBuilder</code> is implemented such that the entire definition of a <code>Command</code> is in the <code>CommandBuilder</code>.
+The <code>CommandBuilder</code> will use those definitions to automagically parse command phrases.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandBuilderClassDiagram.png" alt="CommandBuilderClassDiagram">
+</div>
+<div class="title">Figure 9. Class diagram of CommandBuilder</div>
+</div>
+<div class="paragraph">
+<p>Referring to the diagram above, the definition the command is implemented in two methods:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>defineCommandArguments()</code></p>
+</li>
+<li>
+<p><code>defineCommandOptions()</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A <strong>command option</strong> is defined to have a keyword and a list of arguments.
+An <strong>option’s keyword</strong> is defined to be a command phrase.
+An <strong>option’s argument</strong> is defined to be a command phrase that is not an option’s keyword, and lies after it.</p>
+</div>
+<div class="paragraph">
+<p>Example of option’s keyword &amp; arguments below. The option’s keyword is underlined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><u>--description</u> Horse</code></p>
+</li>
+<li>
+<p><code><u>--tags</u> Animal Cat Dog</code></p>
+</li>
+<li>
+<p><code><u>-d</u> Horse</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A <strong>command argument</strong> is defined to be a command phrase that is not an option’s keyword.
+This is similar to an option’s argument, except that the position of this argument in the user input is important.
+A command argument is a command phrase that lies after the command keyword, and before any command option’s keywords.</p>
+</div>
+<div class="paragraph">
+<p>Example of command’s arguments below. The command’s keyword is underlined.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><u>add_event</u> Horse “24/10/2019 10:00”</code></p>
+</li>
+<li>
+<p><code><u>delete_event</u> 1 2 3</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To understand how <code>CommandBuilder</code> works, study the activity diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CommandBuilderActivityDiagram.png" alt="CommandBuilderActivityDiagram">
+</div>
+<div class="title">Figure 10. Activity diagram of CommandBuilder</div>
+</div>
+<div class="paragraph">
+<p>The <code>CommandBuilder</code> API provides a simple way for developers to create a <code>Command</code>.
+For example, to create a <code>MyCommand</code> which takes in one String argument, and have an option which also takes in one String argument, you could do this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">class</span> <span class="class">MyCommandBuilder</span> <span class="directive">extends</span> CommandBuilder {
+
+    <span class="directive">private</span> <span class="predefined-type">String</span> arg1;
+    <span class="directive">private</span> <span class="predefined-type">String</span> arg2;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> RequiredArgumentList defineCommandArguments() {
+        <span class="keyword">return</span> ArgumentList.required()
+            .addArgument(StringArgument.newBuilder(<span class="string"><span class="delimiter">&quot;</span><span class="content">Argument 1</span><span class="delimiter">&quot;</span></span>, s -&gt; <span class="local-variable">this</span>.arg1 = s));
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, OptionalArgumentList&gt; defineCommandOptions() {
+        <span class="keyword">return</span> <span class="predefined-type">Map</span>.of(
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">--option</span><span class="delimiter">&quot;</span></span>, ArgumentList.optional()
+                .addArgument(StringArgument.newBuilder(<span class="string"><span class="delimiter">&quot;</span><span class="content">Argument 2</span><span class="delimiter">&quot;</span></span>, s -&gt; <span class="local-variable">this</span>.arg2 = s))
+        );
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> Command commandBuild() {
+        <span class="keyword">return</span> <span class="keyword">new</span> MyCommand(<span class="local-variable">this</span>.arg1, <span class="local-variable">this</span>.arg2);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">class</span> <span class="class">MyCommand</span> <span class="directive">extends</span> Command {
+
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">String</span> arg1;
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">String</span> arg2;
+
+    <span class="directive">public</span> MyCommand(<span class="predefined-type">String</span> arg1, <span class="predefined-type">String</span> arg2) {
+        <span class="local-variable">this</span>.arg1 = arg1;
+        <span class="local-variable">this</span>.arg2 = arg2;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> UserOutput execute() {
+        <span class="comment">// Do something with arg1 and arg2</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Simply register <code>MyCommandBuilder</code> to <code>CommandManager</code> to use your new command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>commandManager.addCommand("mycommand", MyCommandBuilder::new)</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -389,45 +743,303 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+<div class="paragraph">
+<p>CommandBuilder closely follows the <a href="https://en.wikipedia.org/wiki/Builder_pattern">builder design pattern</a>.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Option 1</th>
+<th class="tableblock halign-left valign-top">Option 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Each <code>Command</code> is created by parsing user input using it&#8217;s own <code>Parser</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Each <code>Command</code> is defined by a <code>CommandBuilder</code>, and created by a <code>CommandParser</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Difficulty</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Easy</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Moderate</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">How</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement a utility class which can parse user input into arguments. Use this class in each command parser.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement <code>CommandBuilder</code> which can build a <code>Command</code> with any number of arguments. Commands provide what arguments they require.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Evaluation</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>I did not choose this option because:</p>
+</div>
 <div class="paragraph">
-<p>+
-<span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span></p>
+<p>Each command parser will need to implement logic to use the utility class, handle argument checking and parsing errors.</p>
+</div>
+<div class="paragraph">
+<p>It is difficult for future developers to create, extend and test <code>Commands</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>I chose this option because:</strong></p>
+</div>
+<div class="paragraph">
+<p>Each <code>Command</code> does not require any logic, only arguments are required to be defined.</p>
+</div>
+<div class="paragraph">
+<p>Since all logic is in <code>CommandBuilder</code>, it is simple for developers to test.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="argument"><a class="link" href="#argument">3.3.5. Argument</a></h4>
+<div class="paragraph">
+<p>A command’s argument and an option’s argument are both considered an <code>Argument</code>. An argument will be parsed from a command phrase to another object. The <code>Argument</code> class is a generic class, where the type of the class defines what type of object the command phrase be parsed into.</p>
+</div>
+<div class="paragraph">
+<p>For example, an <code>Argument&lt;DateTime&gt;</code> which receives “24/10/2019 10:00” will be parsed into a <code>DateTime</code> object.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="variable-argument"><a class="link" href="#variable-argument">3.3.6. Variable Argument</a></h4>
+<div class="paragraph">
+<p>A <code>VariableArgument</code> is a special type of argument. A variable argument will be parsed from a list of command phrases to a list of similar type objects. The <code>VariableArgument</code> class is a generic class, where the type of the class defines what types of objects the command phrases should be parsed into. A variable argument can accept zero or more command phrases to be parsed.</p>
+</div>
+<div class="paragraph">
+<p>For example, a <code>VariableArgument&lt;Integer&gt;</code> which receives {1, 2, 3} will be parsed into a list of Integers. <code>A VariableArgument&lt;Integer&gt;</code> which receives {} will be parsed into an empty list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="argumentlist"><a class="link" href="#argumentlist">3.3.7. ArgumentList</a></h4>
+<div class="paragraph">
+<p>A command is said to contain a list of arguments, and it’s options are said to contain a list of arguments too. Both are considered an <code>ArgumentList</code>. An <code>ArgumentList</code> is defined to contain zero or more <code>Arguments</code>, and zero or one <code>VariableArguments</code>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, if a variable argument is defined, it will be treated as the last argument in the <code>ArgumentList</code>. This is because a variable argument can accept zero or more command phrases, which will prevent other arguments from receiving command phrases if it is not the last argument.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
+<h3 id="Design-ModelManager"><a class="link" href="#Design-ModelManager">3.4. ModelManager Component</a></h3>
+<div class="paragraph">
+<p>The <code>ModelManager</code> is responsible for the reading and writing of events and tasks in Horo.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/ModelManagerClassDiagram.png" alt="ModelManagerClassDiagram">
 </div>
-<div class="title">Figure 11. Structure of the Storage Component</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<div class="title">Figure 11. Class diagram of the ModelManager</div>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <code>ModelManager</code> has three main functions:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>Stores all events and tasks in a wrapper class <code>ModelData</code>.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>Notifies all <code>ModelDataListeners</code> whenever the <code>ModelData</code> changes.</p>
 </li>
-</ul>
+<li>
+<p>Allows any class with a reference to <code>ModelManager</code> to update the current <code>ModelData</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To give a more concrete example of how <code>ModelManager</code> notifies its listeners, refer to the sequence diagram below of <strong>adding a task</strong> to Horo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelManagerAddTaskSequenceDiagram.png" alt="ModelManagerAddTaskSequenceDiagram">
+</div>
+<div class="title">Figure 12. Sequence diagram of adding a task</div>
+</div>
+<div class="sect3">
+<h4 id="modeldata"><a class="link" href="#modeldata">3.4.1. ModelData</a></h4>
+<div class="paragraph">
+<p><code>ModelData</code> is designed to be a wrapper class which contains a <strong>snapshot</strong> of Horo&#8217;s events and tasks.
+It is immutable, and automatically creates deep copies of all events and tasks, to prevent any rouge modifications.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="eventsource"><a class="link" href="#eventsource">3.4.2. EventSource</a></h4>
+<div class="paragraph">
+<p>An <code>EventSource</code> is a representation of an event in Horo.
+It is immutable. It has two required fields, and three optional fields:</p>
+</div>
+<div class="paragraph">
+<p>Required:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Description : Long description of the event</p>
+</li>
+<li>
+<p>Start <code>DateTime</code> : The beginning of the event</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Optional:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>End <code>DateTime</code> : The end of the event, if the event has no end it is considered to be an instant in the timeline.</p>
+</li>
+<li>
+<p>Reminder <code>DateTime</code> : When a reminder should be given to the user, used in the <a href="#notification system">[notification system]</a>.</p>
+</li>
+<li>
+<p>Tag(s) : User defined tags, which help in organizing the user&#8217;s events.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>EventSourceBuilder</code> API provides a simple way for developers to create an <code>EventSource</code>.
+For example, to create an <code>EventSource</code> with three tags:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>EventSource e = EventSource.newBuilder("CS2103T Lecture", DateTime.now())
+    .setTags(List.of("CS2103T", "NUS", "Lecture"))
+    .build();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tasksource"><a class="link" href="#tasksource">3.4.3. TaskSource</a></h4>
+<div class="paragraph">
+<p>A <code>TaskSource</code> is a representation of a task in Horo.
+It is immutable. It has one required field, and three optional fields:</p>
+</div>
+<div class="paragraph">
+<p>Required:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Description : Long description of the task</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Optional:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Due <code>DateTime</code> : When the task should be due.</p>
+</li>
+<li>
+<p>Reminder <code>DateTime</code> : When a reminder should be given to the user, used in the <a href="#notification system">[notification system]</a>.</p>
+</li>
+<li>
+<p>Tag(s) : User defined tags, which help in organizing the user&#8217;s tasks.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>TaskSourceBuilder</code> API provides a simple way for developers to create a <code>TaskSource</code>.
+For example, to create a <code>TaskSource</code> with two tags:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>TaskSource t = TaskSource.newBuilder("Buy Groceries")
+    .setTags(List.of("Shopping", "Groceries"))
+    .build();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="datetime"><a class="link" href="#datetime">3.4.4. DateTime</a></h4>
+<div class="paragraph">
+<p>A <code>DateTime</code> is a representation of an instant of time, without timezone information.
+It is stored as the number of <a href="https://en.wikipedia.org/wiki/Unix_time">seconds from epoch</a>. It is immutable.</p>
+</div>
+<div class="paragraph">
+<p>The <code>DateTimeBuilder</code> API provides a simple way for developers to create a <code>DateTime</code>.
+For example, to create a <code>DateTime</code> representing <code>1st November 2019, 12:00PM (UTC)</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>DateTime d = DateTime.newBuilder(1, 11, 2019, 12, 0, ZoneOffset.UTC)
+    .build();</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
+<h3 id="Design-StorageManager"><a class="link" href="#Design-StorageManager">3.5. StorageManager Component</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>The <code>StorageManager</code> is responsible for the saving and loading of Horo&#8217;s Model to the external disk.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StorageManagerClassDiagram.png" alt="StorageManagerClassDiagram">
+</div>
+<div class="title">Figure 13. Class diagram of StorageManager</div>
+</div>
+<div class="paragraph">
+<p>The <code>StorageManager</code> has four main functions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Load the model on Horo startup.</p>
+</li>
+<li>
+<p>Save the model whenever the model changes (notified via <code>ModelDataListener</code>).</p>
+</li>
+<li>
+<p>Serialize the model into Javascript Object Notation (JSON) before saving.</p>
+</li>
+<li>
+<p>Deserialize the model from JSON before passing it to <code>ModelManager</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For serialization and deserialization of the model, our team has decided to use the well known <a href="https://github.com/FasterXML/jackson">Jackson library</a>.
+<code>EventSource</code>, <code>TaskSource</code> and their respective builders, have appropriate annotations to facilitate serialization and deserialization of JSON.</p>
+</div>
+<div class="paragraph">
+<p>To give a more concrete example of how <code>StorageManager</code> saves the model, refer to the sequence diagram below of <strong>adding a task</strong> to Horo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StorageManagerAddTaskSequenceDiagram.png" alt="StorageManagerAddTaskSequenceDiagram">
+</div>
+<div class="title">Figure 14. Sequence diagram of adding a task</div>
 </div>
 </div>
 </div>
@@ -439,14 +1051,22 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.1. Undo/Redo feature</a></h3>
+<h3 id="Design-UndoRedoManager"><a class="link" href="#Design-UndoRedoManager">4.1. Undo/Redo feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-details"><a class="link" href="#implementation-details">4.1.1. Implementation Details</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>UndoRedoManager</code>, which contains <code>undoStateList</code> - a history of <code>ModelLists</code>. Each <code>ModelList</code> object contains two lists: one to store <code>EventSources</code> and the other to store <code>TaskSources</code>, together representing the state of all event and task data at that point in time. <code>UndoRedoManager</code> also contains a <code>undoIndex</code>, which keeps track of the index of the <code>ModelList</code> being used presently.</p>
+<p>The undo/redo mechanism is facilitated by <code>UndoRedoManager</code>, which contains <code>undoStateList</code> - a history of <code>ModelData</code> states.
+Each <code>ModelData</code> object contains two lists: one to store <code>EventSources</code> and the other to store <code>TaskSources</code>,
+together representing the state of all event and task data at that point in time. <code>UndoRedoManager</code> also contains a <code>undoIndex</code>,
+which keeps track of the index of the <code>ModelData</code> being used presently, as well as a <code>ModelManager</code> object.</p>
 </div>
 <div class="paragraph">
-<p>A key point to take note of is that <code>ModelManager</code> contains an <code>eventList</code> (a list of <code>EventSources</code>) and a <code>taskList</code> (a list of <code>TaskSources</code>), both of which cannot be reinitialized. This is because these two lists are directly in sync with the GUI; changes to these specific list instances are reflected as changes to the GUI, but changes to other copies of <code>EventSource</code> or <code>TaskSource</code> lists will not affect the GUI. Hence, the history of <code>ModelLists</code> held by <code>UndoRedoManager</code> stores deep-copies of <code>EventSource</code> and <code>TaskSource</code> lists. Should there be a need to revert back to a past or future state (if undo or redo is called), these lists will retrieve their data from the appropriate copy of <code>ModelList</code> in the list of duplicates.</p>
+<p><code>ModelManager</code> contains a <code>ModelData</code> object. Horo&#8217;s <code>StorageManager</code>, <code>UiManager</code> and <code>UndoRedoManager</code> components
+implement the <code>ModelDataListener</code> interface which listens for any changes to this <code>ModelData</code> so that they can be updated accordingly.
+Every time a state-changing command (that is not <code>undo</code> or <code>redo</code>) is executed, the a new <code>ModelData</code> representing the modified version
+will replace the old one and this new version will then be deep-copied and added to <code>undoStateList</code>.
+Should there be a need to revert back to a past or future state (if undo or redo is called), <code>ModelManager#modelData</code> will retrieve their data from the
+appropriate copy of <code>ModelData</code> in the list of duplicates.</p>
 </div>
 <div class="paragraph">
 <p><code>UndoRedoManager</code> also implements the following operations:</p>
@@ -454,67 +1074,60 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="ulist">
 <ul>
 <li>
-<p><code>UndoRedoManager#commit(ModelList state)</code>&#8201;&#8212;&#8201;Adds the new state (which contains a deep-copied version of <code>TaskSource</code> and <code>EventSource</code> lists) to the <code>undoStateList</code></p>
+<p><code>UndoRedoManager#undo()</code>&#8201;&#8212;&#8201;Restore <code>ModelManager#modelData</code> to their previous versions from the appropriate duplicate in <code>undoStateList</code></p>
 </li>
 <li>
-<p><code>UndoRedoManager#undo()</code>&#8201;&#8212;&#8201;Restore <code>eventList</code> and <code>taskList</code> in <code>ModelManager</code> to their previous versions from the appropriate duplicate in <code>undoStateList</code> via an <code>ModelListListener</code></p>
+<p><code>UndoRedoManager#redo()</code>&#8201;&#8212;&#8201;Restore <code>ModelManager#modelData</code> to their future versions from the appropriate duplicate in <code>undoStateList</code></p>
 </li>
 <li>
-<p><code>UndoRedoManager#redo()</code>&#8201;&#8212;&#8201;Restore <code>eventList</code> and <code>taskList</code> in <code>ModelManager</code> to their future versions from the appropriate duplicate in <code>undoStateList</code> via an <code>ModelListListener</code></p>
-</li>
-<li>
-<p><code>UndoRedoManager#clearFutureHistory()</code> -- Delete all <code>ModelList</code> states that occur in <code>undoStateList</code> after the index given by the <code>undoIndex</code></p>
+<p><code>UndoRedoManager#clearFutureHistory()</code> -- Delete all <code>ModelData</code> states that occur in <code>undoStateList</code> after the index given by the <code>undoIndex</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>UndoCommand</code> and <code>RedoCommand</code> will interact directly with <code>UndoRedoManager</code> while other state-changing commands (such as adding or deleting tasks) will interact only with <code>ModelManager</code>.</p>
+<p>The <code>UndoCommand</code> and <code>RedoCommand</code> will interact directly with <code>UndoRedoManager</code> while other state-changing commands
+(such as adding or deleting tasks) will interact only with <code>ModelManager</code>.</p>
 </div>
 <div class="paragraph">
-<p>There are two key <strong>Listener</strong> interfaces that help us achieve the desired undo-redo functionality:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>ModelListListener</code></p>
-</li>
-<li>
-<p><code>ModelResetListener</code></p>
-</li>
-</ul>
+<p>The <code>ModelDataListener</code> interface helps us achieve the desired undo-redo functionality:</p>
 </div>
 <div class="paragraph">
-<p>These listener interfaces each contain a single method, <code>ModelListListener</code> contains <code>onModelListChange(ModelList list)</code> and <code>ModelResetListener</code>
-contains <code>onModelReset(ModelList state, Object caller)</code>.</p>
+<p>This listener interface contains a single method, <code>onModelDataChange(ModelData modelData)</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UndoRedoManager</code> implements the <code>ModelListListener</code> interface’s method <code>onModelListChange(ModelList list)</code> to “listen” for any changes to <code>ModelManager</code>’s lists (<code>eventList</code> or <code>taskList</code>). (e.g. when an event or task is added or deleted)
-If such a change exists, it will be handled by first instantiating a <code>ModelList</code> with a deep-copied version of the <code>taskList</code> and the modified <code>eventList</code>, calling <code>UndoRedoManager#clearFutureHistory()</code>, and calling <code>UndoRedoManager#commit(ModelList state)</code> to commit the state.</p>
+<p>The <code>UndoRedoManager</code> implements the <code>ModelDataListener</code> interface’s method <code>onModelDataChange(ModelData modelData)</code> to “listen” for any changes to
+<code>ModelManager#modelData</code> (e.g. when an event or task is added or deleted)
+If such a change exists, it will be handled by first instantiating a model data with a deep-copied version of the
+<code>taskList</code> and the modified <code>eventList</code>, calling <code>UndoRedoManager#clearFutureHistory()</code>, and finally to committing the state to <code>undoStateList</code></p>
 </div>
 <div class="paragraph">
-<p>The <code>ModelManager</code> implements the <code>ModelResetListener</code> interface’s method <code>onModelReset(ModelList state, Object caller)</code> to “listen” for any undo or redo being executed. This will be handled by resetting <code>ModelManager</code>’s <code>eventList</code> and <code>taskList</code> data to match the data of the <code>ModelList</code> with index <code>undoIndex</code> in <code>undoStateList</code>.</p>
+<p>On the other hand, whenever an undo or redo is executed, <code>ModelManager&#8217;s `ModelData</code> is updated
+to match the data of the model data with index <code>undoIndex</code> in <code>undoStateList</code> so that the correct version of model data is being reflected in the GUI.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user runs the program for the first time. The <code>UndoRedoManager</code> will be initialized with the initial <code>undoStateList</code>. A <code>ModelList</code> will be added to <code>undoStateList</code> and the <code>undoIndex</code> will point to that single <code>ModelList</code> in the list.</p>
+<p>Step 1. The user runs the program for the first time. The <code>UndoRedoManager</code> will be initialized with the initial <code>undoStateList</code>.
+A <code>ModelData</code> object will be added to <code>undoStateList</code> and the <code>undoIndex</code> will point to that single model data in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelList0.png" alt="ModelList0">
+<img src="images/process1.png" alt="process1">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>add_event “Suntec City Computer Fair” --at “17/11/2019 12:00”</code>. The event will be added to <code>ModelManager</code>’s <code>eventList</code>.
-Then, <code>UndoRedoManager#onModelListChange(ModelList list)</code> will be called (as there has been a change to the <code>eventList</code>),
-deep-copying the modified <code>eventList</code> and <code>taskList</code> and instantiating a new state <code>ModelList</code> with these copies.
-All future states beyond the <code>undoIndex</code> will be cleared as they are no longer useful. In this particular case, there are no future states to be cleared. Finally, the new <code>ModelList</code> state will be committed; added to <code>undoStateList</code>.
-The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model list state.</p>
+<p>Step 2. The user executes <code>add_event “Suntec City Computer Fair” --at “17/11/2019 12:00”</code>.
+<code>ModelManager#ModelData</code> will be reset to a new <code>ModelData</code> object with the added event.
+Then, <code>UndoRedoManager#onModelDataChange(ModelData modelData)</code> will be called (as there has been a change to the <code>eventList</code>),
+deep-copying the modified <code>ModelData</code>.
+All future states beyond the <code>undoIndex</code> will be cleared as they are no longer useful. In this particular case, there are no future states to be cleared.
+Finally, the deep-copy of the new model data state will be committed; added to <code>undoStateList</code>.
+The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model data state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelList1.png" alt="ModelList1">
+<img src="images/process2.png" alt="process2">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -524,8 +1137,8 @@ The <code>undoIndex</code> is incremented by one to contain the index of the new
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not result in any change to <code>ModelManager#eventList</code> or <code>ModelManager#taskList</code>.
-Hence, there is no change to trigger the listener methods and thus no <code>ModelList</code> will be saved to <code>undoStateList</code>.
+If a command fails its execution, it will not result in any change to <code>ModelManager#ModelData</code>.
+Hence, there is no change to trigger the listener methods and thus no <code>ModelData</code> will be saved to <code>undoStateList</code>.
 </td>
 </tr>
 </table>
@@ -533,12 +1146,12 @@ Hence, there is no change to trigger the listener methods and thus no <code>Mode
 <div class="paragraph">
 <p>Step 3. Suppose the user decides that adding the task was a mistake. He/she then executes the undo command to rectify the error.
 The undo command will decrement the <code>undoIndex</code> by one to contain the index of the previous undo redo state, thereafter triggering the
-<code>ModelManager#onModelReset</code> method. This method updates <code>ModelManager</code>’s <code>eventList</code> and <code>taskList</code> data to match the data of the
-<code>ModelList</code> with index <code>undoIndex</code> in <code>undoStateList</code>.</p>
+<code>UndoRedoManager#notifyModelResetListeners</code> method. This method updates <code>ModelManager#modelData</code> to match the data of the
+model data with index <code>undoIndex</code> in <code>undoStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelList2.png" alt="ModelList2">
+<img src="images/process3.png" alt="process3">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -548,8 +1161,9 @@ The undo command will decrement the <code>undoIndex</code> by one to contain the
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>undoIndex</code> is 0, pointing to the initial model list state, then there are no previous model list states to restore.
-The undo command uses <code>UndoRedoManager#canUndo()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>undoIndex</code> is 0, pointing to the initial model data state, then there are no previous model data states to restore.
+The undo command uses <code>UndoRedoManager#canUndo()</code> to check if this is the case.
+If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -562,21 +1176,9 @@ The undo command uses <code>UndoRedoManager#canUndo()</code> to check if this is
 <img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="100%">
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>The redo command does the opposite — it calls <code>UndoRedoManager#redo()</code>, which increments the <code>undoIndex</code> by one to contain the index of the previously undone state.
-The <code>ModelResetListener</code> then causes <code>ModelManager#eventList</code> and <code>ModelManager#taskList</code> to reset their data to this state’s list data.</p>
+The <code>UndoRedoManager#notifyModelResetListeners</code> then causes <code>ModelManager#modelData</code> to be reset to this state’s data.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -585,7 +1187,7 @@ The <code>ModelResetListener</code> then causes <code>ModelManager#eventList</co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>undoIndex</code> is at index <code>undoStateList.size() - 1</code>, pointing to the latest model list state, then there are no undone model list states to restore.
+If the <code>undoIndex</code> is at index <code>undoStateList.size() - 1</code>, pointing to the latest model data state, then there are no undone model data states to restore.
 The <code>redo</code> command uses <code>UndoRedoManager#canRedo()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
@@ -593,23 +1195,24 @@ The <code>redo</code> command uses <code>UndoRedoManager#canRedo()</code> to che
 </div>
 <div class="paragraph">
 <p>Step 4. The user decides to execute the command <code>log</code>. Non-state-changing commands such as <code>log</code> do not manipulate task and event data.
-Since no changes to <code>taskList</code> or <code>eventList</code> have been made, the listener methods will not be triggered and no <code>ModelList</code> will be saved to <code>undoStateList</code>.
+Since no changes to <code>ModelManager#modelData</code> have been made, the listener methods will not be triggered and no model data will be saved to <code>undoStateList</code>.
 Thus, the <code>undoStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelList3.png" alt="ModelList3">
+<img src="images/process4.png" alt="process4">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 5. The user executes <code>delete_event 1</code>, removing the event from <code>ModelManager</code>’s <code>eventList</code>. <code>UndoRedoManager#onModelListChange(ModelList list)</code>
-will be called (as there has been a change to the <code>eventList</code>), purging all future states beyond the <code>undoIndex</code> as they are no longer useful.
-The modified <code>eventList</code> and <code>taskList</code> will be deep-copied and a new <code>ModelList</code> containing the deep-copies will also be added to <code>undoStateList</code>.
-The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model list state.</p>
+<p>Step 5. The user executes <code>delete_event 1</code>, removing the event from the <code>eventList</code> in <code>ModelManager#modelData</code>.
+<code>UndoRedoManager#onModelDataChange(ModelData modelData)</code> will be called (as there has been a change to the <code>ModelData</code>),
+purging all future states beyond the <code>undoIndex</code> as they are no longer useful.
+The modified model data will be deep-copied and a new model data containing the deep-copies will also be added to <code>undoStateList</code>.
+The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model data state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelList4.png" alt="ModelList4">
+<img src="images/process5.png" alt="process5">
 </div>
 </div>
 <div class="paragraph">
@@ -617,56 +1220,52 @@ The <code>undoIndex</code> is incremented by one to contain the index of the new
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
+<img src="images/CommitActivityDiagram1.png" alt="CommitActivityDiagram1">
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves <code>EventSource</code> and <code>TaskSource</code> data every time a change has been made.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to understand and implement.</p>
-</li>
-<li>
-<p>Cons: Performance issues may arise due to the relatively larger memory usage required.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself; inverse functions have to be implemented (if I undo the deletion of a person, it would be equivalent to adding him back to the list)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Uses less memory as we only need to keep track of what commands have been executed and their parameters, as opposed to storing all task and event data between every change.</p>
-</li>
-<li>
-<p>Cons: Every command will have to be implemented twice, since their inverse operations will all be different. This is compounded by the fact that we have to ensure the correctness of every inverse operation individually as well.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.1.2. Design Considerations</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Aspect: How undo &amp; redo executes</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Approach 1 (current choice)</th>
+<th class="tableblock halign-left valign-top">Approach 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to understand and implement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uses less memory as we only need to keep track of what commands have been executed and their parameters,
+as opposed to storing all task and event data between every change.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance issues may arise due to the relatively larger memory usage required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Every command will have to be implemented twice, since their inverse operations will all be different. This is
+compounded by the fact that we have to ensure the correctness of every inverse operation individually as well.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="notification-system"><a class="link" href="#notification-system">4.2. Notification System</a></h3>
+<h3 id="Design-NotificationManager"><a class="link" href="#Design-NotificationManager">4.2. Notification System</a></h3>
 <div class="sect3">
 <h4 id="class-architecture"><a class="link" href="#class-architecture">4.2.1. Class Architecture</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotificationClassDiagram.png" alt="NotificationClassDiagram">
 </div>
-<div class="title">Figure 12. Class diagram for Notification System</div>
+<div class="title">Figure 15. Class diagram for Notification System</div>
 </div>
 <div class="paragraph">
 <p>The Notification System is facilitated by the  <code>NotificationManager</code>, which is found in the Logic component. Other constituent classes of the Notification System can be found in the Logic and UI components, depending on their functionality. These classes and their functionalities are listed below:</p>
@@ -730,7 +1329,7 @@ The <code>undoIndex</code> is incremented by one to contain the index of the new
 <div class="content">
 <img src="images/NotificationCheckingLoopSequenceDiagram.png" alt="NotificationCheckingLoopSequenceDiagram">
 </div>
-<div class="title">Figure 13. Sequence diagram for NotificationCheckingThread&#8217;s main loop</div>
+<div class="title">Figure 16. Sequence diagram for NotificationCheckingThread&#8217;s main loop</div>
 </div>
 <div class="paragraph">
 <p>Step 1. The <code>NotificationCheckingThread</code> calls the <code>NotificationChecker</code> to generate instances of <code>PopupNotification</code> through a call to <code>NotificationChecker#getListOfPopupNotifications()</code></p>
@@ -746,7 +1345,7 @@ The <code>undoIndex</code> is incremented by one to contain the index of the new
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.3. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.2.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-the-notification-system-should-run"><a class="link" href="#aspect-how-the-notification-system-should-run">Aspect: How the Notification system should run</a></h5>
 <div class="ulist">
@@ -793,7 +1392,7 @@ The <code>undoIndex</code> is incremented by one to contain the index of the new
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 5.1, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -842,10 +1441,29 @@ to <code>EventSource</code> and <code>TaskSource</code> objects in Horo.</p>
 <div class="content">
 <img src="images/IcsComponentDiagram.png" alt="IcsComponentDiagram">
 </div>
+<div class="title">Figure 17. ICS Component Architecture</div>
 </div>
 <div class="paragraph">
-<p>The file exporter uses the <code>IcsConverter</code> class to convert <code>EventSource</code> and <code>TaskSource</code> objects
-stored in the <code>ModelManager</code> singleton object into their ICS String representations. Check out the
+<p>Right now, this is how the <code><strong>IcsExporter</strong></code> class exports Horo&#8217;s <code><strong>EventSource</strong></code> and <code><strong>TaskSource</strong></code> data.
+Notice that the file is created onnly when it is known that the directory provided by the user is valid.
+This is to prevent extra uncaught errors being thrown.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportCommandActivityDiagram.png" alt="ExportCommandActivityDiagram">
+</div>
+<div class="title">Figure 18. Activity Diagram of an Export Command</div>
+</div>
+<div class="paragraph">
+<p>In order to generate the file content from Horo&#8217;s saved data, the file exporter uses the <code><strong>IcsConverter</strong></code> class to convert <code><strong>EventSource</strong></code> and <code><strong>TaskSource</strong></code> objects
+stored in the <code><strong>ModelManager</strong></code> singleton object into their ICS String representations.</p>
+</div>
+<div class="paragraph">
+<p>They will then be concatenated together using a <code><strong>StringBuilder</strong></code> object. Boilerplate information will be added
+at the start and end of the save file to make the file valid to be imported to other Calendar applications.</p>
+</div>
+<div class="paragraph">
+<p>Check out the
 <a href="https://en.wikipedia.org/wiki/ICalendar">iCalendar Wiki Page</a> for more information on the specifications.</p>
 </div>
 <div class="ulist">
@@ -860,7 +1478,7 @@ The <code>ICS</code> Component,with a <code>.ics</code> extension.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.4.1. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings"><a class="link" href="#aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings">Aspect: Handling of Horo TaskSource and EventSource conversion to ICS Strings</a></h5>
 <div class="ulist">
@@ -906,21 +1524,252 @@ and makes adding new exportable objects a lot easier as there are common functio
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="implementation-2"><a class="link" href="#implementation-2">5. Implementation</a></h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">5.1. Configuration</a></h3>
+<h3 id="ui-component"><a class="link" href="#ui-component">4.5. UI Component</a></h3>
+<div class="sect3">
+<h4 id="implementation-during-change-in-events-and-tasks"><a class="link" href="#implementation-during-change-in-events-and-tasks">4.5.1. Implementation during change in Events and Tasks</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiSequenceDiagram.png" alt="UiSequenceDiagram">
+</div>
+<div class="title">Figure 19. A general Sequence Diagram during a change in the Event and Task Lists model.</div>
+</div>
 <div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+<p>The UI system is managed by the <code>UiManager</code>, which is found in <code>Logic</code> component and is responsible for any change in the models and hence updating the necessary UI portions. The UiManager then holds a single instance of the <code>MainWindow</code>, which represents the base of the UI, and holds the different panels of the UI. Here is the sequence of a change in Events and Tasks for the UI.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. <code>UiManager</code> will be called using <code>onModelListChange(lists)</code> method. This will, in turn, take in the <code>ModelLists</code>, split them into the <code>events</code> and <code>tasks</code>, and sort them. Afterward, two HashMaps, <code>eventHash</code> and <code>taskHash</code> are created to deal with the indexing of the UI later on.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>MainWindow</code> will be called by <code>UiManager</code> using <code>onModelListChange(events, tasks, eventHash, taskHash)</code>, which will in turn proceed to call the methods that will update the different views represented by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CalendarPanel</code> - <code>onModelListChange(events, tasks, eventHash, taskHash)</code></p>
+</li>
+<li>
+<p><code>ListPanel</code> - <code>onEventListChange(events, eventHash)</code> and <code>onTaskListChange(tasks, taskHash)</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>UiManager</code> will also be called using <code>onUserOutput(output, colorTheme)</code>, which will in turn call <code>onUserOutput(output, colorTheme)</code> for MainWindow.</p>
+</div>
+<div class="paragraph">
+<p>As for these 3 main panels, each of them will be explained further below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiCalendarPanelSequenceDiagram.png" alt="UiCalendarPanelSequenceDiagram">
+</div>
+<div class="title">Figure 20. Sequence Diagram for <code>CalendarPanel</code></div>
+</div>
+<div class="paragraph">
+<p>Step 2.1. <code>CalendarPanel</code> will be called by <code>onModelListChange(events, tasks, eventHash, taskHash)</code>, and will proceed to zip the two lists into a single list for sorting purposes.</p>
+</div>
+<div class="paragraph">
+<p>Step 2.2. Afterward, it will call <code>onChange</code> for the 3 smaller components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TimelineView</code> - When called, it will reset the current timeline using <code>resetTimeline()</code></p>
+</li>
+<li>
+<p><code>CalendarScreen</code> - When called, it will change the calendar to the given date, as well as calling <code>changeColor(eventTaskList)</code> to change the color of a day in the calendar.</p>
+</li>
+<li>
+<p><code>UpcomingView</code> - When called, it will simply reset the view to input the correct events and tasks.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiListPanelSequenceDiagram.png" alt="UiListPanelSequenceDiagram">
+</div>
+<div class="title">Figure 21. Sequence Diagram for <code>ListPanel</code></div>
+</div>
+<div class="paragraph">
+<p>Step 2.3. <code>ListPanel</code> will be called using <code>onEventListChange(events, eventHash)</code> first. It will proceed to call <code>EventListPanel</code> to change the list according to the given list of events.</p>
+</div>
+<div class="paragraph">
+<p>Step 2.4. Additionally, <code>ListPanel</code> will also be called using <code>onTaskListChange(tasks, taskHash)</code>, which will eventually call <code>TaskListPanel</code> to change the list accordingly as well.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiLogPanelSequenceDiagram.png" alt="UiLogPanelSequenceDiagram">
+</div>
+<div class="title">Figure 22. Sequence Diagram for <code>LogPanel</code></div>
+</div>
+<div class="paragraph">
+<p>Step 3.1. When <code>MainWindow</code> gets called using <code>onUserOutput(output, colorTheme)</code>, it will proceed to get the actual color scheme in the form of a <code>String</code>, and creates 2 different boxes to display the output.</p>
+</div>
+<div class="paragraph">
+<p>Step 3.2. It will call <code>LogPanel</code> to create a <code>LogBox</code> using <code>createLogBox(feedbackToUser, color)</code> to display the output to the user in <code>LogPanel</code></p>
+</div>
+<div class="paragraph">
+<p>Step 3.3. Next, it creates <code>PopUpBox</code> and display it temporarily on any of the panels, and proceed to unused afterward.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-when-changing-the-date-of-timeline"><a class="link" href="#implementation-when-changing-the-date-of-timeline">4.5.2. Implementation when changing the date of timeline</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiViewDaySequenceDiagram.png" alt="UiViewDaySequenceDiagram">
+</div>
+<div class="title">Figure 23. Sequence Diagram for changing the timeline date</div>
+</div>
+<div class="paragraph">
+<p>Here is an example of the sequence for the UI when <code>DayViewCommand</code> is executed to change the date of the timeline.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. When the command is executed, it will proceed to call <code>UiManager</code> through <code>viewDay(calendarDate)</code>, which in turn will call <code>MainWindow</code> and subsequently <code>CalendarPanel</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>CalendarPanel</code> will proceed to execute <code>changeCalendarScreenDate(calendarDate)</code>, which will create an instance of <code>CalendarScreen</code> to display the calendar.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Afterward, a new instance of <code>TimelineDayView</code> will be created to display the timeline.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. Lastly, <code>MainWindow</code> will call <code>viewCalendar</code> which will be explained in the next section, allowing <code>CalendarPanel</code> to be visible while the other panels remain invisible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-when-changing-views"><a class="link" href="#implementation-when-changing-views">4.5.3. Implementation when changing views</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/UiViewCalendarSequenceDiagram.png" alt="UiViewCalendarSequenceDiagram">
+</div>
+<div class="title">Figure 24. Sequence Diagram for changing to Calendar View</div>
+</div>
+<div class="paragraph">
+<p>Here is an example of the sequence for the UI when <code>CalendarViewCommand</code> is executed.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. When the command is executed, it will proceed to call <code>UiManager</code> through <code>viewCalendar(calendarDate)</code>, which will proceed to check if the giving date is null or a date. The validity check is previously check in the parser.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. If calendarDate is null, the <code>UiManager</code> will simply call <code>MainWindow</code> to switch the view with the method <code>viewCalendar()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>MainWindow</code> will obtain the <code>Region</code> of the 3 panels: <code>CalendarPanel</code>, <code>ListPanel</code> and <code>LogPanel</code>, and proceed to set only <code>CalendarPanel</code> to be visible.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. If calendarDate is not null, <code>UiManager</code> will then call <code>MainWindow</code> using <code>changeCalendarScreenDate(calendarDate)</code>, to change the <code>CalendarScreen</code> to the given date.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. Afterward, it will proceed and continue with Step 3, which is simply calling <code>viewCalendar()</code> again.</p>
+</div>
+<div class="paragraph">
+<p>Since the sequence for <code>CalendarViewCommand</code> is roughly similar to <code>ListViewCommand</code> and <code>LogViewCommand</code>, those 2 commands will not be explained.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.5.4. Design Considerations</a></h4>
+<div class="paragraph">
+<p>The design considerations are more towards how the appearance of the UI, as well as how the architecture of the code would have changed depending on such appearance.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/OldUI.png" alt="OldUI">
+</div>
+<div class="title">Figure 25. Old design of the UI</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui">
+</div>
+<div class="title">Figure 26. Current design of the UI</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-design-of-the-code-calendarpanel-code"><a class="link" href="#aspect-design-of-the-code-calendarpanel-code">Aspect: Design of the <code>CalendarPanel</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: The <code>CalendarPanel</code> is of an actual calendar, depicting a limited number of events and tasks on each day of the month.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Pros</strong>: It will provide a better representation of a calendar, allowing people to judge how much is going on in a day of that month in one look.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: Due to the nature of how limited in size a calendar can be, the user will be required to either check <code>ListPanel</code> for the details of an event or task, or have an extra screen beside the calendar for the user to check the details.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: Similarly, a calendar can only input up to a fixed amount of events or tasks there are on a particular day.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): The <code>CalendarPanel</code> consists of a mini-calendar as well as a timeline. An additional slot for upcoming events and tasks was later designed with an increase in space.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Pros</strong>: Provides a much greater space to show how much events or tasks one can have in a day, week or month.</p>
+</li>
+<li>
+<p><strong>Pros</strong>: The user can easily manage and check the Events and Tasks of a certain day.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: Even though it is a timeline, it is still rather similar to list view, just with the timeline added to limit the number of events or tasks seen on that day, week or month.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: The user will not be able to easily know what Events or Tasks there are, unless they change the view to Month view. On the other hand, the increase in space allows a small section for the upcoming events and tasks which tackles this problem.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-design-of-the-code-logpanel-code"><a class="link" href="#aspect-design-of-the-code-logpanel-code">Aspect: Design of the <code>LogPanel</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: The <code>LogPanel</code> is placed side-by-side with any other panel.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Pros</strong>: The users can always have a visualization of the success of their commands</p>
+</li>
+<li>
+<p><strong>Cons</strong>: A large portion of the space is used for the <code>LogPanel</code>, even if it is scaled down compared to the other panels.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: Appearance-wise, it looks extremely clunky due to most of the users' time will be looking at the calendar or list itself instead of the log.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): The <code>LogPanel</code> is placed separately as a different panel that can be accessed at any time from other panels. After each command is typed, a pop-up box will appear to indicate the success or failure of the command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Pros</strong>: Most of the time, users would only want to know if their command is successful or not. Thus having the pop-up box will be sufficient for such an indication.</p>
+</li>
+<li>
+<p><strong>Cons</strong>: The user will have to check the <code>LogPanel</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The initial design is as of the image above showing the old UI. However, we decided to scrape it and did an overhaul of the UI using alternative 2 instead. This is due to our decision of wanting a better-looking and minimalist UI instead of one packed with information.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">6. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
@@ -928,7 +1777,7 @@ and makes adding new exportable objects a lot easier as there are common functio
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">7. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
@@ -936,7 +1785,7 @@ and makes adding new exportable objects a lot easier as there are common functio
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">8. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
@@ -1382,6 +2231,79 @@ Use case resumes at step 1</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-6-export-command" class="discrete">Use case 6: Export Command</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to export Horo data.</p>
+</li>
+<li>
+<p>Horo creates a file in the same directory as Horo.</p>
+</li>
+<li>
+<p>Horo replies that its data has been successfully exported.</p>
+<div class="paragraph">
+<p>Use Case Ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2a. The user specifies which directory to export the save data to.</p>
+<div class="paragraph">
+<p>Use Case resumes at step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-7-import-command" class="discrete">Use case 7: Import Command</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to import Horo data from a specific file.</p>
+</li>
+<li>
+<p>The file is imported into Horo.</p>
+</li>
+<li>
+<p>Horo replies that the data has successfully been imported into Horo.</p>
+<div class="paragraph">
+<p>Use Case Ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1a.  The file does not exist or is corrupted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a1. Horo replies with an error message.</p>
+<div class="paragraph">
+<p>Use Case Ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1402,8 +2324,7 @@ Use case resumes at step 1</p>
 <p>Should work without any internet required.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.</p>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 </ol>
 </div>
@@ -1536,30 +2457,83 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+Expected: Shows the GUI with the calendar at today&#8217;s date, with no events or tasks.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Saving window preferences</p>
+<p>Export</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+<p>Start Horo with no save data.</p>
 </li>
 <li>
-<p>Re-launch the app by double-clicking the jar file.<br>
-Expected: The most recent window size and location is retained.</p>
+<p>Enter the <code>export</code> command.<br>
+Expected: A save file with the name <code>Horo_export_&lt;timestamp&gt;.ics</code> will be created in the
+same directory as Horo&#8217;s jar file.</p>
+</li>
+<li>
+<p>Enter the command <code>export <strong>--directory</strong> &lt;DIRECTORY&gt;</code>,
+where &lt;DIRECTORY&gt; is the directory where the save file will be created.<br>
+Expected: The save file will be created in the specified directory.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Import from iCalendar file.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Create some events and tasks in Horo.</p>
+</li>
+<li>
+<p>Take note of the current events and tasks by entering the <code>list</code> command,
+going into the list view.</p>
+</li>
+<li>
+<p>Enter the <code>export</code> command.</p>
+</li>
+<li>
+<p>Delete the save data from Horo and re-launch the app.</p>
+</li>
+<li>
+<p>Import the save data using the import command <code>import &lt;FILEPATH&gt;</code>.<br>
+Expected: The imported events and tasks should be the same as when they were exported.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+<div class="sect2">
+<h3 id="notification-system"><a class="link" href="#notification-system">G.2. Notification System</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Posting notifications to the desktop</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Make sure notifications have been switched on by using the <code>notif_on</code> command.<br>
+Make sure the System Tray is supported.</p>
+</li>
+<li>
+<p>Test case: <code>add_event "Test Event" "[CURRENT DATE] [CURRENT TIME INCREMENTED BY ONE MINUTE]"</code><br>
+Expected: Upon the next minute, a notification should be posted to your desktop through the system tray.</p>
+</li>
+<li>
+<p>Test case: <code>add_task "Test Task" --due "[CURRENT DATE] [CURRENT TIME INCREMENTED BY ONE MINUTE]"</code>
+Expected: Upon the next minute, a notification should be posted to your desktop through the system tray.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 15:08:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>

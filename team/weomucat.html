@@ -1,0 +1,619 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Project Portfolio Page</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Project Portfolio Page</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Author: Denis Tjia &lt;<a href="mailto:denis@u.nus.edu">denis@u.nus.edu</a>&gt;</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preface"><a class="link" href="#preface">Preface</a></h4>
+<div class="paragraph">
+<p>The purpose of this portfolio is to document the contributions that I have made to a software engineering project, during my second year of study at the National University of Singapore.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="about-the-project"><a class="link" href="#about-the-project">About the Project</a></h4>
+<div class="paragraph">
+<p>The project was structured to resemble an intermediate stage of a real life software project.
+We were tasked to implement enhancements to the software, and also ensure that the finished product can be easily taken over by other developers.</p>
+</div>
+<div class="paragraph">
+<p>My team of five decided to remix the application to keep track of events and tasks, very much like a calendar application.
+Our application, named <strong>Horo</strong>, aims to allow efficient management and organization of daily events and tasks, for any busy student.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="GUI">
+</div>
+<div class="title">Figure 1. Graphical user interface (GUI) of Horo</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>For this project, I was given a few critical roles:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Designing the overall code architecture.</p>
+</li>
+<li>
+<p>Implementation of the <code>Logic</code> and <code>Model</code> in Horo.</p>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="major-contribution"><a class="link" href="#major-contribution">Major Contribution</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Design of <code>CommandManager</code>, under <code>Logic</code>.
+The <code>CommandManager</code> class manages the addition and invoking of <code>Commands</code> in <strong>Horo</strong>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Why</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This feature serves to make it very simple for future developers to add new commands.
+It was also designed to be very extensible for developers to build upon it.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Highlights</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><code>CommandBuilder</code> is an application programming interface (API) for adding new commands.</p>
+</li>
+<li>
+<p><code>CommandParser</code> parses user input using a finite state machine (FSM).</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Functional Code</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/CommandManager.java">CommandManager</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/CommandBuilder.java">CommandBuilder</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/parser/CommandParser.java">CommandParser</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Test Code</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/CommandManagerTest.java">CommandManagerTest</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/parser/CommandParserTest.java">CommandParserTest</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Credits</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Design Patterns: Elements of Reusable Object-Oriented Software (1994) by The "Gang of Four".</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="minor-contribution"><a class="link" href="#minor-contribution">Minor Contribution</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implementation of <code>AddEventCommand</code>, <code>DeleteEventCommand</code> and <code>EditEventCommand</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Why</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>These commands allow the user to create, modify and delete events in Horo!</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Functional Code</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/AddEventCommand.java">AddEventCommand</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/DeleteEventCommand.java">DeleteEventCommand</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/EditEventCommand.java">EditEventCommand</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Test Code</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/AddEventCommandTest.java">AddEventCommandTest</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/DeleteEventCommandTest.java">DeleteEventCommandTest</a>,
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/EditEventCommandTest.java">EditEventCommandTest</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Project Management</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Managed all <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/releases">releases</a> (v1.1 - v1.4)</p>
+</li>
+<li>
+<p>Integration of my team’s code:
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/49#pullrequestreview-299621979">#49</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/86#discussion_r338410745">#86</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/132">#132</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Community</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Give suggestions to a team member: <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/52#issuecomment-539463845">#52</a></p>
+</li>
+<li>
+<p>Report bugs to a team member:
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/72#issuecomment-542713626">#72</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Tools</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Integrated a third party library <a href="https://github.com/skyscreamer/JSONassert">JSONAssert</a>, to help with JSON unit testing.
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/pull/223/commits/4b1e2808bdc1477d9ae4e934415b5ff46333352f">#223</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Code Contribution</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=weomucat&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=WeomuCat&amp;tabRepo=AY1920S1-CS2103T-F12-1%2Fmain%5Bmaster%5D">RepoSense</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="user-guide-contributions"><a class="link" href="#user-guide-contributions">User Guide Contributions</a></h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Below are excerpts taken from the User Guide, written by me.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-features"><a class="link" href="#3-features">3. Features</a></h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format for Horo</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can enter a command by typing the command name first followed by arguments of the command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code><strong>command_name</strong> &lt;argument1&gt; &lt;argument2&gt;&#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you want to type an argument containing blank spaces, surround your sentence within quotation marks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code>"Buy Groceries"</code></p>
+</li>
+<li>
+<p>E.g. <code><strong>add_task</strong> "Buy Groceries"</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Command parameters are prefixed by <code>--</code>, and they are optional.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code><strong>--date</strong> 09/2019</code></p>
+</li>
+<li>
+<p>E.g. <code><strong>calendar</strong> <strong>--date</strong> 09/2019</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format for this User Guide</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Arguments are fully capitalized which are to be supplied by you.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code><strong>add_task</strong> TASK</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Arguments suffixed with ellipsis (<code>&#8230;&#8203;</code>) indicate that the argument can be entered zero or more times.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>E.g. <code><strong>delete_task</strong> INDEX&#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Parameters separated by a vertical bar <code>|</code> can be used interchangeably.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. given the command format <code>-d|--description DESCRIPTION</code>, the following inputs accomplish the same thing:</p>
+</li>
+<li>
+<p><code><strong>--description</strong> "Buy Groceries"</code></p>
+</li>
+<li>
+<p><code><strong>-d</strong> "Buy Groceries"</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="3-2-1-adding-events"><a class="link" href="#3-2-1-adding-events">3.2.1. Adding Events</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddEventCommandScreenShot.png" alt="AddEventCommandScreenShot">
+</div>
+<div class="title">Figure 2. Add Event Command</div>
+</div>
+<div class="paragraph">
+<p>You may use the <code>add_event</code> command to add an event to the calendar.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>add_event</strong> DESCRIPTION START_DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--end</strong> END_DATE</code><br>
+<code><strong>--remind</strong> REMIND_DATE</code><br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Argument Format:<br>
+<code>START_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>END_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code><br>
+<code>REMIND_DATE</code> : <code>"DD/MM/YYYY HH:MM"</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00"</code><br>
+<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00"</code><br>
+<code><strong>add_event</strong> "Roris Birthday" "18/08/2019 16:00" <strong>--end</strong> "18/08/2019 20:00" <strong>--remind</strong> "18/08/2019 12:00" <strong>--tag</strong> Birthday Rori</code></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="3-2-2-deleting-events"><a class="link" href="#3-2-2-deleting-events">3.2.2. Deleting Events</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteEventCommandScreenShot.png" alt="DeleteEventCommandScreenShot">
+</div>
+<div class="title">Figure 3. Delete Event Command</div>
+</div>
+<div class="paragraph">
+<p>You may use the <code>delete_event</code> command to delete one or more events from the calendar.<br></p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>delete_event</strong> INDEX&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Command Parameters:<br>
+<code><strong>--tag</strong> TAG&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Remarks:<br>
+Events which match both <code>INDEX</code> and <code>TAG</code> will be deleted.<br>
+<code>INDEX</code> can be found on the event&#8217;s top right corner.</p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+<code><strong>delete_event</strong> 1</code><br>
+<code><strong>delete_event</strong> 1 2 3</code> : Deletes events 1, 2 and 3.<br>
+<code><strong>delete_event</strong> <strong>--tag</strong> Birthday</code> : Deletes events tagged as <code>Birthday</code>.<br>
+<code><strong>delete_event</strong> <strong>--tag</strong> Birthday Rori</code> : Deletes events tagged as <code>Birthday</code> and <code>Rori</code>.<br>
+<code><strong>delete_event</strong> 1 2 3 <strong>--tag</strong> Birthday Rori</code> : Deletes events 1, 2 and 3 only if they have been tagged as <code>Birthday</code> and <code>Rori</code>.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect3">
+<h4 id="developer-guide-contributions"><a class="link" href="#developer-guide-contributions">Developer Guide Contributions</a></h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Below are excerpts taken from the Developer Guide, written by me.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-CommandManager"><a class="link" href="#Design-CommandManager">3.3 CommandManager Component</a></h3>
+<div class="paragraph">
+<p>The <code>CommandManager</code> class manages the addition and invoking of <code>Commands</code> in Horo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandManagerClassDiagram.png" alt="CommandManager" width="550">
+</div>
+<div class="title">Figure 4. Class diagram of CommandManager</div>
+</div>
+<div class="paragraph">
+<p>Referring to the diagram above, it performs the following operations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Listen for user input in <code>onCommandInput()</code>.</p>
+</li>
+<li>
+<p>Pass the user input to <code>commandParser</code>, to obtain a <code>Command</code>.</p>
+</li>
+<li>
+<p>Execute the <code>Command</code> and obtain a <code>UserOutput</code>.</p>
+</li>
+<li>
+<p>Notify all <code>userOutputListeners</code> about the <code>UserOutput</code>.</p>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>To give a more concrete example of how <code>CommandManager</code> functions, refer to the sequence diagram below of <strong>adding a task</strong> to Horo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandManagerAddTaskSequenceDiagram.png" alt="CommandManagerAddTaskSequenceDiagram">
+</div>
+<div class="title">Figure 5. Sequence diagram of adding a task</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-3-2-commandparser"><a class="link" href="#3-3-2-commandparser">3.3.2 CommandParser</a></h3>
+<div class="paragraph">
+<p><code>CommandParser</code> is trying to tokenize any command input into one command keyword, and zero or more command phrases.
+(i.e. <code>[keyword] [phrase] [phrase] [phrase] &#8230;&#8203;</code>).
+To understand how the FSM works, study the activity diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandParserActivityDiagram.png" alt="CommandParser" width="300">
+</div>
+<div class="title">Figure 6. Activity diagram of CommandParser</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Option 1</th>
+<th class="tableblock halign-left valign-top">Option 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use <code>String.split()</code> to break up command input into tokens.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement a FSM to break up command input into tokens.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Difficulty</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Easy</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Moderate</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">How</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Split the command input by whitespaces, into words. The first word will be the <strong>command keyword</strong>.
+All subsequent words will have to be joined into <strong>command phrases</strong>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Create a <code>State</code> class, and design a state diagram to tokenize the command input into a <strong>command keyword</strong> and <strong>command phrases</strong>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Evaluation</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>I did not choose this option because:</p>
+</div>
+<div class="paragraph">
+<p>Joining words into command phrases can become quite complex, especially when introducing quotation marks.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it is difficult for future developers to maintain and extend logic like this.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>I chose this option because:</strong></p>
+</div>
+<div class="paragraph">
+<p>A state machine is easy to understand and configure.</p>
+</div>
+<div class="paragraph">
+<p>A state machine can tokenize complex command inputs, allowing future developers to parse advanced command inputs.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-3-4-commandbuilder"><a class="link" href="#3-3-4-commandbuilder">3.3.4 CommandBuilder</a></h3>
+<div class="paragraph">
+<p>A <code>CommandBuilder</code> is defined to be able to accept an arbitrary amount of command phrases, and eventually create a <code>Command</code> using those phrases.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandBuilderClassDiagram.png" alt="CommandBuilderClassDiagram">
+</div>
+<div class="title">Figure 7. Class diagram of CommandBuilder</div>
+</div>
+<div class="paragraph">
+<p>Referring to the diagram above, the definition the command is implemented in two methods:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>defineCommandArguments()</code></p>
+</li>
+<li>
+<p><code>defineCommandOptions()</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>To understand how <code>CommandBuilder</code> works, study the activity diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandBuilderActivityDiagram.png" alt="CommandBuilder" width="300">
+</div>
+<div class="title">Figure 8. Activity diagram of CommandBuilder</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Option 1</th>
+<th class="tableblock halign-left valign-top">Option 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">What</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Each <code>Command</code> is created by parsing user input using it&#8217;s own <code>Parser</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Each <code>Command</code> is defined by a <code>CommandBuilder</code>, and created by a <code>CommandParser</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Difficulty</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Easy</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Moderate</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">How</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement a utility class which can parse user input into arguments. Use this class in each command parser.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Implement <code>CommandBuilder</code> which can build a <code>Command</code> with any number of arguments. Commands provide what arguments they require.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Evaluation</p></th>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>I did not choose this option because:</p>
+</div>
+<div class="paragraph">
+<p>Each command parser will need to implement logic to use the utility class, handle argument checking and parsing errors.</p>
+</div>
+<div class="paragraph">
+<p>It is difficult for future developers to create, extend and test <code>Commands</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>I chose this option because:</strong></p>
+</div>
+<div class="paragraph">
+<p>Each <code>Command</code> does not require any logic, only arguments are required to be defined.</p>
+</div>
+<div class="paragraph">
+<p>Since all logic is in <code>CommandBuilder</code>, it is simple for developers to test.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>

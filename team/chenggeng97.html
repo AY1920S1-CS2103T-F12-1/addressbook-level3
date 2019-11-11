@@ -19,6 +19,15 @@
 <div class="paragraph">
 <p>This is a portfolio that documents my contributions towards a Calendar and Scheduling application called Horo. Horo helps the user maintain a to-do list and to schedule their activities, and is able to post reminders to their desktop.</p>
 </div>
+<div class="paragraph">
+<p>Here is a screenshot of our application in the default Calendar view.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/HoroMainViewDescription.png" alt="HoroMainViewDescription">
+</div>
+<div class="title">Figure 1. Horo Calendar view screenshot</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="project-scope"><a class="link" href="#project-scope">Project Scope</a></h3>
@@ -31,6 +40,25 @@
 <div class="paragraph">
 <p>My role in this project was to design and implement the Notification system of the application. Subsequent sections will go into greater detail with regards to my contributions to both the code and documentation.</p>
 </div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used throughout this document:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notif_on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red text in the User Guide indicates that a term is a command that can be executed by the program if input through the command line.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NotificationManager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red text in the Developer Guide indicates that a term is a class or an object used in the source code of the application.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -43,7 +71,7 @@
 <br></p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-notification-system"><a class="link" href="#enhancement-added-notification-system">Enhancement Added: Notification System</a></h3>
+<h3 id="major-enhancement-added-notification-system"><a class="link" href="#major-enhancement-added-notification-system">Major Enhancement Added: Notification System</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -79,12 +107,20 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Functional Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Notification System</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/NotificationManager.java">1</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/notification/NotificationCheckingThread.java">2</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/notification/NotificationChecker.java">3</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/systemtray/SystemTrayCommunicator.java">4</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/systemtray/PopupNotification.java">5</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/systemtray/PopupListener.java">6</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ui/systemtray/NotificationClickActionListener.java">7</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Notification Tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/notification/NotificationCheckerTest.java">1</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/notification/NotificationCheckingThreadTest.java">2</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/ui/systemtray/PopupNotificationTest.java">3</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Task Tests</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/model/tasks/TaskSourceTest.java">1</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/model/tasks/TaskSourceBuilderTest.java">2</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Task-Related Command Tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/AddTaskCommandTest.java">1</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/DeleteTaskCommandTest.java">2</a> <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/test/java/seedu/address/logic/commands/EditTaskCommandTest.java">3</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -117,96 +153,29 @@
 <div class="paragraph">
 <p>The following section includes excerpts of my contribution to the Horo User Guide, explaining the Notification System and the <code>notif_on</code> and <code>notif_off</code> commands.</p>
 </div>
-<div class="sect2">
-<h3 id="notification-system"><a class="link" href="#notification-system">Notification System</a></h3>
-<div class="paragraph">
-<p>Horo will post notifications to your system tray to remind you that an event is starting or that a task is due.</p>
-</div>
-<div class="paragraph">
-<p>Take note that Horo can only post reminders as long as the application is open. To tell if Horo is running, check that the appropriate icon appears in the system tray</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/HoroIconScreenShot.png" alt="HoroIconScreenShot">
-</div>
-<div class="title">Figure 1. Horo tray icon</div>
-</div>
-<div class="paragraph">
-<p><br>
-Also take note that notifications are switched on by default upon launch. This status is not carried over between sessions. If you would like to switch notifications off, you would have to do so whenever you start Horo up.</p>
-</div>
-<div class="paragraph">
-<p>You can tell if notifications are switched on by mousing over the icon in the system tray.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/IconMouseOverScreenShot.png" alt="IconMouseOverScreenShot">
-</div>
-<div class="title">Figure 2. Mousing over the Horo tray icon</div>
-</div>
-<div class="sect3">
-<h4 id="notification-popups"><a class="link" href="#notification-popups">Notification Popups</a></h4>
-<div class="paragraph">
-<p>When Horo posts a notification, it should appear at the bottom-right side of the screen, where the system tray should be.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/PopUpScreenShot.png" alt="PopUpScreenShot">
-</div>
-<div class="title">Figure 3. A Popup Notification</div>
-</div>
-<div class="paragraph">
-<p>Take note that that following commands are UI-related commands, and are thus unaffected by the <code>undo</code> and <code>redo</code> commands (For more information, see <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/docs/UserGuide.adoc#undo-redo">Section 3.6, “Undo-Redo”</a>).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="switch-notifications-on"><a class="link" href="#switch-notifications-on">Switch notifications on</a></h4>
-<div class="paragraph">
-<p>The <code>notif_on</code> command switches notifications on.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<strong><code>notif_on</code></strong></p>
-</div>
-<div class="paragraph">
-<p><br>
-1. If you would like to switch notifications on, type the command <strong><code>notif_on</code></strong> into the command box and press <kbd>Enter</kbd> to execute it.<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/NotificationOnCommandBoxScreenShot.png" alt="NotificationOnCommandBoxScreenShot">
-</div>
-<div class="title">Figure 4. <code>notif_on</code> command in the Command Box</div>
-</div>
-<div class="paragraph">
-<p><br>
-2. An in-app popup should appear, displaying “Notifications switched on”. The log view should also record this action.<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/NotificationOnFeedbackScreenShot.png" alt="NotificationOnFeedbackScreenShot">
-</div>
-<div class="title">Figure 5. Feedback for the <code>notif_on</code> command</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following section includes excerpts of my contributions to the Horo Developer Guide, explaining the class architecture and behaviour behind the Notification System.</p>
+<p>The following section includes excerpts of my contributions to the Horo Developer Guide.</p>
 </div>
 <div class="sect2">
-<h3 id="notification-system-2"><a class="link" href="#notification-system-2">Notification System</a></h3>
+<h3 id="class-architecture-and-behaviour"><a class="link" href="#class-architecture-and-behaviour">Class Architecture and Behaviour</a></h3>
+<div class="paragraph">
+<p>This sub-section includes my explanations of the class architecture and behaviour behind the Notification System.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-NotificationManager"><a class="link" href="#Design-NotificationManager">Notification System</a></h3>
 <div class="sect3">
 <h4 id="class-architecture"><a class="link" href="#class-architecture">Class Architecture</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="../images/NotificationClassDiagram.png" alt="NotificationClassDiagram">
 </div>
-<div class="title">Figure 6. Class diagram for Notification System</div>
+<div class="title">Figure 2. Class diagram for Notification System</div>
 </div>
 <div class="paragraph">
 <p>The Notification System is facilitated by the  <code>NotificationManager</code>, which is found in the Logic component. Other constituent classes of the Notification System can be found in the Logic and UI components, depending on their functionality. These classes and their functionalities are listed below:</p>
@@ -270,7 +239,7 @@ Also take note that notifications are switched on by default upon launch. This s
 <div class="content">
 <img src="../images/NotificationCheckingLoopSequenceDiagram.png" alt="NotificationCheckingLoopSequenceDiagram">
 </div>
-<div class="title">Figure 7. Sequence diagram for NotificationCheckingThread&#8217;s main loop</div>
+<div class="title">Figure 3. Sequence diagram for NotificationCheckingThread&#8217;s main loop</div>
 </div>
 <div class="paragraph">
 <p>Step 1. The <code>NotificationCheckingThread</code> calls the <code>NotificationChecker</code> to generate instances of <code>PopupNotification</code> through a call to <code>NotificationChecker#getListOfPopupNotifications()</code></p>
@@ -325,5 +294,37 @@ Also take note that notifications are switched on by default upon launch. This s
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="intructions-for-manual-testing"><a class="link" href="#intructions-for-manual-testing">Intructions for Manual Testing</a></h3>
+<div class="paragraph">
+<p>This sub-section includes instructions I have provided for manual testing of the notification system.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 15:08:37 UTC</div></div></div></body></html>
+</div>
+<div class="sect2">
+<h3 id="notification-system"><a class="link" href="#notification-system">Notification System</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Posting notifications to the desktop</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Make sure notifications have been switched on by using the <code>notif_on</code> command.<br>
+Make sure the System Tray is supported.</p>
+</li>
+<li>
+<p>Test case: <code>add_event "Test Event" "[CURRENT DATE] [CURRENT TIME INCREMENTED BY ONE MINUTE]"</code><br>
+Expected: Upon the next minute, a notification should be posted to your desktop through the system tray.</p>
+</li>
+<li>
+<p>Test case: <code>add_task "Test Task" --due "[CURRENT DATE] [CURRENT TIME INCREMENTED BY ONE MINUTE]"</code>
+Expected: Upon the next minute, a notification should be posted to your desktop through the system tray.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>

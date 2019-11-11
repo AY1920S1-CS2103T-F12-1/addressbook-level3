@@ -23,7 +23,7 @@ and users can also share their data through iCalendar (ICS) files.</p>
 <div class="title">Figure 1. Horo&#8217;s Graphical User Interface (GUI)</div>
 </div>
 <div class="paragraph">
-<p>n this project, my role was to design and implement the code for the export and import commands.
+<p>In this project, my role was to design and implement the code for the export and import commands.
 The following sections illustrate these enhancements in more detail,
 including some of the relevant documentation I have added
 to the User Guide and Developer Guide in relation to these enhancements.</p>
@@ -41,6 +41,10 @@ to the User Guide and Developer Guide in relation to these enhancements.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight (called a mark-up) indicates that
 this is a command that can be inputted into the command line and executed by the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>IcsExporter</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A text with a grey highlight as well as a bold font indicates a component, class or object in Horo.</p></td>
 </tr>
 </tbody>
 </table>
@@ -103,8 +107,9 @@ as I did not want to introduce bugs into our app, thus I wrote a custom parser t
 </ul>
 </div>
 <div class="paragraph">
-<p><em>Code Contributed:</em> I mainly contributed code to the “ics” package of our repository.
-    Click the link <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/ics/IcsParser.java">here</a> for a sample of my code!</p>
+<p><em>Code Contributed:</em> I mainly contributed code to the <code><strong>ics</strong></code> package of our repository.
+To view a breakdown of my contributions to the repository, click
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=marcusteh1238&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">here</a>!</p>
 </div>
 <div class="paragraph">
 <p><em>Other contributions:</em></p>
@@ -169,20 +174,33 @@ as I did not want to introduce bugs into our app, thus I wrote a custom parser t
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>As part of the requirements, we had to update the original User Guide with instructions
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As part of the requirements, we had to update the original User Guide with instructions
 regarding how to use our new features.
-This section contains an excerpt from the User Guide showing how to use the export command.</p>
-</div>
+This section contains an excerpt from the User Guide showing how to use the export command.
+This shows how I am able to give an understandable guide to new users of Horo.</p></td>
+</tr>
+</tbody>
+</table>
 <hr>
 <div class="sect2">
 <h3 id="icalendar-ics-integration"><a class="link" href="#icalendar-ics-integration">iCalendar (ICS) Integration</a></h3>
 <div class="paragraph">
 <p>Horo stores data in the ICS format. Files saved in this format have the extension <code>.ics</code>.
-This allows for data to be imported to and exported from other calendar applications that also use the <code>.ics</code> format.</p>
+This allows for data to be imported from and exported to other calendar applications that also use the <code>.ics</code> format.</p>
+</div>
+<div class="paragraph">
+<p>This means you can export and import your calendar events and todo items straight from Google Calendar into Horo,
+and vice versa!
+It also means that you can export and import your save data between different machines running Horo.</p>
 </div>
 <div class="sect3">
-<h4 id="export-current-calendar-code-export-directory-directory-code"><a class="link" href="#export-current-calendar-code-export-directory-directory-code">Export current calendar : <code>export --directory ["DIRECTORY"]</code></a></h4>
+<h4 id="export-current-data"><a class="link" href="#export-current-data">Export Current Data</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="../images/ExportCommandScreenShot.png" alt="ExportCommandScreenShot">
@@ -196,21 +214,47 @@ This allows for data to be imported to and exported from other calendar applicat
 <div class="title">Figure 3. Exported File</div>
 </div>
 <div class="paragraph">
-<p><br>
-The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
-If no directory is specified, the file will be created in the same directory as Horo.
-<br></p>
+<p>The <code>export</code> command exports your current calendar as an ICS file to the specified directory.
+If no directory is specified, the file will be created in the same directory as Horo.</p>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>export</code><br>
-<code>export --directory ["DIRECTORY"]</code>
-<br></p>
+<p>If you want to export the ICS file to a certain directory like your desktop,
+all you have to do is specify it with the <code><strong>--directory</strong></code> parameter.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>export</strong></code><br>
+<code><strong>export</strong> <strong>--directory</strong> DIRECTORY</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-<code>export --directory "C:\Users\USER_NAME\Desktop\Horo"</code>
-<br></p>
+<code><strong>export</strong> <strong>--directory</strong> "C:\Users\USER_NAME\Desktop\Horo"</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-other-ics-data"><a class="link" href="#import-other-ics-data">Import other ICS Data</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ImportFileScreenShot.png" alt="ImportFileScreenShot">
+</div>
+<div class="title">Figure 4. Imported File</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ImportCommandScreenShot.png" alt="ImportCommandScreenShot">
+</div>
+<div class="title">Figure 5. Import Command</div>
+</div>
+<div class="paragraph">
+<p>The <code>import</code> command imports an ICS file from the specified filepath.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>import</strong> FILEPATH</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code><strong>import</strong> "C:\Users\USER_NAME\Desktop\OtherCalendars\Others.ics"</code></p>
 </div>
 </div>
 </div>
@@ -219,26 +263,60 @@ If no directory is specified, the file will be created in the same directory as 
 <div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The following section shows my additions to the Horo Developer Guide for the import and export features.</p>
-</div>
-<hr>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The following section shows my additions to the Horo Developer Guide for the import and export features,
+showing how I can write documentation that can be useful to other developers.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
-<h3 id="ics-component"><a class="link" href="#ics-component">Ics Component</a></h3>
+<h3 id="Design-Ics"><a class="link" href="#Design-Ics">Ics Component</a></h3>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-F12-1/main/src/main/java/seedu/address/ics/IcsParser.java"><code>IcsParser.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The ICS component is made up of two parts: ICS file importer, and ICS file exporter.</p>
+<p>The ICS component is made up of 2 main sub-components: ICS file parser, and ICS file exporter.</p>
 </div>
 <div class="paragraph">
-<p>The file importer makes use of a custom parser that converts files with the <code>.ics</code> file extension
-to <code>EventSource</code> objects in Horo.</p>
+<p>The file parser makes use of a custom parser that converts files with the <code>.ics</code> file extension
+to <code>EventSource</code> and <code>TaskSource</code> objects in Horo.</p>
 </div>
 <div class="paragraph">
-<p>The file exporter takes the <code>EventSource</code> objects stored in the <code>Model</code> singleton object and
-generates ICS String representations of them. Check out the
-<a href="https://en.wikipedia.org/wiki/ICalendar">ICalendar Wiki Page</a> for more information on the specifications.</p>
+<p>Here is an overview of how the ICS component looks like:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/IcsComponentDiagram.png" alt="IcsComponentDiagram">
+</div>
+<div class="title">Figure 6. ICS Component Architecture</div>
+</div>
+<div class="paragraph">
+<p>Right now, this is how the <code><strong>IcsExporter</strong></code> class exports Horo&#8217;s <code><strong>EventSource</strong></code> and <code><strong>TaskSource</strong></code> data.
+Notice that the file is created onnly when it is known that the directory provided by the user is valid.
+This is to prevent extra uncaught errors being thrown.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportCommandActivityDiagram.png" alt="ExportCommandActivityDiagram">
+</div>
+<div class="title">Figure 7. Activity Diagram of an Export Command</div>
+</div>
+<div class="paragraph">
+<p>In order to generate the file content from Horo&#8217;s saved data, the file exporter uses the <code><strong>IcsConverter</strong></code> class to convert <code><strong>EventSource</strong></code> and <code><strong>TaskSource</strong></code> objects
+stored in the <code><strong>ModelManager</strong></code> singleton object into their ICS String representations.</p>
+</div>
+<div class="paragraph">
+<p>They will then be concatenated together using a <code><strong>StringBuilder</strong></code> object. Boilerplate information will be added
+at the start and end of the save file to make the file valid to be imported to other Calendar applications.</p>
+</div>
+<div class="paragraph">
+<p>Check out the
+<a href="https://en.wikipedia.org/wiki/ICalendar">iCalendar Wiki Page</a> for more information on the specifications.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -251,6 +329,52 @@ The <code>ICS</code> Component,with a <code>.ics</code> extension.</p>
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings"><a class="link" href="#aspect-handling-of-horo-tasksource-and-eventsource-conversion-to-ics-strings">Aspect: Handling of Horo TaskSource and EventSource conversion to ICS Strings</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current Choice):</strong> Use of a separate class <code>IcsConverter</code> to convert <code>TaskSource</code> and <code>EventSource</code> objects
+their ICS string representations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Adherence to Single Responsibility Principle,
+decouples <code>IcsExporter</code> from the <code>TaskSource</code> and <code>EventSource</code> classes, and keeps code reusable and scalable.</p>
+</li>
+<li>
+<p>Cons: Not consistent with Object-Oriented Programming structure.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a common <code>IcsConvertible</code> Interface for <code>TaskSource</code> and <code>EventSource</code> to implement a <code>toIcsString()</code> function.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Adheres to Object-Oriented Programming structure.</p>
+</li>
+<li>
+<p>Cons: Hard to reuse functions and modify code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen eventually, as I felt that it is more important to adhere to the Single Responsibility Principle
+and keep all code relevant to converting objects to ICS Strings in the same class.</p>
+</div>
+<div class="paragraph">
+<p>This further makes it easier for future debugging,
+and makes adding new exportable objects a lot easier as there are common functions that can be used.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 15:08:37 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>

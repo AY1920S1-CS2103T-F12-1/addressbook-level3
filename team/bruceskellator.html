@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Bruce Ong - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Bruce Ong - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-horo-calendar-scheduling-app"><a class="link" href="#project-horo-calendar-scheduling-app">Project: Horo (Calendar/Scheduling App)</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="project-description"><a class="link" href="#project-description">Project Description</a></h3>
+<div class="paragraph">
+<p>My team of 5 software engineering students were given the task of enhancing a basic command line interface
+desktop addressbook application for our Software Engineering Project. We decided to morph it into a schedule-manager called Horo.
+Horo allows one to record down daily events and tasks, all of which can be easily accessed in the form of a visual aid- Horo’s built-in calendar.
+This portfolio documents my contributions towards the development of Horo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="project-scope"><a class="link" href="#project-scope">Project Scope</a></h3>
+<div class="paragraph">
+<p>Over the course of 6 weeks, as a requirement of the National University of Singapore&#8217;s CS2103T Software Engineering module,
+students were grouped into teams tasked with either enhancing or morphing a basic Command Line Interface
+(CLI) application. My team designed Horo with university students in mind, to provide them a convenient way to organise
+their activities better through a modern and minimalistic interface.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="portfolio-purpose"><a class="link" href="#portfolio-purpose">Portfolio Purpose</a></h3>
+<div class="paragraph">
+<p>My role was to design and implement the undo and redo features. The sections that follow highlight my approach
+to implementing these enhancements, as well as the contributions I have made to the user and developer guides.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the team project.<br>
+<br></p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-ability-to-undo-and-redo-previous-commands"><a class="link" href="#enhancement-added-ability-to-undo-and-redo-previous-commands">Enhancement Added: Ability to undo and redo previous commands</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 18.1818%;">
+<col style="width: 81.8182%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">What it does</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>undo</code> command is able to undo any of the previous commands that have been executed;
+it restores the state of Horo as though the previous command had not been executed at all. The <code>redo</code> command does the
+exact opposite. It redoes a previously undone command</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Justification</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suppose the user accidentally deletes the wrong task from Horo, or adds a task only to find that
+there was a misspelling of the task description and the wrong event time provided. Of course, the user can simply add
+he task back or edit the task using other Horo commands. However, this can be rather tedious if such mistakes happen
+often. As such, providing an <code>undo</code> command allows the user to conveniently “undo” mistakes. A <code>redo</code> command is also
+provided as a natural counterpart to the <code>undo</code> command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Highlights</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Since my team was morphing the addressbook, as opposed to starting from scratch, I was not fully aware
+of how the data was being conveyed from the addressbook to the GUI. As such, my first implementation correctly
+manipulated the data, but all changes were not reflected on the GUI. I had to change my approach slightly in order
+to fix this issue.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed</a></h3>
+<div class="paragraph">
+<p><a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=bruceskellator&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">RepoSense Link</a></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Functional Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/UndoRedoManager.java">1</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/model/ModelManager.java">2</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/model/ModelData.java">3</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/UndoCommand.java">4</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/UndoCommandBuilder.java">5</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/RedoCommand.java">6</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/RedoCommandBuilder.java">7</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="blank">1</a>
+<a href="blank">2</a>
+<a href="blank">3</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Helped to create Add, Delete and Edit Task commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java">1</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/DeleteTaskCommand.java">2</a>
+<a href="https://github.com/AY1920S1-CS2103T-F12-1/main/blob/master/src/main/java/seedu/address/logic/commands/EditTaskCommand.java">3</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team had to update the original addressbook User Guide, as many of our enhancements comprised either
+new instructions or existing ones that have been tailored to Horo. The following is an excerpt from our
+Horo User Guide, showing the additions that I have made in relation to the undo and redo features.</p>
+</div>
+<div class="sect2">
+<h3 id="undo"><a class="link" href="#undo">Undo</a></h3>
+<div class="paragraph">
+<p>The <code>undo</code> command undoes the previous command.<br>
+Commands can be undone up to the program&#8217;s launch.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>undo</strong></code></p>
+</div>
+<div class="paragraph">
+<p>Example:
+Suppose that you have deleted the wrong task from Horo. Rather than having to type the <code>add_task</code> command
+along with the description of the deleted task (to add back the wrongly deleted task), you can simply type in <code>undo</code>,
+which will revert Horo to the state before the deletion of the wrong task was executed.</p>
+</div>
+<div class="paragraph">
+<p>This means Horo is now restored to its desired state, as if you did not commit the deletion mistake at all!
+You can now proceed to delete the right task.</p>
+</div>
+<div class="paragraph">
+<p>Illustration:
+Suppose that we wanted to delete task 2 in the list, but deleted task 3 instead.
+(Horo also has a list view on top of the calendar view; I will illustrate the feature with with the list view)</p>
+</div>
+<div class="paragraph">
+<p>To undo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type undo in the command box, and press the Enter key to execute it.<br></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario1.png" alt="undoScenario1">
+</div>
+<div class="title">Figure 1. <code>undo</code> command in the Command Box</div>
+</div>
+<div class="paragraph">
+<p><br>
+2. The result box will display the message: “Previous command has been undone!”<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario2.png" alt="undoScenario2">
+</div>
+<div class="title">Figure 2. Feedback for the <code>undo</code> command</div>
+</div>
+<div class="paragraph">
+<p><br>
+3. You can see that the wrongly deleted task (task 3) is visible in the list once again.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario3.png" alt="undoScenario3">
+</div>
+<div class="title">Figure 3. Result of the <code>undo</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>The <code>undo</code> command undoes previous commands in reverse chronological order.</strong><br>
+<br>
+Suppose that you have executed the following commands in this order:<br>
+<br>
+1.	Adding a task<br>
+2.	Editing a task<br>
+<br>
+Now, if you execute the <code>undo</code> command, you will first revert Horo to the state before a task was edited.
+Then, if you execute <code>undo</code> again, you will revert Horo to the state before a task was added.<br>
+<br>
+<strong>The <code>undo</code> command only works on state-changing commands.</strong><br>
+<br>
+State-changing commands are those that manipulate task and event data stored in Horo. Examples include <code>add_task</code>, <code>delete_task</code> and <code>edit_task</code>.
+<code>Undo</code> commands only work on these types of commands because there is an actual change in the state of Horo that can be undone.<br>
+<br>
+On the other hand, non-state-changing commands include <code>find</code> and <code>help</code>. These commands are only concerned with producing
+user output for the user in the GUI, but do not modify any of the data stored in Horo. As such, these types of commands
+are ignored by the <code>undo</code> operation since there is nothing to <code>undo</code>.<br>
+<br>
+As such, if we first add a task to Horo, then we call the <code>help</code> command, calling <code>undo</code> will ignore the <code>help</code> command and proceed
+to revert Horo to before a task was added.<br>
+<br>
+<strong>The <code>undo</code> command only executes if there are previous states to revert back to.</strong><br>
+<br>
+If no command has been previously executed, or if Horo has already been reverted to the earliest possible state by multiple <code>undos</code>,
+then calling <code>undo</code> further will amount to no effect.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redo"><a class="link" href="#redo">Redo</a></h3>
+<div class="paragraph">
+<p>The <code>redo</code> command redoes a previously undone command.
+The <code>redo</code> command is able to redo any undone commands that have not been succeeded by a separate state-changing command
+(e.g. add_event, delete_event, edit).</p>
+</div>
+<div class="paragraph">
+<p>If you had executed any state-changing command (except for <code>undo</code> or <code>redo</code>) just after undoing the <code>add_event</code> command,
+calling redo will then amount to no effect.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve ever used another application with undo-redo functionality, just imagine that Horo&#8217;s undo-redo functions are as intuitive as theirs.</p>
+</div>
+<div class="paragraph">
+<p>Command Format:<br>
+<code><strong>redo</strong></code></p>
+</div>
+<div class="paragraph">
+<p>Illustration:
+Suppose that you wrongly deleted task 3 from the list, but actually wanted to delete task 2 instead.
+As a result, you type in the <code>undo</code> command, and Horo is restored to the previous state where task 3 still exists.</p>
+</div>
+<div class="paragraph">
+<p>However, now you decide that you want to remove task 3 from the list after all. Without having to key in the <code>delete_task</code> command,
+you can simply type in <code>redo</code> and the most recent command that was undone (the deletion of task 3) will be re-executed.
+This results in a list where task 3 is deleted.</p>
+</div>
+<div class="paragraph">
+<p>To redo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type redo in the command box, and press the Enter key to execute it.<br></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario4.png" alt="undoScenario4">
+</div>
+<div class="title">Figure 4. <code>redo</code> command in the Command Box</div>
+</div>
+<div class="paragraph">
+<p><br>
+2. The result box will display the message “Previous undone command has been redone!”<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario5.png" alt="undoScenario5">
+</div>
+<div class="title">Figure 5. Feedback for the <code>redo</code> command</div>
+</div>
+<div class="paragraph">
+<p><br>
+3. You can see that task 3 has been removed from the list.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoScenario6.png" alt="undoScenario6">
+</div>
+<div class="title">Figure 6. Result of the <code>redo</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>The <code>redo</code> command redoes previously undone commands in reverse chronological order.</strong><br>
+<br>
+Suppose that you have executed the following commands in this order:<br>
+<br>
+1.	Adding a task<br>
+2.	Editing a task<br>
+<br>
+As discussed in Undoing a previous command, if we run <code>undo</code> twice, we will revert Horo to before a task was edited,
+and then revert Horo to before a task was added.<br>
+Our sequence of <code>undo</code> commands are in this order:<br>
+<br>
+1.	Undo editing of a task<br>
+2.	Undo adding of a task<br>
+<br>
+Now, if we run the <code>redo</code> command, Horo will be restored to the state after the task was added. If we execute redo again,
+Horo will be restored to the state after the task was edited.<br>
+<br>
+<strong>The <code>redo</code> command only executes if the most recent state-changing command(s) are undo commands.</strong><br>
+<br>
+If no <code>undo</code> command has been executed since the starting up of Horo, or <code>undo</code> commands have been executed
+but other state-changing commands were executed after those <code>undos</code>, then executing the <code>redo</code> command amounts to no effect.<br>
+<br>
+For example, let’s say I deleted a task from the list, undid that deletion, and then added another task to the list.
+Executing the <code>redo</code> command here will not do anything because <code>add_task</code> was executed after the <code>undo</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following section shows my contributions to the developer guide in relation to the undo and redo features.</p>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-details"><a class="link" href="#implementation-details">Implementation Details</a></h4>
+<div class="paragraph">
+<p>The undo/redo mechanism is facilitated by <code>UndoRedoManager</code>, which contains <code>undoStateList</code> - a history of <code>ModelData</code> states.
+Each <code>ModelData</code> object contains two lists: one to store <code>EventSources</code> and the other to store <code>TaskSources</code>,
+together representing the state of all event and task data at that point in time. <code>UndoRedoManager</code> also contains a <code>undoIndex</code>,
+which keeps track of the index of the <code>ModelData</code> being used presently, as well as a <code>ModelManager</code> object.</p>
+</div>
+<div class="paragraph">
+<p><code>ModelManager</code> contains a <code>ModelData</code> object. Horo&#8217;s <code>StorageManager</code>, <code>UiManager</code> and <code>UndoRedoManager</code> components
+implement the <code>ModelDataListener</code> interface which listens for any changes to this <code>ModelData</code> so that they can be updated accordingly.
+Every time a state-changing command (that is not <code>undo</code> or <code>redo</code>) is executed, the a new <code>ModelData</code> representing the modified version
+will replace the old one and this new version will then be deep-copied and added to <code>undoStateList</code>.
+Should there be a need to revert back to a past or future state (if undo or redo is called), <code>ModelManager#modelData</code> will retrieve their data from the
+appropriate copy of <code>ModelData</code> in the list of duplicates.</p>
+</div>
+<div class="paragraph">
+<p><code>UndoRedoManager</code> also implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UndoRedoManager#undo()</code>&#8201;&#8212;&#8201;Restore <code>ModelManager#modelData</code> to their previous versions from the appropriate duplicate in <code>undoStateList</code></p>
+</li>
+<li>
+<p><code>UndoRedoManager#redo()</code>&#8201;&#8212;&#8201;Restore <code>ModelManager#modelData</code> to their future versions from the appropriate duplicate in <code>undoStateList</code></p>
+</li>
+<li>
+<p><code>UndoRedoManager#clearFutureHistory()</code> -- Delete all <code>ModelData</code> states that occur in <code>undoStateList</code> after the index given by the <code>undoIndex</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>UndoCommand</code> and <code>RedoCommand</code> will interact directly with <code>UndoRedoManager</code> while other state-changing commands
+(such as adding or deleting tasks) will interact only with <code>ModelManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ModelDataListener</code> interface helps us achieve the desired undo-redo functionality:</p>
+</div>
+<div class="paragraph">
+<p>This listener interface contains a single method, <code>onModelDataChange(ModelData modelData)</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UndoRedoManager</code> implements the <code>ModelDataListener</code> interface’s method <code>onModelDataChange(ModelData modelData)</code> to “listen” for any changes to
+<code>ModelManager#modelData</code> (e.g. when an event or task is added or deleted)
+If such a change exists, it will be handled by first instantiating a model data with a deep-copied version of the
+<code>taskList</code> and the modified <code>eventList</code>, calling <code>UndoRedoManager#clearFutureHistory()</code>, and finally to committing the state to <code>undoStateList</code></p>
+</div>
+<div class="paragraph">
+<p>On the other hand, whenever an undo or redo is executed, <code>ModelManager&#8217;s `ModelData</code> is updated
+to match the data of the model data with index <code>undoIndex</code> in <code>undoStateList</code> so that the correct version of model data is being reflected in the GUI.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user runs the program for the first time. The <code>UndoRedoManager</code> will be initialized with the initial <code>undoStateList</code>.
+A <code>ModelData</code> object will be added to <code>undoStateList</code> and the <code>undoIndex</code> will point to that single model data in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/process1.png" alt="process1">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>add_event “Suntec City Computer Fair” --at “17/11/2019 12:00”</code>.
+<code>ModelManager#ModelData</code> will be reset to a new <code>ModelData</code> object with the added event.
+Then, <code>UndoRedoManager#onModelDataChange(ModelData modelData)</code> will be called (as there has been a change to the <code>eventList</code>),
+deep-copying the modified <code>ModelData</code>.
+All future states beyond the <code>undoIndex</code> will be cleared as they are no longer useful. In this particular case, there are no future states to be cleared.
+Finally, the deep-copy of the new model data state will be committed; added to <code>undoStateList</code>.
+The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model data state.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/process2.png" alt="process2">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a command fails its execution, it will not result in any change to <code>ModelManager#ModelData</code>.
+Hence, there is no change to trigger the listener methods and thus no <code>ModelData</code> will be saved to <code>undoStateList</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. Suppose the user decides that adding the task was a mistake. He/she then executes the undo command to rectify the error.
+The undo command will decrement the <code>undoIndex</code> by one to contain the index of the previous undo redo state, thereafter triggering the
+<code>UndoRedoManager#notifyModelResetListeners</code> method. This method updates <code>ModelManager#modelData</code> to match the data of the
+model data with index <code>undoIndex</code> in <code>undoStateList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/process3.png" alt="process3">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>undoIndex</code> is 0, pointing to the initial model data state, then there are no previous model data states to restore.
+The undo command uses <code>UndoRedoManager#canUndo()</code> to check if this is the case.
+If so, it will return an error to the user rather than attempting to perform the undo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the undo operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>The redo command does the opposite — it calls <code>UndoRedoManager#redo()</code>, which increments the <code>undoIndex</code> by one to contain the index of the previously undone state.
+The <code>UndoRedoManager#notifyModelResetListeners</code> then causes <code>ModelManager#modelData</code> to be reset to this state’s data.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>undoIndex</code> is at index <code>undoStateList.size() - 1</code>, pointing to the latest model data state, then there are no undone model data states to restore.
+The <code>redo</code> command uses <code>UndoRedoManager#canRedo()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. The user decides to execute the command <code>log</code>. Non-state-changing commands such as <code>log</code> do not manipulate task and event data.
+Since no changes to <code>ModelManager#modelData</code> have been made, the listener methods will not be triggered and no model data will be saved to <code>undoStateList</code>.
+Thus, the <code>undoStateList</code> remains unchanged.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/process4.png" alt="process4">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5. The user executes <code>delete_event 1</code>, removing the event from the <code>eventList</code> in <code>ModelManager#modelData</code>.
+<code>UndoRedoManager#onModelDataChange(ModelData modelData)</code> will be called (as there has been a change to the <code>ModelData</code>),
+purging all future states beyond the <code>undoIndex</code> as they are no longer useful.
+The modified model data will be deep-copied and a new model data containing the deep-copies will also be added to <code>undoStateList</code>.
+The <code>undoIndex</code> is incremented by one to contain the index of the newly inserted model data state.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/process5.png" alt="process5">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommitActivityDiagram1.png" alt="CommitActivityDiagram1">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Aspect: How undo &amp; redo executes</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Approach 1 (current choice)</th>
+<th class="tableblock halign-left valign-top">Approach 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to understand and implement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uses less memory as we only need to keep track of what commands have been executed and their parameters,
+as opposed to storing all task and event data between every change.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance issues may arise due to the relatively larger memory usage required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Every command will have to be implemented twice, since their inverse operations will all be different. This is
+compounded by the fact that we have to ensure the correctness of every inverse operation individually as well.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:39:31 UTC</div></div></div></body></html>
